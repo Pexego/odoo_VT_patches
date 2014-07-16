@@ -1755,7 +1755,8 @@ class stock_move(osv.osv):
             for `product_qty`, where the same write should set the `product_uom_qty` field instead, in order to
             detect errors.
         """
-        raise osv.except_osv(_('Programming Error!'), _('The requested operation cannot be processed because of a programming error setting the `product_qty` field instead of the `product_uom_qty`.'))
+        if value > 0:
+            raise osv.except_osv(_('Programming Error!'), _('The requested operation cannot be processed because of a programming error setting the `product_qty` field instead of the `product_uom_qty`.'))
 
     _columns = {
         'name': fields.char('Description', required=True, select=True),

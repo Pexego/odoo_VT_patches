@@ -1812,6 +1812,9 @@ class BaseModel(object):
                     defaults[dv] = [(0, 0, x) for x in defaults[dv]]
             defaults.update(values)
             values = defaults
+        if str(self) == 'stock.move':
+            values.pop('product_qty', False)
+        # discard magic fields
         return values
 
     def clear_caches(self):
