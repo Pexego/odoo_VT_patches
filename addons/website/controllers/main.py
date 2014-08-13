@@ -3,12 +3,15 @@ import cStringIO
 import datetime
 from itertools import islice
 import json
+import xml.etree.ElementTree as ET
+
 import logging
 import re
 
 from sys import maxint
 
 import werkzeug.utils
+import urllib2
 import werkzeug.wrappers
 from PIL import Image
 
@@ -191,14 +194,19 @@ class Website(openerp.addons.web.controllers.main.Home):
         modules_to_update = []
         for temp_id in templates:
             view = request.registry['ir.ui.view'].browse(request.cr, request.uid, int(temp_id), context=request.context)
+            if view.page:
+                continue
             view.model_data_id.write({
                 'noupdate': False
             })
             if view.model_data_id.module not in modules_to_update:
                 modules_to_update.append(view.model_data_id.module)
-        module_obj = request.registry['ir.module.module']
-        module_ids = module_obj.search(request.cr, request.uid, [('name', 'in', modules_to_update)], context=request.context)
-        module_obj.button_immediate_upgrade(request.cr, request.uid, module_ids, context=request.context)
+
+        if modules_to_update:
+            module_obj = request.registry['ir.module.module']
+            module_ids = module_obj.search(request.cr, request.uid, [('name', 'in', modules_to_update)], context=request.context)
+            if module_ids:
+                module_obj.button_immediate_upgrade(request.cr, request.uid, module_ids, context=request.context)
         return request.redirect(redirect)
 
     @http.route('/website/customize_template_get', type='json', auth='user', website=True)
@@ -348,6 +356,18 @@ class Website(openerp.addons.web.controllers.main.Home):
         obj = _object.browse(request.cr, request.uid, _id)
         return bool(obj.website_published)
 
+    @http.route(['/website/seo_suggest/<keywords>'], type='http', auth="public", website=True)
+    def seo_suggest(self, keywords):
+        url = "http://google.com/complete/search"
+        try:
+            req = urllib2.Request("%s?%s" % (url, werkzeug.url_encode({
+                'ie': 'utf8', 'oe': 'utf8', 'output': 'toolbar', 'q': keywords})))
+            request = urllib2.urlopen(req)
+        except (urllib2.HTTPError, urllib2.URLError):
+            return []
+        xmlroot = ET.fromstring(request.read())
+        return json.dumps([sugg[0].attrib['data'] for sugg in xmlroot if len(sugg) and sugg[0].attrib['data']])
+
     #------------------------------------------------------
     # Helpers
     #------------------------------------------------------
@@ -377,10 +397,15 @@ class Website(openerp.addons.web.controllers.main.Home):
         The requested field is assumed to be base64-encoded image data in
         all cases.
         """
-        response = werkzeug.wrappers.Response()
-        return request.registry['website']._image(
-                    request.cr, request.uid, model, id, field, response, max_width, max_height)
-
+        try:
+            response = werkzeug.wrappers.Response()
+            return request.registry['website']._image(
+                request.cr, request.uid, model, id, field, response, max_width, max_height)
+        except Exception:
+            logger.exception("Cannot render image field %r of record %s[%s] at size(%s,%s)",
+                             field, model, id, max_width, max_height)
+            response = werkzeug.wrappers.Response()
+            return self.placeholder(response)
 
     #------------------------------------------------------
     # Server actions

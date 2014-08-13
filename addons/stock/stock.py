@@ -928,8 +928,7 @@ class stock_picking(osv.osv):
                 'pack_operation_ids': [],
                 'backorder_id': picking.id,
             })
-            back_order_name = self.browse(cr, uid, backorder_id, context=context).name
-            self.message_post(cr, uid, picking.id, body=_("Back order <em>%s</em> <b>created</b>.") % (back_order_name), context=context)
+            self.message_post(cr, uid, picking.id, body=_("Back order <em>%s</em> <b>created</b>.") % (picking.name), context=context)
             move_obj = self.pool.get("stock.move")
             move_obj.write(cr, uid, backorder_move_ids, {'picking_id': backorder_id}, context=context)
 
@@ -1210,7 +1209,7 @@ class stock_picking(osv.osv):
 
                         #check if the quant is matching the operation details
                         if ops.package_id:
-                            flag = quant.package_id and bool(package_obj.search(cr, uid, [('id', 'child_of', [ops.package_id.id]), ('id', '=', quant.package_id.id)], context=context)) or False
+                            flag = quant.package_id and bool(package_obj.search(cr, uid, [('id', 'child_of', [ops.package_id.id])], context=context)) or False
                         else:
                             flag = not quant.package_id.id
                         flag = flag and ((ops.lot_id and ops.lot_id.id == quant.lot_id.id) or not ops.lot_id)
@@ -1385,8 +1384,8 @@ class stock_picking(osv.osv):
                         stock_operation_obj.write(cr, uid, operation.id, {'product_qty': operation.product_qty - operation.qty_done,'qty_done': 0, 'lot_id': False}, context=context)
                         op = stock_operation_obj.browse(cr, uid, new_operation, context=context)
                     pack_operation_ids.append(op.id)
-                    for record in op.linked_move_operation_ids:
-                        stock_move_obj.check_tracking(cr, uid, record.move_id, op.package_id.id or op.lot_id.id, context=context)
+                    if op.product_id and op.location_id and op.location_dest_id:
+                        stock_move_obj.check_tracking_product(cr, uid, op.product_id, op.lot_id.id, op.location_id, op.location_dest_id, context=context)
                 package_id = package_obj.create(cr, uid, {}, context=context)
                 stock_operation_obj.write(cr, uid, pack_operation_ids, {'result_package_id': package_id}, context=context)
         return True
@@ -1448,7 +1447,7 @@ class stock_production_lot(osv.osv):
         'product_id': lambda x, y, z, c: c.get('product_id', False),
     }
     _sql_constraints = [
-        ('name_ref_uniq', 'unique (name, ref)', 'The combination of Serial Number and internal reference must be unique !'),
+        ('name_ref_uniq', 'unique (name, ref, product_id)', 'The combination of serial number, internal reference and product must be unique !'),
     ]
 
     def action_traceability(self, cr, uid, ids, context=None):
@@ -1531,9 +1530,9 @@ class stock_move(osv.osv):
         res = dict.fromkeys(ids, False)
         for move in self.browse(cr, uid, ids, context=context):
             if move.state == 'done':
-                res[move.id] = [q.id for q in move.quant_ids]
+                res[move.id] = [q.lot_id.id for q in move.quant_ids if q.lot_id]
             else:
-                res[move.id] = [q.id for q in move.reserved_quant_ids]
+                res[move.id] = [q.lot_id.id for q in move.reserved_quant_ids if q.lot_id]
         return res
 
     def _get_product_availability(self, cr, uid, ids, field_name, args, context=None):
@@ -1689,7 +1688,7 @@ class stock_move(osv.osv):
         'propagate': fields.boolean('Propagate cancel and split', help='If checked, when this move is cancelled, cancel the linked move too'),
         'picking_type_id': fields.many2one('stock.picking.type', 'Picking Type'),
         'inventory_id': fields.many2one('stock.inventory', 'Inventory'),
-        'lot_ids': fields.function(_get_lot_ids, type='many2many', relation='stock.quant', string='Lots'),
+        'lot_ids': fields.function(_get_lot_ids, type='many2many', relation='stock.production.lot', string='Lots'),
         'origin_returned_move_id': fields.many2one('stock.move', 'Origin return move', help='move that created the return move', copy=False),
         'returned_move_ids': fields.one2many('stock.move', 'origin_returned_move_id', 'All returned moves', help='Optional: all returned moves created from this move'),
         'reserved_availability': fields.function(_get_reserved_availability, type='float', string='Quantity Reserved', readonly=True, help='Quantity that has already been reserved for this move'),
@@ -1732,6 +1731,7 @@ class stock_move(osv.osv):
         'date_expected': fields.datetime.now,
         'procure_method': 'make_to_stock',
         'propagate': True,
+        'partially_available': False,
     }
 
     def _check_uom(self, cr, uid, ids, context=None):
@@ -1805,8 +1805,8 @@ class stock_move(osv.osv):
                     if wh_route_ids:
                         rules = push_obj.search(cr, uid, domain + [('route_id', 'in', wh_route_ids)], order='route_sequence, sequence', context=context)
                     if not rules:
-                        #if no specialized push rule has been found yet, we try to find a general one
-                        rules = push_obj.search(cr, uid, domain, order='route_sequence, sequence', context=context)
+                        #if no specialized push rule has been found yet, we try to find a general one (without route)
+                        rules = push_obj.search(cr, uid, domain + [('route_id', '=', False)], order='sequence', context=context)
                 if rules:
                     rule = push_obj.browse(cr, uid, rules[0], context=context)
                     push_obj._apply(cr, uid, rule, move, context=context)
@@ -1890,7 +1890,7 @@ class stock_move(osv.osv):
                     warning.update({
                         'title': _('Information'),
                         'message': _("By changing this quantity here, you accept the "
-                                "new quantity as complete: OpenERP will not "
+                                "new quantity as complete: Odoo will not "
                                 "automatically generate a back order.")})
                 break
 
@@ -1951,13 +1951,12 @@ class stock_move(osv.osv):
         product = self.pool.get('product.product').browse(cr, uid, [prod_id], context=ctx)[0]
         uos_id = product.uos_id and product.uos_id.id or False
         result = {
+            'name': product.partner_ref,
             'product_uom': product.uom_id.id,
             'product_uos': uos_id,
             'product_uom_qty': 1.00,
             'product_uos_qty': self.pool.get('stock.move').onchange_quantity(cr, uid, ids, prod_id, 1.00, product.uom_id.id, uos_id)['value']['product_uos_qty'],
         }
-        if not ids:
-            result['name'] = product.partner_ref
         if loc_id:
             result['location_id'] = loc_id
         if loc_dest_id:
@@ -2054,18 +2053,23 @@ class stock_move(osv.osv):
         """
         return self.write(cr, uid, ids, {'state': 'assigned'}, context=context)
 
+    def check_tracking_product(self, cr, uid, product, lot_id, location, location_dest, context=None):
+        check = False
+        if product.track_all and not location_dest.usage == 'inventory':
+            check = True
+        elif product.track_incoming and location.usage in ('supplier', 'transit', 'inventory') and location_dest.usage == 'internal':
+            check = True
+        elif product.track_outgoing and location_dest.usage in ('customer', 'transit') and location.usage == 'internal':
+            check = True
+        if check and not lot_id:
+            raise osv.except_osv(_('Warning!'), _('You must assign a serial number for the product %s') % (product.name))
+
+
     def check_tracking(self, cr, uid, move, lot_id, context=None):
         """ Checks if serial number is assigned to stock move or not and raise an error if it had to.
         """
-        check = False
-        if move.product_id.track_all and not move.location_dest_id.usage == 'inventory':
-            check = True
-        elif move.product_id.track_incoming and move.location_id.usage in ('supplier', 'transit', 'inventory') and move.location_dest_id.usage == 'internal':
-            check = True
-        elif move.product_id.track_outgoing and move.location_dest_id.usage in ('customer', 'transit') and move.location_id.usage == 'internal':
-            check = True
-        if check and not lot_id:
-            raise osv.except_osv(_('Warning!'), _('You must assign a serial number for the product %s') % (move.product_id.name))
+        self.check_tracking_product(cr, uid, move.product_id, lot_id, move.location_id, move.location_dest_id, context=context)
+        
 
     def action_assign(self, cr, uid, ids, context=None):
         """ Checks the product type and accordingly writes the state.
@@ -2138,6 +2142,7 @@ class stock_move(osv.osv):
         """
         procurement_obj = self.pool.get('procurement.order')
         context = context or {}
+        procs_to_check = []
         for move in self.browse(cr, uid, ids, context=context):
             if move.state == 'done':
                 raise osv.except_osv(_('Operation Forbidden!'),
@@ -2148,21 +2153,21 @@ class stock_move(osv.osv):
                 if move.propagate:
                     procurement_ids = procurement_obj.search(cr, uid, [('move_dest_id', '=', move.id)], context=context)
                     procurement_obj.cancel(cr, uid, procurement_ids, context=context)
-            elif move.move_dest_id:
-                #cancel chained moves
-                if move.propagate:
-                    self.action_cancel(cr, uid, [move.move_dest_id.id], context=context)
-                    # If we have a long chain of moves to be cancelled, it is easier for the user to handle
-                    # only the last procurement which will go into exception, instead of all procurements
-                    # along the chain going into exception.  We need to check if there are no split moves not cancelled however
-                    if move.procurement_id:
-                        proc = move.procurement_id
-                        if all([x.state == 'cancel' for x in proc.move_ids if x.id != move.id]):
-                            procurement_obj.write(cr, uid, [proc.id], {'state': 'cancel'})
-
-                elif move.move_dest_id.state == 'waiting':
-                    self.write(cr, uid, [move.move_dest_id.id], {'state': 'confirmed'}, context=context)
-        return self.write(cr, uid, ids, {'state': 'cancel', 'move_dest_id': False}, context=context)
+            else:
+                if move.move_dest_id:
+                    if move.propagate:
+                        self.action_cancel(cr, uid, [move.move_dest_id.id], context=context)
+                    elif move.move_dest_id.state == 'waiting':
+                        #If waiting, the chain will be broken and we are not sure if we can still wait for it (=> could take from stock instead)
+                        self.write(cr, uid, [move.move_dest_id.id], {'state': 'confirmed'}, context=context)
+                if move.procurement_id:
+                    # Does the same as procurement check, only eliminating a refresh
+                    procs_to_check.append(move.procurement_id.id)
+                    
+        res = self.write(cr, uid, ids, {'state': 'cancel', 'move_dest_id': False}, context=context)
+        if procs_to_check:
+            procurement_obj.check(cr, uid, procs_to_check, context=context)
+        return res
 
     def _check_package_from_moves(self, cr, uid, ids, context=None):
         pack_obj = self.pool.get("stock.quant.package")
@@ -2228,7 +2233,7 @@ class stock_move(osv.osv):
             main_domain = [('qty', '>', 0)]
             for record in ops.linked_move_operation_ids:
                 move = record.move_id
-                self.check_tracking(cr, uid, move, ops.package_id.id or ops.lot_id.id, context=context)
+                self.check_tracking(cr, uid, move, not ops.product_id and ops.package_id.id or ops.lot_id.id, context=context)
                 prefered_domain = [('reservation_id', '=', move.id)]
                 fallback_domain = [('reservation_id', '=', False)]
                 fallback_domain2 = ['&', ('reservation_id', '!=', move.id), ('reservation_id', '!=', False)]
@@ -2380,6 +2385,7 @@ class stock_move(osv.osv):
             'restrict_lot_id': restrict_lot_id,
             'restrict_partner_id': restrict_partner_id,
             'split_from': move.id,
+            'procurement_id': move.procurement_id.id,
             'move_dest_id': move.move_dest_id.id,
         }
         if context.get('source_location_id'):
@@ -2597,7 +2603,7 @@ class stock_inventory(osv.osv):
             domain += ' and lot_id = %s'
             args += (inventory.lot_id.id,)
         if inventory.product_id:
-            domain += 'and product_id = %s'
+            domain += ' and product_id = %s'
             args += (inventory.product_id.id,)
         if inventory.package_id:
             domain += ' and package_id = %s'
@@ -2744,7 +2750,7 @@ class stock_warehouse(osv.osv):
         'company_id': fields.many2one('res.company', 'Company', required=True, readonly=True, select=True),
         'partner_id': fields.many2one('res.partner', 'Address'),
         'view_location_id': fields.many2one('stock.location', 'View Location', required=True, domain=[('usage', '=', 'view')]),
-        'lot_stock_id': fields.many2one('stock.location', 'Location Stock', required=True, domain=[('usage', '=', 'internal')]),
+        'lot_stock_id': fields.many2one('stock.location', 'Location Stock', domain=[('usage', '=', 'internal')], required=True),
         'code': fields.char('Short Name', size=5, required=True, help="Short name used to identify your warehouse"),
         'route_ids': fields.many2many('stock.location.route', 'stock_route_warehouse', 'warehouse_id', 'route_id', 'Routes', domain="[('warehouse_selectable', '=', True)]", help='Defaults routes through the warehouse'),
         'reception_steps': fields.selection([
@@ -2768,7 +2774,7 @@ class stock_warehouse(osv.osv):
         'in_type_id': fields.many2one('stock.picking.type', 'In Type'),
         'int_type_id': fields.many2one('stock.picking.type', 'Internal Type'),
         'crossdock_route_id': fields.many2one('stock.location.route', 'Crossdock Route'),
-        'reception_route_id': fields.many2one('stock.location.route', 'Reception Route'),
+        'reception_route_id': fields.many2one('stock.location.route', 'Receipt Route'),
         'delivery_route_id': fields.many2one('stock.location.route', 'Delivery Route'),
         'resupply_from_wh': fields.boolean('Resupply From Other Warehouses'),
         'resupply_wh_ids': fields.many2many('stock.warehouse', 'stock_wh_resupply_table', 'supplied_wh_id', 'supplier_wh_id', 'Resupply Warehouses'),
@@ -2820,7 +2826,7 @@ class stock_warehouse(osv.osv):
                 if wh.delivery_steps == 'ship_only':
                     output_loc = wh.lot_stock_id
                     # Create extra MTO rule (only for 'ship only' because in the other cases MTO rules already exists)
-                    mto_pull_vals = self._get_mto_pull_rule(cr, uid, wh, [(output_loc, transit_location, wh.out_type_id.id)], context=context)
+                    mto_pull_vals = self._get_mto_pull_rule(cr, uid, wh, [(output_loc, transit_location, wh.out_type_id.id)], context=context)[0]
                     pull_obj.create(cr, uid, mto_pull_vals, context=context)
                 inter_wh_route_vals = self._get_inter_wh_route(cr, uid, warehouse, wh, context=context)
                 inter_wh_route_id = route_obj.create(cr, uid, vals=inter_wh_route_vals, context=context)
@@ -2832,17 +2838,8 @@ class stock_warehouse(osv.osv):
                 if default_resupply_wh and default_resupply_wh.id == wh.id:
                     self.write(cr, uid, [warehouse.id], {'route_ids': [(4, inter_wh_route_id)]}, context=context)
 
-    def _default_stock_id(self, cr, uid, context=None):
-        #lot_input_stock = self.pool.get('ir.model.data').get_object(cr, uid, 'stock', 'stock_location_stock')
-        try:
-            warehouse = self.pool.get('ir.model.data').get_object(cr, uid, 'stock', 'warehouse0')
-            return warehouse.lot_stock_id.id
-        except:
-            return False
-
     _defaults = {
         'company_id': lambda self, cr, uid, c: self.pool.get('res.company')._company_default_get(cr, uid, 'stock.inventory', context=c),
-        'lot_stock_id': _default_stock_id,
         'reception_steps': 'one_step',
         'delivery_steps': 'ship_only',
     }
@@ -2961,8 +2958,10 @@ class stock_warehouse(osv.osv):
 
     def _get_mto_pull_rule(self, cr, uid, warehouse, values, context=None):
         mto_route_id = self._get_mto_route(cr, uid, context=context)
-        from_loc, dest_loc, pick_type_id = values[0]
-        return {
+        res = []
+        for value in values:
+            from_loc, dest_loc, pick_type_id = value
+            res += [{
             'name': self._format_rulename(cr, uid, warehouse, from_loc, dest_loc, context=context) + _(' MTO'),
             'location_src_id': from_loc.id,
             'location_id': dest_loc.id,
@@ -2972,7 +2971,8 @@ class stock_warehouse(osv.osv):
             'procure_method': 'make_to_order',
             'active': True,
             'warehouse_id': warehouse.id,
-        }
+            }]
+        return res
 
     def _get_crossdock_route(self, cr, uid, warehouse, route_name, context=None):
         return {
@@ -3014,7 +3014,7 @@ class stock_warehouse(osv.osv):
         for pull_rule in pull_rules_list:
             pull_obj.create(cr, uid, vals=pull_rule, context=context)
         #create MTO pull rule and link it to the generic MTO route
-        mto_pull_vals = self._get_mto_pull_rule(cr, uid, warehouse, values, context=context)
+        mto_pull_vals = self._get_mto_pull_rule(cr, uid, warehouse, values, context=context)[0]
         mto_pull_id = pull_obj.create(cr, uid, mto_pull_vals, context=context)
 
         #create a route for cross dock operations, that can be set on products and product categories
@@ -3070,7 +3070,7 @@ class stock_warehouse(osv.osv):
         for pull_rule in pull_rules_list:
             pull_obj.create(cr, uid, vals=pull_rule, context=context)
 
-        #update reception route and rules: unlink the existing rules of the warehouse reception route and recreate it
+        #update receipt route and rules: unlink the existing rules of the warehouse receipt route and recreate it
         pull_obj.unlink(cr, uid, [pu.id for pu in warehouse.reception_route_id.pull_ids], context=context)
         push_obj.unlink(cr, uid, [pu.id for pu in warehouse.reception_route_id.push_ids], context=context)
         route_name, values = routes_dict[new_reception_step]
@@ -3080,7 +3080,7 @@ class stock_warehouse(osv.osv):
         for push_rule in push_rules_list:
             push_obj.create(cr, uid, vals=push_rule, context=context)
         for pull_rule in pull_rules_list:
-            #all pull rules in reception route are mto, because we don't want to wait for the scheduler to trigger an orderpoint on input location
+            #all pull rules in receipt route are mto, because we don't want to wait for the scheduler to trigger an orderpoint on input location
             pull_rule['procure_method'] = 'make_to_order'
             pull_obj.create(cr, uid, vals=pull_rule, context=context)
 
@@ -3088,7 +3088,7 @@ class stock_warehouse(osv.osv):
 
         #change MTO rule
         dummy, values = routes_dict[new_delivery_step]
-        mto_pull_vals = self._get_mto_pull_rule(cr, uid, warehouse, values, context=context)
+        mto_pull_vals = self._get_mto_pull_rule(cr, uid, warehouse, values, context=context)[0]
         pull_obj.write(cr, uid, warehouse.mto_pull_id.id, mto_pull_vals, context=context)
         return True
 
@@ -3134,7 +3134,7 @@ class stock_warehouse(osv.osv):
         max_sequence = max_sequence and max_sequence[0]['sequence'] or 0
 
         in_type_id = picking_type_obj.create(cr, uid, vals={
-            'name': _('Receptions'),
+            'name': _('Receipts'),
             'warehouse_id': warehouse.id,
             'code': 'incoming',
             'sequence_id': in_seq_id,
@@ -3256,9 +3256,9 @@ class stock_warehouse(osv.osv):
         customer_loc, supplier_loc = self._get_partner_locations(cr, uid, ids, context=context)
 
         return {
-            'one_step': (_('Reception in 1 step'), []),
-            'two_steps': (_('Reception in 2 steps'), [(warehouse.wh_input_stock_loc_id, warehouse.lot_stock_id, warehouse.int_type_id.id)]),
-            'three_steps': (_('Reception in 3 steps'), [(warehouse.wh_input_stock_loc_id, warehouse.wh_qc_stock_loc_id, warehouse.int_type_id.id), (warehouse.wh_qc_stock_loc_id, warehouse.lot_stock_id, warehouse.int_type_id.id)]),
+            'one_step': (_('Receipt in 1 step'), []),
+            'two_steps': (_('Receipt in 2 steps'), [(warehouse.wh_input_stock_loc_id, warehouse.lot_stock_id, warehouse.int_type_id.id)]),
+            'three_steps': (_('Receipt in 3 steps'), [(warehouse.wh_input_stock_loc_id, warehouse.wh_qc_stock_loc_id, warehouse.int_type_id.id), (warehouse.wh_qc_stock_loc_id, warehouse.lot_stock_id, warehouse.int_type_id.id)]),
             'crossdock': (_('Cross-Dock'), [(warehouse.wh_input_stock_loc_id, warehouse.wh_output_stock_loc_id, warehouse.int_type_id.id), (warehouse.wh_output_stock_loc_id, customer_loc, warehouse.out_type_id.id)]),
             'ship_only': (_('Ship Only'), [(warehouse.lot_stock_id, customer_loc, warehouse.out_type_id.id)]),
             'pick_ship': (_('Pick + Ship'), [(warehouse.lot_stock_id, warehouse.wh_output_stock_loc_id, warehouse.pick_type_id.id), (warehouse.wh_output_stock_loc_id, customer_loc, warehouse.out_type_id.id)]),
@@ -3290,7 +3290,7 @@ class stock_warehouse(osv.osv):
         route_obj = self.pool.get("stock.location.route")
         pull_obj = self.pool.get("procurement.rule")
         routes = route_obj.search(cr, uid, [('supplier_wh_id','=', warehouse.id)], context=context)
-        pulls= pull_obj.search(cr, uid, ['&', ('route_id', 'in', routes), ('location_id.usage', '=', 'transit')], context=context)
+        pulls = pull_obj.search(cr, uid, ['&', ('route_id', 'in', routes), ('location_id.usage', '=', 'transit')], context=context)
         if pulls:
             pull_obj.write(cr, uid, pulls, {'location_src_id': new_location, 'procure_method': change_to_multiple and "make_to_order" or "make_to_stock"}, context=context)
         # Create or clean MTO rules
@@ -3302,7 +3302,8 @@ class stock_warehouse(osv.osv):
             transfer_locs = list(set([x.location_id for x in pull_recs]))
             vals = [(warehouse.lot_stock_id , x, warehouse.out_type_id.id) for x in transfer_locs]
             mto_pull_vals = self._get_mto_pull_rule(cr, uid, warehouse, vals, context=context)
-            pull_obj.create(cr, uid, mto_pull_vals, context=context)
+            for mto_pull_val in mto_pull_vals:
+                pull_obj.create(cr, uid, mto_pull_val, context=context)
         else:
             # We need to delete all the MTO pull rules, otherwise they risk to be used in the system
             pulls = pull_obj.search(cr, uid, ['&', ('route_id', '=', mto_route_id), ('location_id.usage', '=', 'transit'), ('location_src_id', '=', warehouse.lot_stock_id.id)], context=context)
@@ -3311,7 +3312,7 @@ class stock_warehouse(osv.osv):
 
     def _check_reception_resupply(self, cr, uid, warehouse, new_location, context=None):
         """
-            Will check if the resupply routes to this warehouse follow the changes of number of reception steps
+            Will check if the resupply routes to this warehouse follow the changes of number of receipt steps
         """
         #Check routes that are being delivered by this warehouse and change the rule coming from transit location
         route_obj = self.pool.get("stock.location.route")
@@ -3793,7 +3794,10 @@ class stock_pack_operation(osv.osv):
             operation in two to process the one with the qty moved
         '''
         processed_ids = []
+        move_obj = self.pool.get("stock.move")
         for pack_op in self.browse(cr, uid, ids, context=None):
+            if pack_op.product_id and pack_op.location_id and pack_op.location_dest_id:
+                move_obj.check_tracking_product(cr, uid, pack_op.product_id, pack_op.lot_id.id, pack_op.location_id, pack_op.location_dest_id, context=context)
             op = pack_op.id
             if pack_op.qty_done < pack_op.product_qty:
                 # we split the operation in two
@@ -3815,10 +3819,9 @@ class stock_pack_operation(osv.osv):
                 new_lot_id = lots[0]
             val.update({'name': name})
 
-        if not obj.lot_id:
-            if not new_lot_id:
-                new_lot_id = self.pool.get('stock.production.lot').create(cr, uid, val, context=context)
-            self.write(cr, uid, id, {'lot_id': new_lot_id}, context=context)
+        if not new_lot_id:
+            new_lot_id = self.pool.get('stock.production.lot').create(cr, uid, val, context=context)
+        self.write(cr, uid, id, {'lot_id': new_lot_id}, context=context)
 
     def _search_and_increment(self, cr, uid, picking_id, domain, filter_visible=False, visible_op_ids=False, increment=True, context=None):
         '''Search for an operation with given 'domain' in a picking, if it exists increment the qty (+1) otherwise create it
@@ -3933,7 +3936,8 @@ class stock_warehouse_orderpoint(osv.osv):
                 continue
             procurement_qty = uom_obj._compute_qty_obj(cr, uid, procurement.product_uom, procurement.product_qty, procurement.product_id.uom_id, context=context)
             for move in procurement.move_ids:
-                if move.state not in ('draft', 'cancel'):
+                #need to add the moves in draft as they aren't in the virtual quantity + moves that have not been created yet
+                if move.state not in ('draft'):
                     #if move is already confirmed, assigned or done, the virtual stock is already taking this into account so it shouldn't be deducted
                     procurement_qty -= move.product_qty
             qty += procurement_qty
@@ -3949,7 +3953,6 @@ class stock_warehouse_orderpoint(osv.osv):
         for rule in self.browse(cr, uid, ids, context=context):
             if rule.product_id.uom_id.category_id.id != rule.product_uom.category_id.id:
                 return False
-
         return True
 
     def action_view_proc_to_process(self, cr, uid, ids, context=None):
@@ -3973,10 +3976,10 @@ class stock_warehouse_orderpoint(osv.osv):
         'product_id': fields.many2one('product.product', 'Product', required=True, ondelete='cascade', domain=[('type', '=', 'product')]),
         'product_uom': fields.related('product_id', 'uom_id', type='many2one', relation='product.uom', string='Product Unit of Measure', readonly=True, required=True),
         'product_min_qty': fields.float('Minimum Quantity', required=True,
-            help="When the virtual stock goes below the Min Quantity specified for this field, OpenERP generates "\
+            help="When the virtual stock goes below the Min Quantity specified for this field, Odoo generates "\
             "a procurement to bring the forecasted quantity to the Max Quantity."),
         'product_max_qty': fields.float('Maximum Quantity', required=True,
-            help="When the virtual stock goes below the Min Quantity, OpenERP generates "\
+            help="When the virtual stock goes below the Min Quantity, Odoo generates "\
             "a procurement to bring the forecasted quantity to the Quantity specified as Max Quantity."),
         'qty_multiple': fields.integer('Qty Multiple', required=True,
             help="The procurement quantity will be rounded up to this multiple."),
@@ -4147,7 +4150,7 @@ class stock_picking_type(osv.osv):
 
         # Statistics for the kanban view
         'last_done_picking': fields.function(_get_tristate_values,
-            type='any',
+            type='char',
             string='Last 10 Done Pickings'),
 
         'count_picking_draft': fields.function(_get_picking_count,

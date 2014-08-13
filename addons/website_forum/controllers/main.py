@@ -3,6 +3,7 @@
 from datetime import datetime
 import werkzeug.urls
 import werkzeug.wrappers
+import re
 import simplejson
 
 from openerp import tools
@@ -12,6 +13,7 @@ from openerp.addons.web.controllers.main import login_redirect
 from openerp.addons.web.http import request
 from openerp.addons.website.controllers.main import Website as controllers
 from openerp.addons.website.models.website import slug
+from openerp.tools.translate import _
 
 controllers = controllers()
 
@@ -62,7 +64,7 @@ class WebsiteForum(http.Controller):
         forum_id = request.registry['forum.forum'].create(request.cr, request.uid, {
             'name': forum_name,
         }, context=request.context)
-        return request.redirect("/forum/%s" % slug(forum_id))
+        return request.redirect("/forum/%s" % forum_id)
 
     @http.route('/forum/notification_read', type='json', auth="user", methods=['POST'], website=True)
     def notification_read(self, **kwargs):
@@ -276,6 +278,10 @@ class WebsiteForum(http.Controller):
     def post_new(self, forum, post, **kwargs):
         if not request.session.uid:
             return login_redirect()
+        cr, uid, context = request.cr, request.uid, request.context
+        user = request.registry['res.users'].browse(cr, SUPERUSER_ID, uid, context=context)
+        if not user.email or not tools.single_email_re.match(user.email):
+            return werkzeug.utils.redirect("/forum/%s/user/%s/edit?email_required=1" % (slug(forum), uid))
         request.registry['forum.post'].create(
             request.cr, request.uid, {
                 'forum_id': forum.id,
@@ -517,6 +523,7 @@ class WebsiteForum(http.Controller):
         countries = country.browse(request.cr, SUPERUSER_ID, country_ids, context=request.context)
         values = self._prepare_forum_values(forum=forum, searches=kwargs)
         values.update({
+            'email_required': kwargs.get('email_required'),
             'countries': countries,
             'notifications': self._get_notifications(),
         })
@@ -529,7 +536,7 @@ class WebsiteForum(http.Controller):
             'website': kwargs.get('website'),
             'email': kwargs.get('email'),
             'city': kwargs.get('city'),
-            'country_id': int(kwargs.get('country')),
+            'country_id': int(kwargs.get('country')) if kwargs.get('country') else False,
             'website_description': kwargs.get('description'),
         }, context=request.context)
         return werkzeug.utils.redirect("/forum/%s/user/%d" % (slug(forum), user.id))

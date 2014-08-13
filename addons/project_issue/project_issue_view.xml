@@ -90,16 +90,18 @@
                             <field name="description" placeholder="Add an internal note..." groups="base.group_user"/>
                         </page>
                         <page string="Extra Info" groups="project.group_project_manager,project.group_project_user">
-                            <group string="Statistics">
-                                <field name="day_open"/>
-                                <field name="day_close"/>
-                                <field name="working_hours_open" widget="float_time"/>
-                                <field name="working_hours_close" widget="float_time"/>
-                                <field name="inactivity_days"/>
-                                <field name="days_since_creation"/>
-                            </group>
-                            <group string="Status" groups="base.group_no_one">
-                                <field name="active"/>
+                            <group>
+                                <group string="Statistics">
+                                    <field name="day_open"/>
+                                    <field name="day_close"/>
+                                    <field name="working_hours_open" widget="float_time"/>
+                                    <field name="working_hours_close" widget="float_time"/>
+                                    <field name="inactivity_days"/>
+                                    <field name="days_since_creation"/>
+                                </group>
+                                <group string="Status" groups="base.group_no_one">
+                                    <field name="active"/>
+                                </group>
                             </group>
                         </page>
                     </notebook>
@@ -266,7 +268,7 @@
             </field>
             <field name="help" type="html">
                 <p>
-                    The OpenERP issues tacker allows you to efficiantly manage things
+                    The Odoo issues tacker allows you to efficiantly manage things
                     like internal requests, software development bugs, customer
                     complaints, project troubles, material breakdowns, etc.
                 </p>
@@ -340,7 +342,7 @@
             <field name="view_mode">kanban,tree,form,calendar,graph</field>
             <field name="help" type="html">
                 <p>
-                    The OpenERP issues tacker allows you to efficiantly manage things
+                    The Odoo issues tacker allows you to efficiantly manage things
                     like internal requests, software development bugs, customer
                     complaints, project troubles, material breakdowns, etc.
                 </p>

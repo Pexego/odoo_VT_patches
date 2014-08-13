@@ -17,9 +17,6 @@ from PIL import Image
 from sys import maxint
 
 import werkzeug
-import werkzeug.exceptions
-import werkzeug.utils
-import werkzeug.wrappers
 # optional python-slugify import (https://github.com/un33k/python-slugify)
 try:
     import slugify as slugify_lib
@@ -549,10 +546,8 @@ class website(osv.osv):
         response.mimetype = Image.MIME[image.format]
 
         w, h = image.size
-        try:
-            max_w, max_h = int(max_width), int(max_height)
-        except:
-            max_w, max_h = (maxint, maxint)
+        max_w = int(max_width) if max_width else maxint
+        max_h = int(max_height) if max_height else maxint
 
         if w < max_w and h < max_h:
             response.data = data
@@ -571,7 +566,7 @@ class website_menu(osv.osv):
     _description = "Website Menu"
     _columns = {
         'name': fields.char('Menu', required=True, translate=True),
-        'url': fields.char('Url', translate=True),
+        'url': fields.char('Url'),
         'new_window': fields.boolean('New Window'),
         'sequence': fields.integer('Sequence'),
         # TODO: support multiwebsite once done for ir.ui.views
