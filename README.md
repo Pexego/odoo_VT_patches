@@ -1,5 +1,12 @@
 [![Build Status](http://runbot.odoo.com/runbot/badge/default/1/8.0.svg)](http://runbot.odoo.com/runbot)
 
+Cambios
+-------
+
+29/07/2014 --> actualizado branch odoo_patches_8_0_RC para arreglar un error(https://github.com/odoo/odoo/issues/1223)
+    ahora existen las ramas upstream/ que pertenecen al repositorio original.
+    https://help.github.com/articles/syncing-a-fork
+
 Odoo
 ----
 
