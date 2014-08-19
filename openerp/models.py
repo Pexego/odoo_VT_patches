@@ -1304,10 +1304,6 @@ class BaseModel(object):
 
         # convert default values to the expected format
         result = self._convert_to_write(result)
-        for key, val in result.items():
-            if isinstance(val, NewId):
-                del result[key]                 # ignore new records in defaults
-
         return result
 
     def add_default_value(self, field):
@@ -3171,6 +3167,11 @@ class BaseModel(object):
         env = self.env
         cr, user, context = env.args
 
+        # FIXME: The query construction needs to be rewritten using the internal Query
+        # object, as in search(), to avoid ambiguous column references when
+        # reading/sorting on a table that is auto_joined to another table with
+        # common columns (e.g. the magical columns)
+
         # Construct a clause for the security rules.
         # 'tables' holds the list of tables necessary for the SELECT, including
         # the ir.rule clauses, and contains at least self._table.
@@ -4107,6 +4108,12 @@ class BaseModel(object):
         # check Python constraints
         recs._validate_fields(vals)
 
+        # Mark new-style fields to recompute
+        modified_fields = list(vals)
+        if self._log_access:
+            modified_fields += ['create_uid', 'create_date', 'write_uid', 'write_date']
+        recs.modified(modified_fields)
+
         if not context.get('no_store_function', False):
             result += self._store_get_values(cr, user, [id_new],
                 list(set(vals.keys() + self._inherits.values())),
@@ -4117,12 +4124,7 @@ class BaseModel(object):
                 if not (model_name, ids, fields2) in done:
                     self.pool[model_name]._store_set_values(cr, user, ids, fields2, context)
                     done.append((model_name, ids, fields2))
-
             # recompute new-style fields
-            modified_fields = list(vals)
-            if self._log_access:
-                modified_fields += ['create_uid', 'create_date', 'write_uid', 'write_date']
-            recs.modified(modified_fields)
             recs.recompute()
 
         if self._log_create and not (context and context.get('no_store_function', False)):
@@ -5137,11 +5139,13 @@ class BaseModel(object):
     def _convert_to_write(self, values):
         """ Convert the `values` dictionary into the format of :meth:`write`. """
         fields = self._fields
-        return dict(
-            (name, fields[name].convert_to_write(value))
-            for name, value in values.iteritems()
-            if name in self._fields
-        )
+        result = {}
+        for name, value in values.iteritems():
+            if name in fields:
+                value = fields[name].convert_to_write(value)
+                if not isinstance(value, NewId):
+                    result[name] = value
+        return result
 
     #
     # Record traversal and update
@@ -5626,7 +5630,12 @@ class BaseModel(object):
 
         # dummy assignment: trigger invalidations on the record
         for name in todo:
-            record[name] = record[name]
+            value = record[name]
+            field = self._fields[name]
+            if not field_name and field.type == 'many2one' and field.delegate and not value:
+                # do not nullify all fields of parent record for new records
+                continue
+            record[name] = value
 
         result = {'value': {}}
 
