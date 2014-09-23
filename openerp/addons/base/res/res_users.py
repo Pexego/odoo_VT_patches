@@ -188,6 +188,11 @@ class res_users(osv.osv):
         'company_ids':fields.many2many('res.company','res_company_users_rel','user_id','cid','Companies'),
     }
 
+    # overridden inherited fields to bypass access rights, in case you have
+    # access to the user but not its corresponding partner
+    name = openerp.fields.Char(related='partner_id.name')
+    email = openerp.fields.Char(related='partner_id.email')
+
     def on_change_login(self, cr, uid, ids, login, context=None):
         if login and tools.single_email_re.match(login):
             return {'value': {'email': login}}
@@ -430,7 +435,9 @@ class res_users(osv.osv):
                 # prevent/delay login in that case. It will also have been logged
                 # as a SQL error, if anyone cares.
                 try:
-                    cr.execute("SELECT id FROM res_users WHERE id=%s FOR UPDATE NOWAIT", (user_id,), log_exceptions=False)
+                    # NO KEY introduced in PostgreSQL 9.3 http://www.postgresql.org/docs/9.3/static/release-9-3.html#AEN115299
+                    update_clause = 'NO KEY UPDATE' if cr._cnx.server_version >= 90300 else 'UPDATE'
+                    cr.execute("SELECT id FROM res_users WHERE id=%%s FOR %s NOWAIT" % update_clause, (user_id,), log_exceptions=False)
                     cr.execute("UPDATE res_users SET login_date = now() AT TIME ZONE 'UTC' WHERE id=%s", (user_id,))
                     self.invalidate_cache(cr, user_id, ['login_date'], [user_id])
                 except Exception:

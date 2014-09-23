@@ -135,7 +135,7 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
             loaded: function(self,users){ self.user = users[0]; },
         },{ 
             model:  'res.company',
-            fields: [ 'currency_id', 'email', 'website', 'company_registry', 'vat', 'name', 'phone', 'partner_id' ],
+            fields: [ 'currency_id', 'email', 'website', 'company_registry', 'vat', 'name', 'phone', 'partner_id' , 'country_id'],
             domain: function(self){ return [['id','=',self.user.company_id[0]]]; },
             loaded: function(self,companies){ self.company = companies[0]; },
         },{
@@ -159,11 +159,23 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
             loaded: function(self,users){ self.users = users; },
         },{
             model:  'res.partner',
-            fields: ['name','street','city','country_id','phone','zip','mobile','email','ean13'],
+            fields: ['name','street','city','state_id','country_id','vat','phone','zip','mobile','email','ean13','write_date'],
             domain: null,
             loaded: function(self,partners){
                 self.partners = partners;
                 self.db.add_partners(partners);
+            },
+        },{
+            model:  'res.country',
+            fields: ['name'],
+            loaded: function(self,countries){
+                self.countries = countries;
+                self.company.country = null;
+                for (var i = 0; i < countries.length; i++) {
+                    if (countries[i].id === self.company.country_id[0]){
+                        self.company.country = countries[i];
+                    }
+                }
             },
         },{
             model:  'account.tax',
@@ -172,11 +184,10 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
             loaded: function(self,taxes){ self.taxes = taxes; },
         },{
             model:  'pos.session',
-            fields: ['id', 'journal_ids','name','user_id','config_id','start_at','stop_at','sequence_number'],
+            fields: ['id', 'journal_ids','name','user_id','config_id','start_at','stop_at','sequence_number','login_number'],
             domain: function(self){ return [['state','=','opened'],['user_id','=',self.session.uid]]; },
             loaded: function(self,pos_sessions){
                 self.pos_session = pos_sessions[0]; 
-                self.pos_session_id = parseInt(self.pos_session.name.split('/')[1]);
 
                 var orders = self.db.get_orders();
                 for (var i = 0; i < orders.length; i++) {
@@ -203,6 +214,10 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
                     'discount': self.config.barcode_discount,
                     'price':    self.config.barcode_price,
                 });
+
+                if (self.config.company_id[0] !== self.user.company_id[0]) {
+                    throw new Error(_t("Error: The Point of Sale User must belong to the same company as the Point of Sale. You are probably trying to load the point of sale as an administrator in a multi-company setup, with the administrator account set to the wrong company."));
+                }
             },
         },{
             model: 'stock.location',
@@ -270,16 +285,35 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
                     for(var j = 0, jlen = journals.length; j < jlen; j++){
                         if(bankstatements[i].journal_id[0] === journals[j].id){
                             bankstatements[i].journal = journals[j];
-                            bankstatements[i].self_checkout_payment_method = journals[j].self_checkout_payment_method;
                         }
                     }
                 }
                 self.cashregisters = bankstatements;
             },
         },{
+            label: 'fonts',
+            loaded: function(self){
+                var fonts_loaded = new $.Deferred();
+
+                // Waiting for fonts to be loaded to prevent receipt printing
+                // from printing empty receipt while loading Inconsolata
+                // ( The font used for the receipt ) 
+                waitForWebfonts(['Lato','Inconsolata'], function(){
+                    fonts_loaded.resolve();
+                });
+
+                // The JS used to detect font loading is not 100% robust, so
+                // do not wait more than 5sec
+                setTimeout(function(){
+                    fonts_loaded.resolve();
+                },5000);
+
+                return fonts_loaded;
+            },
+        },{
+            label: 'pictures',
             loaded: function(self){
                 self.company_logo = new Image();
-                self.company_logo.crossOrigin = 'anonymous';
                 var  logo_loaded = new $.Deferred();
                 self.company_logo.onload = function(){
                     var img = self.company_logo;
@@ -301,13 +335,12 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
                         ctx.drawImage(self.company_logo,0,0, width, height);
                     
                     self.company_logo_base64 = c.toDataURL();
-                    window.logo64 = self.company_logo_base64;
                     logo_loaded.resolve();
                 };
                 self.company_logo.onerror = function(){
                     logo_loaded.reject();
                 };
-                self.company_logo.src = window.location.origin + '/web/binary/company_logo';
+                self.company_logo.src = '/web/binary/company_logo' +'?_'+Math.random();
 
                 return logo_loaded;
             },
@@ -327,7 +360,7 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
                     loaded.resolve();
                 }else{
                     var model = self.models[index];
-                    self.pos_widget.loading_message(_t('Loading')+' '+(model.model || ''), progress);
+                    self.pos_widget.loading_message(_t('Loading')+' '+(model.label || model.model || ''), progress);
                     var fields =  typeof model.fields === 'function'  ? model.fields(self,tmp)  : model.fields;
                     var domain =  typeof model.domain === 'function'  ? model.domain(self,tmp)  : model.domain;
                     var context = typeof model.context === 'function' ? model.context(self,tmp) : model.context; 
@@ -367,6 +400,26 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
             }
 
             return loaded;
+        },
+
+        // reload the list of partner, returns as a deferred that resolves if there were
+        // updated partners, and fails if not
+        load_new_partners: function(){
+            var self = this;
+            var def  = new $.Deferred();
+            var fields = _.find(this.models,function(model){ return model.model === 'res.partner'; }).fields;
+            new instance.web.Model('res.partner')
+                .query(fields)
+                .filter([['write_date','>',this.db.get_partner_write_date()]])
+                .all({'timeout':3000, 'shadow': true})
+                .then(function(partners){
+                    if (self.db.add_partners(partners)) {   // check if the partners we got were real updates
+                        def.resolve();
+                    } else {
+                        def.reject();
+                    }
+                }, function(){ def.reject(); });    
+            return def;
         },
 
         // this is called when an order is removed from the order collection. It ensures that there is always an existing
@@ -864,7 +917,7 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
                 creationDate:   new Date(),
                 orderLines:     new module.OrderlineCollection(),
                 paymentLines:   new module.PaymentlineCollection(),
-                name:           "Order " + this.uid,
+                name:           _t("Order ") + this.uid,
                 client:         null,
             });
             this.selected_orderline   = undefined;
@@ -879,7 +932,7 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
         },
         // Generates a public identification number for the order.
         // The generated number must be unique and sequential. They are made 12 digit long
-        // to fit into EAN-13 barcodes. 
+        // to fit into EAN-13 barcodes, should it be needed 
         generateUniqueId: function() {
             function zero_pad(num,size){
                 var s = ""+num;
@@ -888,7 +941,9 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
                 }
                 return s;
             }
-            return zero_pad(this.pos.pos_session_id,6) + zero_pad(this.sequence_number,6);
+            return zero_pad(this.pos.pos_session.id,5) +'-'+
+                   zero_pad(this.pos.pos_session.login_number,3) +'-'+
+                   zero_pad(this.sequence_number,4);
         },
         addOrderline: function(line){
             if(line.order){
