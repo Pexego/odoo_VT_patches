@@ -240,7 +240,7 @@ class stock_picking(osv.osv):
             @return: object of the partner to invoice
         """
         return picking.partner_id and picking.partner_id.id
-        
+
     def action_invoice_create(self, cr, uid, ids, journal_id, group=False, type='out_invoice', context=None):
         """ Creates invoice based on the invoice state selected for picking.
         @param journal_id: Id of journal
@@ -303,20 +303,21 @@ class stock_picking(osv.osv):
             partner, user_id, currency_id = move_obj._get_master_data(cr, uid, move, company, context=context)
 
             key = (partner, currency_id, company.id, user_id)
+            key2 = (partner, currency_id, company.id)
             invoice_vals = self._get_invoice_vals(cr, uid, key, inv_type, journal_id, move, context=context)
 
-            if key not in invoices:
+            if key2 not in invoices:
                 # Get account and payment terms
                 invoice_id = self._create_invoice_from_picking(cr, uid, move.picking_id, invoice_vals, context=context)
-                invoices[key] = invoice_id
+                invoices[key2] = invoice_id
             else:
-                invoice = invoice_obj.browse(cr, uid, invoices[key], context=context)
+                invoice = invoice_obj.browse(cr, uid, invoices[key2], context=context)
                 if not invoice.origin or invoice_vals['origin'] not in invoice.origin.split(', '):
                     invoice_origin = filter(None, [invoice.origin, invoice_vals['origin']])
                     invoice.write({'origin': ', '.join(invoice_origin)})
 
             invoice_line_vals = move_obj._get_invoice_line_vals(cr, uid, move, partner, inv_type, context=context)
-            invoice_line_vals['invoice_id'] = invoices[key]
+            invoice_line_vals['invoice_id'] = invoices[key2]
             invoice_line_vals['origin'] = origin
             if not is_extra_move[move.id]:
                 product_price_unit[invoice_line_vals['product_id']] = invoice_line_vals['price_unit']

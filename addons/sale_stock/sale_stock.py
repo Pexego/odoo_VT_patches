@@ -447,7 +447,7 @@ class stock_picking(osv.osv):
         """
         saleorder_ids = self.pool['sale.order'].search(cr, uid, [('procurement_group_id' ,'=', picking.group_id.id)], context=context)
         saleorders = self.pool['sale.order'].browse(cr, uid, saleorder_ids, context=context)
-        if saleorders and saleorders[0] and saleorders[0].order_policy == 'picking':
+        if saleorders and saleorders[0] and saleorders[0].order_policy == 'picking' and saleorders[0].name in picking.origin:
             saleorder = saleorders[0]
             return saleorder.partner_invoice_id.id
         return super(stock_picking, self)._get_partner_to_invoice(cr, uid, picking, context=context)
