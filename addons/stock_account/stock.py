@@ -315,9 +315,10 @@ class stock_picking(osv.osv):
                 if not invoice.origin or invoice_vals['origin'] not in invoice.origin.split(', '):
                     invoice_origin = filter(None, [invoice.origin, invoice_vals['origin']])
                     invoice.write({'origin': ', '.join(invoice_origin)})
-                if not invoice.name or invoice_vals['name'] not in invoice.name.split(', '):
-                    invoice_name = filter(None, [invoice.name, invoice_vals.get('name')])
-                    invoice.write({'name': ', '.join(invoice_name)})
+                if invoice_vals.get('name'):
+                    if not invoice.name or invoice_vals['name'] not in invoice.name.split(', '):
+                        invoice_name = filter(None, [invoice.name, invoice_vals['name']])
+                        invoice.write({'name': ', '.join(invoice_name)})
 
             invoice_line_vals = move_obj._get_invoice_line_vals(cr, uid, move, partner, inv_type, context=context)
             invoice_line_vals['invoice_id'] = invoices[key2]
