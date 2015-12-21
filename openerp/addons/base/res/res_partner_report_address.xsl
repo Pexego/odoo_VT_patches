@@ -23,7 +23,8 @@
                 </pageTemplate>
             </template>
             <stylesheet>
-                <paraStyle name="nospace" fontName="Courier" fontSize="12" spaceBefore="0" spaceAfter="0" valign="middle" alignment="center"/>
+                <paraStyle name="nospace" fontName="Courier" fontSize="12" spaceBefore="0" spaceAfter="0" alignment="left"/>
+                <paraStyle name="blank_line" fontName="Courier" fontSize="12" spaceBefore="0" spaceAfter="6"/>
             </stylesheet>
             <story>
                 <xsl:apply-templates select="address" mode="story">
@@ -57,13 +58,14 @@
     </xsl:template>
 
     <xsl:template match="address" mode="story">
-            <para style="nospace"><xsl:value-of select="company-name"/><xsl:text> </xsl:text><xsl:value-of select="company-title"/></para>
-            <para style="nospace"><xsl:value-of select="parent_name"/></para>
-            <para style="nospace"><xsl:value-of select="street"/></para>
-            <para style="nospace"><xsl:value-of select="street2"/></para>
-            <para style="nospace"><xsl:value-of select="zip"/><xsl:text> </xsl:text><xsl:value-of select="city"/></para>
-            <para style="nospace"><xsl:value-of select="state"/></para>
-            <para style="nospace"><xsl:value-of select="country"/></para>
+        <para style="blank_line"/>
+        <para style="nospace"><xsl:value-of select="company-name"/><xsl:text> </xsl:text><xsl:value-of select="company-title"/></para>
+        <para style="nospace"><xsl:value-of select="parent_name"/></para>
+        <para style="nospace"><xsl:value-of select="street"/></para>
+        <para style="nospace"><xsl:value-of select="street2"/></para>
+        <para style="nospace"><xsl:value-of select="zip"/><xsl:text> </xsl:text><xsl:value-of select="city"/></para>
+        <para style="nospace"><xsl:value-of select="state"/></para>
+        <para style="nospace"><xsl:value-of select="country"/></para>
         <xsl:if test="position() &lt; last()">
             <nextFrame/>
         </xsl:if>
