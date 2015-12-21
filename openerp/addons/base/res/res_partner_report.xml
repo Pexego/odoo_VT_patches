@@ -5,7 +5,7 @@
             id="res_partner_address_report"
             model="res.partner"
             name="res.partner"
-            string="Labels"
+            string="Etiquetas APLI 01291"
             xml="base/res/res_partner_report_address.xml"
             xsl="base/res/res_partner_report_address.xsl"
             groups="base.group_no_one"/>

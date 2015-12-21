@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <addresses>
     <address type="fields" name="id">
+        <parent_name type="field" name="parent_name"/>
         <company-title type="field" name="title.name"/>
         <company-name type="field" name="name"/>
         <type type="field" name="type"/>
