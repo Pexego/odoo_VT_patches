@@ -40,14 +40,14 @@
             action="product.product_pricelist_action_for_purchase" id="menu_product_pricelist_action2_purchase"
             parent="menu_purchase_config_pricelist" sequence="1" groups="product.group_purchase_pricelist" />
 
-	<menuitem
-	    action="product.product_pricelist_action_for_purchase" id="menu_product_pricelist_action2_purchase"
-	    parent="menu_purchase_config_pricelist" sequence="1" groups="product.group_purchase_pricelist" />
+    <menuitem
+        action="product.product_pricelist_action_for_purchase" id="menu_product_pricelist_action2_purchase"
+        parent="menu_purchase_config_pricelist" sequence="1" groups="product.group_purchase_pricelist" />
 
         <menuitem
             action="purchase_pricelist_version_action" id="menu_purchase_pricelist_version_action"
             parent="menu_purchase_config_pricelist" sequence="2" groups="product.group_purchase_pricelist"/>
-        
+
         <menuitem
             action="product.product_price_type_action" id="menu_product_pricelist_action2_purchase_type"
             parent="menu_purchase_config_pricelist" sequence="60" />
@@ -243,7 +243,7 @@
                                     <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                                     <field name="account_analytic_id" groups="purchase.group_analytic_accounting" domain="[('type','not in',('view','template'))]"/>
                                     <field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
-                                    <field name="product_uom" groups="product.group_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+                                    <field name="product_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
                                     <field name="price_unit"/>
                                     <field name="taxes_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>
                                     <field name="price_subtotal"/>
@@ -400,7 +400,7 @@
             <field name="search_view_id" ref="view_purchase_order_filter"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Click to create a quotation that will be converted into a purchase order. 
+                Click to create a quotation that will be converted into a purchase order.
               </p><p>
                 Use this menu to search within your purchase orders by
                 references, supplier, products, etc. For each purchase order,
@@ -466,7 +466,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <record id="purchase_order_line_form2" model="ir.ui.view">
             <field name="name">purchase.order.line.form2</field>
             <field name="model">purchase.order.line</field>
@@ -577,9 +577,9 @@
                 </xpath>
             </field>
         </record>
-        
+
         <!-- Product Suppliers-->
-        
+
         <record id="view_product_supplier_inherit" model="ir.ui.view">
             <field name="name">product.template.supplier.form.inherit</field>
             <field name="model">product.template</field>
@@ -625,7 +625,7 @@
                 </field>
             </field>
         </record>
-        
+
         <record id="view_product_template_purchase_buttons_from" model="ir.ui.view">
             <field name="name">product.template.purchase.button.inherit</field>
             <field name="model">product.template</field>
@@ -633,14 +633,14 @@
             <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='buttons']" position="inside">
-                   <button class="oe_inline oe_stat_button" name="action_view_purchases" type="object" 
+                   <button class="oe_inline oe_stat_button" name="action_view_purchases" type="object"
                        icon="fa-shopping-cart">
                        <field string="Purchases" name="purchase_count" widget="statinfo"/>
                    </button>
                 </xpath>
             </field>
         </record>
-        
+
         <record id="view_product_normal_purchase_buttons_from" model="ir.ui.view">
             <field name="name">product.product.purchase.button.inherit</field>
             <field name="model">product.product</field>
