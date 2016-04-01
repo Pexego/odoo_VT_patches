@@ -106,12 +106,8 @@ class purchase_order(osv.osv):
             warning['title'] = title and title +' & '+ result['warning']['title'] or result['warning']['title']
             warning['message'] = message and message + ' ' + result['warning']['message'] or result['warning']['message']
 
-<<<<<<< HEAD
         if warning:
             result['warning'] = warning
-=======
-        result['warning'] = warning
->>>>>>> [FIX]warning: Domain removed in onchange.
         return result
 
 
@@ -151,12 +147,8 @@ class account_invoice(osv.osv):
             warning['title'] = title and title +' & '+ result['warning']['title'] or result['warning']['title']
             warning['message'] = message and message + ' ' + result['warning']['message'] or result['warning']['message']
 
-<<<<<<< HEAD
         if warning:
             result['warning'] = warning
-=======
-        result['warning'] = warning
->>>>>>> [FIX]warning: Domain removed in onchange.
         return result
 
 
@@ -180,17 +172,10 @@ class stock_picking(osv.osv):
             if partner.picking_warn == 'block':
                 return {'value': {'partner_id': False}, 'warning': warning}
 
-<<<<<<< HEAD
-        result = {'value': {}}
-=======
         result =  super(stock_picking_in, self).onchange_partner_in(cr, uid, ids, partner_id, context)
         if result.get('warning',False):
             warning['title'] = title and title +' & '+ result['warning']['title'] or result['warning']['title']
             warning['message'] = message and message + ' ' + result['warning']['message'] or result['warning']['message']
-
-        result['warning'] = warning
-        return result
->>>>>>> [FIX]warning: Domain removed in onchange.
 
         if warning:
             result['warning'] = warning
@@ -243,12 +228,8 @@ class sale_order_line(osv.osv):
             warning['title'] = title and title +' & '+result['warning']['title'] or result['warning']['title']
             warning['message'] = message and message +'\n\n'+result['warning']['message'] or result['warning']['message']
 
-<<<<<<< HEAD
         if warning:
             result['warning'] = warning
-=======
-        result['warning'] = warning
->>>>>>> [FIX]warning: Domain removed in onchange.
         return result
 
 
@@ -279,13 +260,9 @@ class purchase_order_line(osv.osv):
         if result.get('warning',False):
             warning['title'] = title and title +' & '+result['warning']['title'] or result['warning']['title']
             warning['message'] = message and message +'\n\n'+result['warning']['message'] or result['warning']['message']
-<<<<<<< HEAD
 
         if warning:
             result['warning'] = warning
-=======
-        result['warning'] = warning
->>>>>>> [FIX]warning: Domain removed in onchange.
         return result
 
 
