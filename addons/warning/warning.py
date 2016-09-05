@@ -172,7 +172,8 @@ class stock_picking(osv.osv):
             if partner.picking_warn == 'block':
                 return {'value': {'partner_id': False}, 'warning': warning}
 
-        result =  super(stock_picking_in, self).onchange_partner_in(cr, uid, ids, partner_id, context)
+        #result =  super(stock_picking, self).onchange_partner_in(cr, uid, ids, partner_id, context)
+        result = {}
         if result.get('warning',False):
             warning['title'] = title and title +' & '+ result['warning']['title'] or result['warning']['title']
             warning['message'] = message and message + ' ' + result['warning']['message'] or result['warning']['message']
@@ -257,12 +258,13 @@ class purchase_order_line(osv.osv):
         result =  super(purchase_order_line, self).onchange_product_id(cr, uid, ids, pricelist, product, qty, uom,
             partner_id, date_order=date_order, fiscal_position_id=fiscal_position_id, date_planned=date_planned, name=name, price_unit=price_unit, state=state, context=context)
 
-        if result.get('warning',False):
-            warning['title'] = title and title +' & '+result['warning']['title'] or result['warning']['title']
-            warning['message'] = message and message +'\n\n'+result['warning']['message'] or result['warning']['message']
+        if not uom:
+            if result.get('warning',False):
+                warning['title'] = title and title +' & '+result['warning']['title'] or result['warning']['title']
+                warning['message'] = message and message +'\n\n'+result['warning']['message'] or result['warning']['message']
 
-        if warning:
-            result['warning'] = warning
+            if warning:
+                result['warning'] = warning
         return result
 
 
