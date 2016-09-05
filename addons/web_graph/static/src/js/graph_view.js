@@ -90,9 +90,11 @@ instance.web_graph.GraphView = instance.web.View.extend({
             if (group_by.length) {
                 this.widget_config.row_groupby = group_by;
             }
+            col_group_by = this.widget_config.context.col_group_by || col_group_by;
             if (col_group_by.length) {
                 this.widget_config.col_groupby = col_group_by;
             }
+            measures = this.widget_config.context.measures || measures;
             if (measures.length) {
                 this.widget_config.measures = measures;
             }
@@ -171,7 +173,7 @@ instance.web_graph.GraphView = instance.web.View.extend({
         if (row_gb_changed && col_gb_changed) {
             // when two changes to the search view will be done, the method do_search
             // will be called twice, once with the correct groupby and incorrect col_groupby,
-            // and once with correct informations. This flag is necessary to prevent the 
+            // and once with correct informations. This flag is necessary to prevent the
             // incorrect informations to propagate and trigger useless queries
             this.ignore_do_search = true;
         }
