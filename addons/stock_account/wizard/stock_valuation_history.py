@@ -191,5 +191,5 @@ class stock_history(osv.osv):
                     dest_location.usage not in ('internal', 'transit'))
                 ))
                 AS foo
-                GROUP BY move_id, location_id, company_id, product_id, product_categ_id, date, source
+                GROUP BY move_id, location_id, company_id, product_id, product_categ_id, date, source HAVING SUM(quantity) != 0
             )""")
