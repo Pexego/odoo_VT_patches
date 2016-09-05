@@ -69,7 +69,7 @@ class board_board(osv.osv):
                                                        context=context, toolbar=toolbar, submenu=submenu)
 
         CustView = self.pool.get('ir.ui.view.custom')
-        vids = CustView.search(cr, user, [('user_id', '=', user), ('ref_id', '=', view_id)], context=context)
+        vids = CustView.search(cr, user, [('ref_id', '=', view_id)], context=context)
         if vids:
             view_id = vids[0]
             arch = CustView.browse(cr, user, view_id, context=context)
