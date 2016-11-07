@@ -1278,8 +1278,8 @@ class Export(http.Controller):
         :rtype: [(str, str)]
         """
         return [
-            {'tag': 'csv', 'label': 'CSV'},
             {'tag': 'xls', 'label': 'Excel', 'error': None if xlwt else "XLWT required"},
+            {'tag': 'csv', 'label': 'CSV'},
         ]
 
     def fields_get(self, model):
