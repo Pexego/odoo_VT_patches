@@ -149,18 +149,19 @@ class mail_notification(osv.Model):
             footer = tools.append_content_to_html(footer, signature, plaintext=False)
 
         # add company signature
-        if user.company_id.website:
-            website_url = ('http://%s' % user.company_id.website) if not user.company_id.website.lower().startswith(('http:', 'https:')) \
-                else user.company_id.website
-            company = "<a style='color:inherit' href='%s'>%s</a>" % (website_url, user.company_id.name)
-        else:
-            company = user.company_id.name
-        sent_by = _('Sent by %(company)s using %(odoo)s')
-
-        signature_company = '<br /><small>%s</small>' % (sent_by % {
-            'company': company,
-            'odoo': "<a style='color:inherit' href='https://www.odoo.com/'>Odoo</a>"
-        })
+        #~ if user.company_id.website:
+            #~ website_url = ('http://%s' % user.company_id.website) if not user.company_id.website.lower().startswith(('http:', 'https:')) \
+                #~ else user.company_id.website
+            #~ company = "<a style='color:inherit' href='%s'>%s</a>" % (website_url, user.company_id.name)
+        #~ else:
+            #~ company = user.company_id.name
+        #~ sent_by = _('Sent by %(company)s using %(odoo)s')
+#~
+        #~ signature_company = '<br /><small>%s</small>' % (sent_by % {
+            #~ 'company': company,
+            #~ 'odoo': "<a style='color:inherit' href='https://www.odoo.com/'>Odoo</a>"
+        #~ })
+        signature_company = ""
         footer = tools.append_content_to_html(footer, signature_company, plaintext=False, container_tag='div')
 
         return footer
