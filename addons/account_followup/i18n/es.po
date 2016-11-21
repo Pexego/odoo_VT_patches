@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_followup
-# 
+#
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
@@ -727,6 +727,12 @@ msgstr "Incluyendo asientos marcados como litigio"
 #, python-format
 msgid "Invoice Date"
 msgstr "Fecha factura"
+
+#. module: account_followup
+#: code:addons/account_followup/account_followup.py:264
+#, python-format
+msgid "Invoice No."
+msgstr "Nº factura"
 
 #. module: account_followup
 #: code:addons/account_followup/wizard/account_followup_print.py:258
