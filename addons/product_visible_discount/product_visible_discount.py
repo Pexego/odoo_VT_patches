@@ -96,7 +96,6 @@ class sale_order_line(osv.osv):
             so_pricelist = pricelist_obj.browse(cr, uid, pricelist, context=context)
 
             new_list_price, currency_id = get_real_price_curency(list_price, product.id, qty, uom, pricelist)
-
             # The superuser is used by website_sale in order to create a sale order. We need to make
             # sure we only select the taxes related to the company of the partner. This should only
             # apply if the partner is linked to a company.
@@ -107,7 +106,7 @@ class sale_order_line(osv.osv):
             new_list_price = account_tax_obj._fix_tax_included_price(cr, uid, new_list_price, taxes, result.get('tax_id', []))
 
             if so_pricelist.visible_discount and list_price[pricelist][0] != 0 and new_list_price != 0:
-                if product.company_id and so_pricelist.currency_id.id != product.company_id.currency_id.id:
+                if so_pricelist.currency_id.id != currency_id.id:
                     # new_list_price is in company's currency while price in pricelist currency
                     ctx = context.copy()
                     ctx['date'] = date_order
