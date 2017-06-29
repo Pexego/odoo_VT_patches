@@ -62,7 +62,7 @@ class sale_order_line(osv.osv):
             product_read = product_obj.read(cr, uid, [product_id], [field_name], context=context)[0]
 
             if not currency_id:
-                currency_id = product.company_id.currency_id.id
+                currency_id = product.company_id.currency_id
             factor = 1.0
             if uom and uom != product.uom_id.id:
                 # the unit price is in a different uom
