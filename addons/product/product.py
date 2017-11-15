@@ -520,14 +520,14 @@ class product_template(osv.osv):
         return res
 
     _columns = {
-        'name': fields.char('Name', required=True, translate=True, select=True),
+        'name': fields.char('Name', required=True, translate=False, select=True),
         'product_manager': fields.many2one('res.users','Product Manager'),
-        'description': fields.text('Description',translate=True,
+        'description': fields.text('Description',translate=False,
             help="A precise description of the Product, used only for internal information purposes."),
         'description_purchase': fields.text('Purchase Description',translate=True,
             help="A description of the Product that you want to communicate to your suppliers. "
                  "This description will be copied to every Purchase Order, Receipt and Supplier Invoice/Refund."),
-        'description_sale': fields.text('Sale Description',translate=True,
+        'description_sale': fields.text('Sale Description',translate=False,
             help="A description of the Product that you want to communicate to your customers. "
                  "This description will be copied to every Sale Order, Delivery Order and Customer Invoice/Refund"),
         'type': fields.selection([('consu', 'Consumable'),('service','Service')], 'Product Type', required=True, help="Consumable are product where you don't manage stock, a service is a non-material product provided by a company or an individual."),        
@@ -1126,10 +1126,10 @@ class product_product(osv.osv):
         if name:
             positive_operators = ['=', 'ilike', '=ilike', 'like', '=like']
             ids = []
-            if operator in positive_operators:
-                ids = self.search(cr, user, [('default_code','=',name)]+ args, limit=limit, context=context)
-                if not ids:
-                    ids = self.search(cr, user, [('ean13','=',name)]+ args, limit=limit, context=context)
+            #if operator in positive_operators:
+            #    ids = self.search(cr, user, [('default_code','=',name)]+ args, limit=limit, context=context)
+            #    if not ids:
+            #        ids = self.search(cr, user, [('ean13','=',name)]+ args, limit=limit, context=context)
             if not ids and operator not in expression.NEGATIVE_TERM_OPERATORS:
                 # Do not merge the 2 next lines into one single search, SQL search performance would be abysmal
                 # on a database with thousands of matching products, due to the huge merge+unique needed for the
