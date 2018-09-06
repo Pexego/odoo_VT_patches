@@ -320,7 +320,7 @@ class stock_picking(osv.osv):
                 invoice_id = self._create_invoice_from_picking(cr, uid, move.picking_id, invoice_vals, context=context)
                 invoices[key2] = invoice_id
             else:
-                invoice = invoice_obj.browse(cr, uid, invoices[key], context=context)
+                invoice = invoice_obj.browse(cr, uid, invoices[key2], context=context)
                 merge_vals = {}
                 if not invoice.origin or invoice_vals['origin'] not in invoice.origin.split(', '):
                     invoice_origin = filter(None, [invoice.origin, invoice_vals['origin']])
@@ -331,7 +331,7 @@ class stock_picking(osv.osv):
                 if merge_vals:
                     invoice.write(merge_vals)
             invoice_line_vals = move_obj._get_invoice_line_vals(cr, uid, move, partner, inv_type, context=dict(context, fp_id=invoice_vals.get('fiscal_position', False)))
-            invoice_line_vals['invoice_id'] = invoices[key]
+            invoice_line_vals['invoice_id'] = invoices[key2]
             invoice_line_vals['origin'] = origin
             if not is_extra_move[move.id]:
                 product_price_unit[invoice_line_vals['product_id'], invoice_line_vals['uos_id']] = invoice_line_vals['price_unit']
