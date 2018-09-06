@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-06-01 22:41+0000\n"
+"POT-Creation-Date: 2015-10-19 06:31+0000\n"
+"PO-Revision-Date: 2017-06-22 11:07+0000\n"
 "Last-Translator: Martin Trigaux\n"
-"Language-Team: Lithuanian (http://www.transifex.com/projects/p/odoo-8/language/lt/)\n"
+"Language-Team: Lithuanian (http://www.transifex.com/odoo/odoo-8/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -21,7 +21,7 @@ msgstr ""
 #. module: project
 #: field:res.partner,task_count:0
 msgid "# Tasks"
-msgstr ""
+msgstr "# Užduotys"
 
 #. module: project
 #: field:report.project.task.user,no_of_days:0
@@ -32,7 +32,7 @@ msgstr "# dienos"
 #: field:project.task.history.cumulative,nbr_tasks:0
 #: field:report.project.task.user,nbr:0
 msgid "# of Tasks"
-msgstr ""
+msgstr "# užduočių"
 
 #. module: project
 #: code:addons/project/project.py:360 code:addons/project/project.py:380
@@ -105,7 +105,7 @@ msgstr ""
 #. module: project
 #: view:project.project:project.edit_project
 msgid "Accept Emails From"
-msgstr ""
+msgstr "Priimti laiškus iš"
 
 #. module: project
 #: field:project.project,active:0
@@ -120,7 +120,7 @@ msgstr ""
 #. module: project
 #: view:project.task.type:project.task_type_edit
 msgid "Add a description..."
-msgstr ""
+msgstr "Pridėkite aprašymą..."
 
 #. module: project
 #: view:project.project:project.edit_project
@@ -135,7 +135,7 @@ msgstr "Alternatyvus vardas"
 #. module: project
 #: field:project.project,alias_model:0
 msgid "Alias Model"
-msgstr ""
+msgstr "Alternatyvus modelis"
 
 #. module: project
 #: field:project.config.settings,group_manage_delegation_task:0
@@ -185,7 +185,7 @@ msgstr "Priskirti kam"
 #. module: project
 #: field:report.project.task.user,date_start:0
 msgid "Assignation Date"
-msgstr ""
+msgstr "Priskyrimo data"
 
 #. module: project
 #: view:project.task:project.view_task_search_form
@@ -196,7 +196,7 @@ msgstr ""
 #. module: project
 #: model:ir.actions.act_window,name:project.act_res_users_2_project_task_opened
 msgid "Assigned Tasks"
-msgstr ""
+msgstr "Priskirtos užduotys"
 
 #. module: project
 #: field:report.project.task.user,user_id:0
@@ -415,7 +415,7 @@ msgstr "Paskutinės žinutės publikavimo data po šiuo įrašu."
 #. module: project
 #: field:report.project.task.user,opening_days:0
 msgid "Days to Assign"
-msgstr ""
+msgstr "Dienos iki skyrimo"
 
 #. module: project
 #: field:report.project.task.user,closing_days:0
@@ -505,7 +505,7 @@ msgstr "Kūrimas"
 #: view:project.project:project.edit_project
 #: view:project.project:project.view_project_kanban
 msgid "Documents"
-msgstr ""
+msgstr "Dokumentai"
 
 #. module: project
 #: selection:project.task.delegate,state:0
@@ -531,7 +531,7 @@ msgstr "Faktinis valandų skaičius"
 #. module: project
 #: view:project.project:project.edit_project
 msgid "Email Alias"
-msgstr ""
+msgstr "Alternatyvus el. paštas"
 
 #. module: project
 #: view:project.project:project.edit_project
@@ -547,8 +547,8 @@ msgstr "Pabaigos data"
 
 #. module: project
 #: constraint:project.task:0
-msgid "Error ! Task end-date must be greater then task start-date"
-msgstr "Klaida! Užduočių pabaigos data turi būti vėliau nei pradžios data"
+msgid "Error ! Task end-date must be greater than task start-date"
+msgstr ""
 
 #. module: project
 #: constraint:project.task:0
@@ -557,8 +557,8 @@ msgstr "Klaida! Jūs negalite sukurti pasikartojančių užduočių."
 
 #. module: project
 #: constraint:project.project:0
-msgid "Error! project start-date must be lower then project end-date."
-msgstr "Klaida! Projekto pradžios data turi būti ankstesnę už pabaigos datą."
+msgid "Error! project start-date must be lower than project end-date."
+msgstr ""
 
 #. module: project
 #: help:project.task.delegate,planned_hours_me:0
@@ -587,7 +587,7 @@ msgstr ""
 #. module: project
 #: view:report.project.task.user:project.view_task_project_user_search
 msgid "Extended Filters"
-msgstr ""
+msgstr "Išplėstiniai filtrai"
 
 #. module: project
 #: view:project.task:project.view_task_form2
@@ -625,7 +625,7 @@ msgstr ""
 #. module: project
 #: view:project.task:project.view_task_form2
 msgid "Gantt View"
-msgstr ""
+msgstr "Ganto vaizdas"
 
 #. module: project
 #: field:project.config.settings,module_sale_service:0
@@ -802,7 +802,7 @@ msgstr "Kanban statusas"
 #. module: project
 #: view:project.task:project.view_task_search_form
 msgid "Last Message"
-msgstr ""
+msgstr "Paskutinis pranešimas"
 
 #. module: project
 #: field:project.project,message_last_post:0
@@ -813,13 +813,13 @@ msgstr "Paskutinės žinutės data"
 #. module: project
 #: field:project.task,write_date:0
 msgid "Last Modification Date"
-msgstr ""
+msgstr "Paskutinio pakeitimo data"
 
 #. module: project
 #: field:project.task,date_last_stage_update:0
 #: field:report.project.task.user,date_last_stage_update:0
 msgid "Last Stage Update"
-msgstr ""
+msgstr "Paskutinis etapas atnaujintas"
 
 #. module: project
 #: field:project.category,write_uid:0
@@ -840,7 +840,7 @@ msgstr "Paskutinį kartą atnaujinta"
 #. module: project
 #: help:project.config.settings,module_pad:0
 msgid ""
-"Lets the company customize which Pad installation should be used to link to new pads (for example: http://etherpad.com/).\n"
+"Lets the company customize which Pad installation should be used to link to new pads (for example: http://ietherpad.com/).\n"
 "-This installs the module pad."
 msgstr ""
 
@@ -937,7 +937,7 @@ msgstr "Naujas"
 #: view:project.project:project.view_project_project_filter
 #: view:project.task:project.view_task_search_form
 msgid "New Mail"
-msgstr ""
+msgstr "Naujas paštas"
 
 #. module: project
 #: view:project.project:project.edit_project
@@ -993,7 +993,7 @@ msgstr ""
 #. module: project
 #: field:project.project,doc_count:0
 msgid "Number of documents attached"
-msgstr ""
+msgstr "Prisegtų dokumentų skaičius"
 
 #. module: project
 #: view:project.project:project.view_project_project_filter
@@ -1231,7 +1231,7 @@ msgstr "Paruošta"
 #: selection:project.task.history.cumulative,kanban_state:0
 #: selection:report.project.task.user,state:0
 msgid "Ready for next stage"
-msgstr ""
+msgstr "Paruošta kitam žingniui"
 
 #. module: project
 #: field:project.config.settings,module_project_timesheet:0
@@ -1246,7 +1246,7 @@ msgstr "Pakartotinai įtraukite užduoties aprašymą vartotojo užduotyje"
 #. module: project
 #: view:project.task:project.view_task_form2
 msgid "Remaining"
-msgstr ""
+msgstr "Likutis"
 
 #. module: project
 #: view:project.task:project.view_task_tree2
@@ -1414,7 +1414,7 @@ msgstr "Užduotis"
 #. module: project
 #: field:project.project,tasks:0
 msgid "Task Activities"
-msgstr ""
+msgstr "Užduoties veiklos"
 
 #. module: project
 #: model:mail.message.subtype,description:project.mt_task_assigned
@@ -1448,7 +1448,7 @@ msgstr ""
 #. module: project
 #: model:ir.filters,name:project.filter_task_report_task_pipe
 msgid "Task Pipe"
-msgstr ""
+msgstr "Užduočių planas"
 
 #. module: project
 #: model:mail.message.subtype,description:project.mt_task_ready
@@ -1613,7 +1613,9 @@ msgstr ""
 
 #. module: project
 #: help:project.config.settings,time_unit:0
-msgid "This will set the unit of measure used in projects and tasks."
+msgid ""
+"This will set the unit of measure used in projects and tasks.\n"
+"Changing the unit will only impact new entries."
 msgstr ""
 
 #. module: project
@@ -1701,7 +1703,7 @@ msgstr ""
 #. module: project
 #: view:project.project:project.edit_project
 msgid "Use Tasks"
-msgstr ""
+msgstr "Naudoti užduotis"
 
 #. module: project
 #: field:project.config.settings,module_pad:0
@@ -1774,7 +1776,7 @@ msgstr ""
 #. module: project
 #: model:ir.filters,name:project.filter_task_report_workload
 msgid "Workload"
-msgstr ""
+msgstr "Darbo krūvis"
 
 #. module: project
 #: code:addons/project/project.py:172
@@ -1804,7 +1806,7 @@ msgstr "_Priskirti"
 #. module: project
 #: view:project.task:project.view_task_kanban
 msgid "oe_kanban_text_red"
-msgstr ""
+msgstr "oe_kanban_text_red"
 
 #. module: project
 #: view:project.config.settings:project.view_config_settings
@@ -1816,7 +1818,7 @@ msgstr "arba"
 #: code:addons/project/project.py:878
 #, python-format
 msgid "tasks"
-msgstr ""
+msgstr "užduotys"
 
 #. module: project
 #: field:account.analytic.account,company_uom_id:0

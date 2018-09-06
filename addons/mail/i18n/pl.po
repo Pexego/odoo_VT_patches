@@ -4,19 +4,20 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Wojtek Warczakowski <w.warczakowski@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-05-29 12:58+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/odoo-8/language/pl/)\n"
+"PO-Revision-Date: 2017-09-23 21:13+0000\n"
+"Last-Translator: zbik2607 <darek@krokus.com.pl>\n"
+"Language-Team: Polish (http://www.transifex.com/odoo/odoo-8/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: mail
 #: code:addons/mail/mail_thread.py:384
@@ -48,8 +49,8 @@ msgstr "(brak adresu email)"
 #: code:addons/mail/wizard/invite.py:44
 #, python-format
 msgid ""
-"<div><p>Hello,</p><p>%s invited you to follow %s document: %s.<p></div>"
-msgstr "<div><p>Witaj,</p><p>%s zaprosił cię do obserwowania %s dokument: %s.<p></div>"
+"<div><p>Hello,</p><p>%s invited you to follow %s document: %s.</p></div>"
+msgstr "<div><p>Witaj,</p><p>%s zaprosił cię do obserwowania %s dokumentu: %s.</p></div>"
 
 #. module: mail
 #: code:addons/mail/wizard/invite.py:47
@@ -216,7 +217,7 @@ msgstr "Alias akceptuje wiadomości od"
 #. module: mail
 #: field:mail.alias,alias_contact:0
 msgid "Alias Contact Security"
-msgstr ""
+msgstr "Zabezpieczenie aliasu"
 
 #. module: mail
 #: field:base.config.settings,alias_domain:0
@@ -1094,7 +1095,7 @@ msgstr "Unikalny identyfikator wiadomości"
 #. module: mail
 #: field:mail.compose.message,message_id:0 field:mail.message,message_id:0
 msgid "Message-Id"
-msgstr ""
+msgstr "Message-Id"
 
 #. module: mail
 #: model:ir.actions.act_window,name:mail.action_view_mail_message
@@ -1426,7 +1427,7 @@ msgstr "Publiczne"
 #. module: mail
 #: model:mail.group,name:mail.group_rd
 msgid "R&D"
-msgstr ""
+msgstr "B + R"
 
 #. module: mail
 #: code:addons/mail/wizard/mail_compose_message.py:191
@@ -1758,7 +1759,7 @@ msgid ""
 "This group is visible by everyone,\n"
 "                                including your customers if you installed\n"
 "                                the portal module."
-msgstr ""
+msgstr "Ta grupa jest widoczna dla każdego, również dla twoich klientów jeśli zainstalowano moduł Portal."
 
 #. module: mail
 #: help:mail.group,public:0
@@ -1945,7 +1946,7 @@ msgstr ""
 msgid ""
 "You cannot create a new user from here.\n"
 " To create new user please go to configuration panel."
-msgstr ""
+msgstr "W tym miejscu nie możesz utworzyć użytkownika.\nAby utworzyć nowego użytkownika, przejdź do panelu konfiguracyjnego."
 
 #. module: mail
 #: code:addons/mail/mail_group.py:174
@@ -1953,7 +1954,7 @@ msgstr ""
 msgid ""
 "You cannot delete those groups, as the Whole Company group is required by "
 "other modules."
-msgstr ""
+msgstr "Nie możesz usunąć tej grupy, ponieważ jest ona wymagana przez inne moduły."
 
 #. module: mail
 #: code:addons/mail/mail_thread.py:171
@@ -2043,7 +2044,7 @@ msgstr "więcej."
 #. module: mail
 #: view:base.config.settings:mail.view_general_configuration_mail_alias_domain
 msgid "mycompany.odoo.com"
-msgstr ""
+msgstr "mycompany.odoo.com"
 
 #. module: mail
 #. openerp-web

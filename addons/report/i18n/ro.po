@@ -3,15 +3,16 @@
 # * report
 # 
 # Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:08+0000\n"
-"PO-Revision-Date: 2015-05-23 13:49+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Romanian (http://www.transifex.com/projects/p/odoo-8/language/ro/)\n"
+"PO-Revision-Date: 2017-01-17 06:18+0000\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>\n"
+"Language-Team: Romanian (http://www.transifex.com/odoo/odoo-8/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -313,7 +314,7 @@ msgstr "Format hârtie"
 #. module: report
 #: model:ir.actions.act_window,name:report.paper_format_action
 msgid "Paper Format General Configuration"
-msgstr ""
+msgstr "Configurare format hârtie"
 
 #. module: report
 #: field:ir.actions.report.xml,paperformat_id:0
@@ -389,7 +390,7 @@ msgstr "Tabloid 29 279.4 x 431.8 mm"
 #: code:addons/report/models/report.py:296
 #, python-format
 msgid "This report is not loaded into the database: %s."
-msgstr ""
+msgstr "Acest raport nu este încărcat în baza de date: %s."
 
 #. module: report
 #: field:report.paperformat,margin_top:0
@@ -415,7 +416,7 @@ msgstr "Pagină web:"
 #: code:addons/report/models/report.py:450
 #, python-format
 msgid "Wkhtmltopdf failed (error code: %s). Message: %s"
-msgstr ""
+msgstr "Wkhtmltopdf eșuat (cod eroare: %s). Mesaj: %s"
 
 #. module: report
 #. openerp-web
@@ -424,7 +425,7 @@ msgstr ""
 msgid ""
 "You need to start OpenERP with at least two \n"
 "workers to print a pdf version of the reports."
-msgstr ""
+msgstr "Trebuie să lansați Odoo cu cel puțin doi workers pentru a tipări un pdf din acest raport."
 
 #. module: report
 #. openerp-web

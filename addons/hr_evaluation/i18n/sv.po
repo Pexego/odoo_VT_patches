@@ -3,15 +3,16 @@
 # * hr_evaluation
 # 
 # Translators:
+# Anders Wallenquist <anders.wallenquist@vertel.se>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-05-29 13:12+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/odoo-8/language/sv/)\n"
+"PO-Revision-Date: 2016-12-30 12:08+0000\n"
+"Last-Translator: Anders Wallenquist <anders.wallenquist@vertel.se>\n"
+"Language-Team: Swedish (http://www.transifex.com/odoo/odoo-8/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -162,7 +163,7 @@ msgstr ""
 #. module: hr_evaluation
 #: model:survey.page,description:hr_evaluation.appraisal_5
 msgid "<p></p>"
-msgstr ""
+msgstr "<p></p>"
 
 #. module: hr_evaluation
 #: model:survey.page,description:hr_evaluation.appraisal_4
@@ -537,7 +538,7 @@ msgstr ""
 #: help:hr.evaluation.interview,message_last_post:0
 #: help:hr_evaluation.evaluation,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Datum för senast publicerade meddelandet i loggen."
 
 #. module: hr_evaluation
 #: field:hr.evaluation.interview,deadline:0
@@ -913,7 +914,7 @@ msgstr "Är en följare"
 #: field:hr.evaluation.interview,message_last_post:0
 #: field:hr_evaluation.evaluation,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Senast meddelandedatum"
 
 #. module: hr_evaluation
 #: field:hr.evaluation.interview,write_uid:0
@@ -1302,7 +1303,7 @@ msgstr "Undersökning"
 #. module: hr_evaluation
 #: field:hr.evaluation.interview,request_id:0
 msgid "Survey Request"
-msgstr ""
+msgstr "Enkätförfrågan"
 
 #. module: hr_evaluation
 #: model:survey.label,value:hr_evaluation.oprow_2_1_4
@@ -1400,7 +1401,7 @@ msgstr "Det antal månader som skall användas för att schemalägga det första
 #: model:survey.question,constr_error_msg:hr_evaluation.opinion_2_6
 #: model:survey.question,constr_error_msg:hr_evaluation.opinion_2_7
 msgid "This question requires an answer."
-msgstr ""
+msgstr "Denna fråga kräver svar."
 
 #. module: hr_evaluation
 #: model:survey.label,value:hr_evaluation.arow_3_1_15
@@ -1456,13 +1457,13 @@ msgstr "Varning!"
 #: field:hr.evaluation.interview,website_message_ids:0
 #: field:hr_evaluation.evaluation,website_message_ids:0
 msgid "Website Messages"
-msgstr ""
+msgstr "Webbplatsmeddelanden"
 
 #. module: hr_evaluation
 #: help:hr.evaluation.interview,website_message_ids:0
 #: help:hr_evaluation.evaluation,website_message_ids:0
 msgid "Website communication history"
-msgstr ""
+msgstr "Hemsidans kommunikationshistorik"
 
 #. module: hr_evaluation
 #: model:survey.label,value:hr_evaluation.oprow_2_4_2

@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-05-29 13:11+0000\n"
+"PO-Revision-Date: 2017-03-01 10:12+0000\n"
 "Last-Translator: Martin Trigaux\n"
-"Language-Team: Croatian (http://www.transifex.com/projects/p/odoo-8/language/hr/)\n"
+"Language-Team: Croatian (http://www.transifex.com/odoo/odoo-8/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -361,7 +361,7 @@ msgstr "Iznos"
 #. module: account_followup
 #: field:res.partner,payment_amount_due:0
 msgid "Amount Due"
-msgstr ""
+msgstr "Dospjeli iznos"
 
 #. module: account_followup
 #: field:res.partner,payment_amount_overdue:0
@@ -477,7 +477,7 @@ msgstr ""
 #. module: account_followup
 #: view:website:account_followup.report_followup
 msgid "Customer ref:"
-msgstr ""
+msgstr "Šifra kupca:"
 
 #. module: account_followup
 #: view:website:account_followup.report_followup
@@ -923,7 +923,7 @@ msgstr ""
 #: model:ir.ui.menu,name:account_followup.menu_finance_followup
 #: view:res.partner:account_followup.view_partner_inherit_followup_form
 msgid "Payment Follow-up"
-msgstr ""
+msgstr "Prateći koraci plaćanja"
 
 #. module: account_followup
 #: model:ir.actions.act_window,name:account_followup.action_account_followup_definition_form
@@ -1043,7 +1043,7 @@ msgstr "Pošalji pismo"
 #: view:account_followup.followup.line:account_followup.view_account_followup_followup_line_form
 #: field:account_followup.followup.line,send_email:0
 msgid "Send an Email"
-msgstr ""
+msgstr "Pošalji e-mail"
 
 #. module: account_followup
 #: view:account_followup.print:account_followup.view_account_followup_print

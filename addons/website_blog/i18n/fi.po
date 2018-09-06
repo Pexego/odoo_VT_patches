@@ -4,14 +4,16 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016-2017
+# Kari Lindgren <kari.lindgren@emsystems.fi>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:08+0000\n"
-"PO-Revision-Date: 2015-05-29 13:13+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/odoo-8/language/fi/)\n"
+"PO-Revision-Date: 2017-07-12 08:29+0000\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/odoo/odoo-8/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -33,7 +35,7 @@ msgstr "&times;"
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
 msgid ", referenced in Google."
-msgstr ""
+msgstr ", viittaus Googlessa."
 
 #. module: website_blog
 #: view:website:website_blog.latest_blogs
@@ -232,7 +234,7 @@ msgstr ""
 #: code:addons/website_blog/models/website_blog.py:211
 #, python-format
 msgid "A new post %s has been published on the %s blog."
-msgstr ""
+msgstr "Uusi merkintä %s on julkaistu blogissa %s."
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
@@ -244,14 +246,14 @@ msgstr "Tietoa meistä"
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:66
 #, python-format
 msgid "Add Another Block"
-msgstr ""
+msgstr "Lisää uusi lohko"
 
 #. module: website_blog
 #. openerp-web
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:18
 #, python-format
 msgid "Add Content"
-msgstr ""
+msgstr "Lisää sisältöä"
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
@@ -267,7 +269,7 @@ msgstr "Laatija"
 #. module: website_blog
 #: field:blog.post,author_avatar:0
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #. module: website_blog
 #: field:blog.post,background_image:0
@@ -335,7 +337,7 @@ msgstr "Blogin tägi"
 #: model:ir.actions.act_window,name:website_blog.action_tags
 #: model:ir.ui.menu,name:website_blog.menu_blog_tag
 msgid "Blog Tags"
-msgstr ""
+msgstr "Blogitunnisteet"
 
 #. module: website_blog
 #: view:blog.blog:website_blog.view_blog_blog_list
@@ -348,7 +350,7 @@ msgstr "Blogit"
 #. module: website_blog
 #: model:blog.post,subtitle:website_blog.blog_post_2
 msgid "Building your company's website and selling your products online easy."
-msgstr ""
+msgstr "Yrityksen verkkosivuston pystytys ja tuotteiden verkkomyynti helposti."
 
 #. module: website_blog
 #: view:blog.post.history.show_diff:website_blog.view_wiki_show_diff
@@ -358,7 +360,7 @@ msgstr "Peruuta"
 #. module: website_blog
 #: view:website:website_blog.blog_post_complete
 msgid "Change Cover"
-msgstr ""
+msgstr "Vaihda kansikuva"
 
 #. module: website_blog
 #. openerp-web
@@ -452,7 +454,7 @@ msgstr "Päivämäärä"
 #. module: website_blog
 #: help:blog.blog,message_last_post:0 help:blog.post,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Viimeisen viestin päivämäärä"
 
 #. module: website_blog
 #. openerp-web
@@ -481,7 +483,7 @@ msgstr "Ero"
 #. module: website_blog
 #: field:mail.message,path:0
 msgid "Discussion Path"
-msgstr ""
+msgstr "Keskustelupolku"
 
 #. module: website_blog
 #: view:blog.post.history:website_blog.view_blog_history_tree
@@ -493,14 +495,14 @@ msgstr "Dokumentin historia"
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:59
 #, python-format
 msgid "Drag & Drop a Block"
-msgstr ""
+msgstr "Raahaa ja pudota lohko"
 
 #. module: website_blog
 #. openerp-web
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:73
 #, python-format
 msgid "Drag & Drop a block"
-msgstr ""
+msgstr "Raahaa ja pudota lohko"
 
 #. module: website_blog
 #. openerp-web
@@ -514,7 +516,7 @@ msgstr ""
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:60
 #, python-format
 msgid "Drag this block and drop it in your page."
-msgstr ""
+msgstr "Raahaa tämä lohko ja pudota sivustolle"
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_complete
@@ -524,7 +526,7 @@ msgstr "Kopioi"
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
 msgid "Follow us"
-msgstr ""
+msgstr "Seuraa meitä"
 
 #. module: website_blog
 #: field:blog.blog,message_follower_ids:0
@@ -594,12 +596,12 @@ msgstr "Viimeisin tiedon lisääjä"
 #. module: website_blog
 #: field:blog.blog,message_last_post:0 field:blog.post,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Viimeinen viestipvm"
 
 #. module: website_blog
 #: field:blog.post,write_date:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Viimeksi muokattu"
 
 #. module: website_blog
 #: field:blog.blog,write_uid:0 field:blog.post.history,write_uid:0
@@ -621,7 +623,7 @@ msgstr ""
 #. module: website_blog
 #: view:website:website_blog.latest_blogs
 msgid "Latest Posts"
-msgstr ""
+msgstr "Viimeisimmät julkaisut"
 
 #. module: website_blog
 #. openerp-web
@@ -692,29 +694,29 @@ msgstr "Ei vielä blogikirjoituksia"
 #. module: website_blog
 #: view:website:website_blog.latest_blogs
 msgid "No keywords defined!"
-msgstr ""
+msgstr "Avainsanoja ei ole määritelty!"
 
 #. module: website_blog
 #: field:blog.post,visits:0
 msgid "No of Views"
-msgstr ""
+msgstr "Katselukertojen määrä"
 
 #. module: website_blog
 #. openerp-web
 #: code:addons/website_blog/static/src/xml/website_blog.inline.discussion.xml:9
 #, python-format
 msgid "Not Published"
-msgstr ""
+msgstr "Ei julkaistu"
 
 #. module: website_blog
 #: view:website:website_blog.latest_blogs
 msgid "Not published"
-msgstr ""
+msgstr "Ei julkaistu"
 
 #. module: website_blog
 #: model:blog.post,website_meta_keywords:website_blog.blog_post_1
 msgid "Odoo, email"
-msgstr ""
+msgstr "Odoo, sähköposti"
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
@@ -739,7 +741,7 @@ msgstr "Sivujen historia"
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
 msgid "Participate on our social stream."
-msgstr ""
+msgstr "Osallistu SOME-kanavaamme."
 
 #. module: website_blog
 #. openerp-web
@@ -747,42 +749,42 @@ msgstr ""
 #: view:website:website_blog.blog_post_complete
 #, python-format
 msgid "Post"
-msgstr ""
+msgstr "Kirjaa"
 
 #. module: website_blog
 #: field:blog.tag,post_ids:0
 msgid "Posts"
-msgstr ""
+msgstr "Julkaisuja"
 
 #. module: website_blog
 #: field:blog.post,website_published:0
 msgid "Publish"
-msgstr ""
+msgstr "Julkaise"
 
 #. module: website_blog
 #. openerp-web
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:95
 #, python-format
 msgid "Publish Your Post"
-msgstr ""
+msgstr "Julkaise viestisi"
 
 #. module: website_blog
 #: help:blog.post,website_published:0
 msgid "Publish on the website"
-msgstr ""
+msgstr "Julkaise verkkosivustolla"
 
 #. module: website_blog
 #. openerp-web
 #: code:addons/website_blog/static/src/xml/website_blog.inline.discussion.xml:10
 #, python-format
 msgid "Published"
-msgstr ""
+msgstr "Julkaistu"
 
 #. module: website_blog
 #: model:mail.message.subtype,description:website_blog.mt_blog_blog_published
 #: model:mail.message.subtype,name:website_blog.mt_blog_blog_published
 msgid "Published Post"
-msgstr ""
+msgstr "Julkaistu viesti"
 
 #. module: website_blog
 #: field:blog.post,ranking:0
@@ -824,7 +826,7 @@ msgstr "Lähetä viesti ryhmälle"
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:45
 #, python-format
 msgid "Set a Title"
-msgstr ""
+msgstr "Kirjoita otsikko"
 
 #. module: website_blog
 #. openerp-web
@@ -843,14 +845,14 @@ msgstr "Käynnistä ohjattu opastus"
 #. module: website_blog
 #: field:blog.post,subtitle:0
 msgid "Sub Title"
-msgstr ""
+msgstr "Alaotsikko"
 
 #. module: website_blog
 #: code:addons/website_blog/controllers/main.py:306
 #: code:addons/website_blog/models/website_blog.py:134
 #, python-format
 msgid "Subtitle"
-msgstr ""
+msgstr "Alaotsikko"
 
 #. module: website_blog
 #: field:blog.blog,message_summary:0 field:blog.post,message_summary:0
@@ -861,12 +863,12 @@ msgstr "Yhteenveto"
 #. module: website_blog
 #: view:blog.tag:website_blog.blog_tag_form
 msgid "Tag Form"
-msgstr ""
+msgstr "Tunnistelomake"
 
 #. module: website_blog
 #: view:blog.tag:website_blog.blog_tag_tree
 msgid "Tag List"
-msgstr ""
+msgstr "Tunnistelista"
 
 #. module: website_blog
 #: field:blog.post,tag_ids:0 view:website:website_blog.blog_post_short
@@ -882,7 +884,7 @@ msgstr "Tekninen"
 #: model:blog.post,name:website_blog.blog_post_1
 #: model:blog.post,website_meta_description:website_blog.blog_post_1
 msgid "The Future of Emails"
-msgstr ""
+msgstr "Sähköpostien tulevaisuus"
 
 #. module: website_blog
 #: code:addons/website_blog/models/website_blog.py:265
@@ -975,32 +977,32 @@ msgstr "Verkkosivun blogit"
 #. module: website_blog
 #: field:blog.blog,website_message_ids:0 field:blog.post,website_message_ids:0
 msgid "Website Messages"
-msgstr ""
+msgstr "Verkkosivu ilmoitukset"
 
 #. module: website_blog
 #: help:blog.blog,website_message_ids:0 help:blog.post,website_message_ids:0
 msgid "Website communication history"
-msgstr ""
+msgstr "Verkkosivun viestihistoria"
 
 #. module: website_blog
 #: field:blog.blog,website_meta_description:0
 #: field:blog.post,website_meta_description:0
 #: field:blog.tag,website_meta_description:0
 msgid "Website meta description"
-msgstr ""
+msgstr "Verkkosivuston metakuvaus"
 
 #. module: website_blog
 #: field:blog.blog,website_meta_keywords:0
 #: field:blog.post,website_meta_keywords:0
 #: field:blog.tag,website_meta_keywords:0
 msgid "Website meta keywords"
-msgstr ""
+msgstr "Verkkosivuston meta avainsanat"
 
 #. module: website_blog
 #: field:blog.blog,website_meta_title:0 field:blog.post,website_meta_title:0
 #: field:blog.tag,website_meta_title:0
 msgid "Website meta title"
-msgstr ""
+msgstr "Verkkosivuston metaotsikko"
 
 #. module: website_blog
 #. openerp-web
@@ -1031,7 +1033,7 @@ msgstr ""
 #: code:addons/website_blog/static/src/xml/website_blog.inline.discussion.xml:32
 #, python-format
 msgid "Your Email..."
-msgstr ""
+msgstr "Sähköpostisi..."
 
 #. module: website_blog
 #. openerp-web
@@ -1074,7 +1076,7 @@ msgstr ""
 #: code:addons/website_blog/static/src/xml/website_blog.inline.discussion.xml:14
 #, python-format
 msgid "by"
-msgstr ""
+msgstr "kirjoittaja"
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
@@ -1091,7 +1093,7 @@ msgstr ""
 #: view:website:website_blog.blog_post_short
 #: view:website:website_blog.latest_blogs
 msgid "comments"
-msgstr ""
+msgstr "kommentit"
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
@@ -1103,17 +1105,17 @@ msgstr ""
 #. module: website_blog
 #: view:website:website_blog.blog_post_complete
 msgid "js_tweet mt32"
-msgstr ""
+msgstr "js_tweet mt32"
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
 msgid "new visitors"
-msgstr ""
+msgstr "uusia vieraita"
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_short
 msgid "not published"
-msgstr ""
+msgstr "julkaisematta"
 
 #. module: website_blog
 #: view:website:website_blog.blog_post_complete
@@ -1124,4 +1126,4 @@ msgstr "käytössä"
 #: view:website:website_blog.blog_post_short
 #: view:website:website_blog.latest_blogs
 msgid "pull-right"
-msgstr ""
+msgstr "pull-right"

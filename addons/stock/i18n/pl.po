@@ -3,20 +3,21 @@
 # * stock
 # 
 # Translators:
+# zbik2607 <darek@krokus.com.pl>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-05-29 12:59+0000\n"
+"POT-Creation-Date: 2016-01-14 12:26+0000\n"
+"PO-Revision-Date: 2017-09-23 21:13+0000\n"
 "Last-Translator: Martin Trigaux\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/odoo-8/language/pl/)\n"
+"Language-Team: Polish (http://www.transifex.com/odoo/odoo-8/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: stock
 #: help:stock.picking,state:0
@@ -42,7 +43,7 @@ msgstr "\n                * Projekt: jeszcze nie potwierdzone i nie będzie zapl
 msgid ""
 "\n"
 "Creates the dropship route and add more complex tests-This installs the module stock_dropshipping."
-msgstr ""
+msgstr "\nUtwórz trasę dropship i dodaj więcej skomplikowanych testów-To instalowanie modułu stock_dropshipping."
 
 #. module: stock
 #: code:addons/stock/stock.py:1662
@@ -55,6 +56,16 @@ msgstr " (%s zarezerwowane)"
 #, python-format
 msgid " (reserved)"
 msgstr " (zarezerwowane)"
+
+#. module: stock
+#: code:addons/stock/stock.py:2954
+#, python-format
+msgid ""
+"You cannot have two inventory adjustements in state 'in Progess' with the "
+"same product(%s), same location(%s), same package, same owner and same lot. "
+"Please first validate the first inventory adjustement with this product "
+"before creating another one."
+msgstr ""
 
 #. module: stock
 #: code:addons/stock/stock.py:3090
@@ -213,6 +224,18 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Click to add a reordering rule.\n"
 "              </p><p>You can define your minimum stock rules, so that Odoo will automatically create draft manufacturing orders or request for quotations according to the stock level. Once the virtual stock of a product (= stock on hand minus all confirmed orders and reservations) is below the minimum quantity, Odoo will generate a procurement request to increase the stock up to the maximum quantity.</p>\n"
+"            "
+msgstr ""
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_production_lot_form
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a serial number.\n"
+"              </p><p>\n"
+"                This is the list of all the production lots you recorded. When\n"
+"                you select a lot, you can get the traceability of the products contained in lot.\n"
+"              </p>\n"
 "            "
 msgstr ""
 
@@ -449,6 +472,13 @@ msgstr "Pozwala wybrać różne jednostki miary dla produktów."
 msgid ""
 "Allows you to sell units of a product, but invoice based on a different unit of measure.\n"
 "For instance, you can sell pieces of meat that you invoice based on their weight."
+msgstr ""
+
+#. module: stock
+#: help:stock.config.settings,group_uos:0
+msgid ""
+"Allows you to store units of a product, but sell and invoice based on a different unit of measure.\n"
+"For instance, you can store pieces of meat that you sell and invoice based on their weight."
 msgstr ""
 
 #. module: stock
@@ -1479,10 +1509,11 @@ msgstr "Przewidywane przekroczone zapasy"
 #. module: stock
 #: view:product.template:stock.product_template_search_form_view_stock
 msgid "Forecast Negative Stock"
-msgstr ""
+msgstr "Przewidywany ujemny stan"
 
 #. module: stock
 #: field:product.product,virtual_available:0
+#: field:product.template,virtual_available:0
 msgid "Forecast Quantity"
 msgstr "Ilość przewidywana"
 
@@ -1762,6 +1793,16 @@ msgstr "To pobranie zostało podzielone, a to pole wskazuje pobranie, które zaw
 #: help:stock.location.path,active:0
 msgid "If unchecked, it will allow you to hide the rule without removing it."
 msgstr "Zamiast usuwać regułę, możesz ją zrobić niewidoczną odznaczając to pole"
+
+#. module: stock
+#: help:stock.inventory,filter:0
+msgid ""
+"If you do an entire inventory, you can choose 'All Products' and it will "
+"prefill the inventory with the current stock.  If you only do some products"
+"  (e.g. Cycle Counting) you can choose 'Manual Selection of Products' and "
+"the system won't propose anything.  You can also let the system propose for "
+"a single product / lot /... "
+msgstr ""
 
 #. module: stock
 #: selection:stock.inventory,state:0
@@ -2333,7 +2374,8 @@ msgid "Make Procurements"
 msgstr "Wykonaj zapotrzebowania"
 
 #. module: stock
-#: code:addons/stock/stock.py:3071
+#: code:addons/stock/stock.py:3217
+#: model:stock.location.route,name:stock.route_warehouse0_mto
 #, python-format
 msgid "Make To Order"
 msgstr "Na zamówienie"
@@ -2343,7 +2385,7 @@ msgstr "Na zamówienie"
 msgid ""
 "Make packages into a dedicated location, then bring them to the output "
 "location for shipping (Pick + Pack + Ship)"
-msgstr ""
+msgstr "Wstawia paczkę do konkretnej strefy, potem pobiera do strefy zewnętrznej do wysyłki. (Pick+Pack+Ship)"
 
 #. module: stock
 #: model:res.groups,name:stock.group_tracking_owner
@@ -2409,6 +2451,12 @@ msgstr "Menedżer"
 #: selection:stock.location.path,auto:0
 msgid "Manual Operation"
 msgstr "Ręczna operacja"
+
+#. module: stock
+#: code:addons/stock/stock.py:2640
+#, python-format
+msgid "Manual Selection of Products"
+msgstr ""
 
 #. module: stock
 #: view:stock.picking:stock.view_picking_form
@@ -2524,7 +2572,8 @@ msgid "Move which caused (created) the procurement"
 msgstr "Przesunięcie, które spowodowało zapotrzebowanie"
 
 #. module: stock
-#: field:stock.move,quant_ids:0
+#: view:stock.move:stock.view_move_form
+#: view:stock.move:stock.view_move_picking_form field:stock.move,quant_ids:0
 msgid "Moved Quants"
 msgstr "Przesunięte kwanty"
 
@@ -2586,7 +2635,7 @@ msgstr "Docelowa Lokalizacja Zwrotów"
 #. module: stock
 #: view:product.template:stock.product_template_search_form_view_stock
 msgid "Negative Stock"
-msgstr ""
+msgstr "Ujemny stan"
 
 #. module: stock
 #: selection:stock.move,state:0
@@ -2938,7 +2987,7 @@ msgstr "Kod paskowy paczki"
 #. module: stock
 #: model:ir.actions.report.xml,name:stock.action_report_quant_package_barcode
 msgid "Package BarCode with Contents"
-msgstr ""
+msgstr "Kod kreskowy paczki z zawartością"
 
 #. module: stock
 #: view:stock.quant.package:stock.quant_package_search_view
@@ -3584,7 +3633,7 @@ msgid "Quantity (UOS)"
 msgstr "Ilość (JS)"
 
 #. module: stock
-#: field:product.template,virtual_available:0 field:stock.move,availability:0
+#: field:stock.move,availability:0
 msgid "Quantity Available"
 msgstr "Dostępna ilość"
 
@@ -4433,6 +4482,11 @@ msgid "Storage Location"
 msgstr "Strefa składowania"
 
 #. module: stock
+#: field:stock.config.settings,group_uos:0
+msgid "Store products in a different unit of measure than the sales order"
+msgstr ""
+
+#. module: stock
 #: field:stock.picking,message_summary:0
 #: field:stock.production.lot,message_summary:0
 msgid "Summary"
@@ -4620,6 +4674,13 @@ msgid ""
 msgstr "Domyślny magazyn zasilający powinien być inny niż zasilany!"
 
 #. module: stock
+#: code:addons/stock/stock.py:1067
+#, python-format
+msgid ""
+"The destination location must be the same for all the moves of the picking."
+msgstr ""
+
+#. module: stock
 #: view:product.category:stock.product_category_form_view_inherit
 msgid ""
 "The following routes will apply to the products in this category taking into"
@@ -4706,6 +4767,17 @@ msgid ""
 msgstr "WYbrana JM dla produktu %s jest niezgodna z JM ustawioną na formularzu produktu. \nWybierz JM z tej samej kategorii."
 
 #. module: stock
+#: constraint:stock.inventory:0
+msgid "The selected inventory options are not coherent."
+msgstr ""
+
+#. module: stock
+#: code:addons/stock/stock.py:1070
+#, python-format
+msgid "The source location must be the same for all the moves of the picking."
+msgstr ""
+
+#. module: stock
 #: view:stock.transfer_details:stock.view_stock_enter_transfer_details
 msgid ""
 "The source package will be moved entirely.  If you specify a destination "
@@ -4750,7 +4822,7 @@ msgid ""
 "This allows to manipulate packages.  You can put something in, take "
 "something from a package, but also move entire packages and put them even in"
 " another package.  "
-msgstr ""
+msgstr "Ta opcja pozwala operować paczkami jako kontenerami. Możesz włożyć coś do paczki lub z niej wyjąć. Możesz też włożyć całą paczkę do innej paczki."
 
 #. module: stock
 #: help:stock.config.settings,group_stock_production_lot:0
@@ -4772,7 +4844,7 @@ msgstr ""
 msgid ""
 "This field should be completed only if everything inside the package share "
 "the same product, otherwise it doesn't really makes sense."
-msgstr ""
+msgstr "Ta opcja może być wypełniona, jeśli do paczki są wkładane identyczne produkty. W innym przypadku ta opcja nie ma sensu."
 
 #. module: stock
 #: help:stock.quant,owner_id:0
@@ -5081,6 +5153,11 @@ msgid "Unreserve"
 msgstr "Skasuj rezerwację"
 
 #. module: stock
+#: view:stock.inventory:stock.view_inventory_form
+msgid "UoM"
+msgstr "JM"
+
+#. module: stock
 #: model:ir.actions.act_window,name:stock.action_view_change_product_quantity
 #: view:stock.change.product.qty:stock.view_change_product_quantity
 msgid "Update Product Quantity"
@@ -5345,17 +5422,17 @@ msgstr "Możesz usunąć pozycje, aby zignorować niektóre produkty."
 #. module: stock
 #: code:addons/stock/stock.py:368
 #, python-format
-msgid "You can not reserve a negative quantity or a negative quant."
-msgstr "Nie możesz rezerwować ujemnych ilości lub ujemnych kwantów."
+msgid ""
+"You can not change the unit of measure of a product that has already been "
+"used in a done stock move. If you need to change the unit of measure, you "
+"may deactivate this product."
+msgstr "Nie możesz zmienić jednostki miary produktu, który już został użyty w zapisie księgowym dziennika. Jeśli potrzebujesz ją zmienić możesz dezaktywować produkt."
 
 #. module: stock
 #: code:addons/stock/stock.py:2846
 #, python-format
-msgid ""
-"You can only change the checked quantity of an existing inventory line. If "
-"you want modify a data, please set the checked quantity to 0 and create a "
-"new inventory line."
-msgstr "W pozycji inwentaryzacji możesz tylko zmieniać sprawdzone ilości. Jeśli chcesz zmieniać dan, to ustaw ilość sprawdzoną na 0 i utwórz nową pozycję."
+msgid "You can not reserve a negative quantity or a negative quant."
+msgstr "Nie możesz rezerwować ujemnych ilości lub ujemnych kwantów."
 
 #. module: stock
 #: code:addons/stock/stock.py:2400
@@ -5409,7 +5486,13 @@ msgid ""
 msgstr "Musisz wybrać jednostkę miary z tej samej kategorii, co domyślna jednostka produktu"
 
 #. module: stock
-#: code:addons/stock/wizard/stock_return_picking.py:69
+#: code:addons/stock/wizard/stock_return_picking.py:62
+#, python-format
+msgid "You may only return one picking at a time!"
+msgstr ""
+
+#. module: stock
+#: code:addons/stock/wizard/stock_return_picking.py:72
 #, python-format
 msgid "You may only return pickings that are Done!"
 msgstr "Możesz zwracać tylko pobrania wykonane!"
@@ -5480,14 +5563,6 @@ msgid "picking(s)"
 msgstr "pobranie(a)"
 
 #. module: stock
-#: view:product.template:stock.view_stock_product_template_tree
-msgid ""
-"red:virtual_available<0;blue:virtual_available>=0 and state in ('draft', "
-"'end', 'obsolete');black:virtual_available>=0 and state not in ('draft', "
-"'end', 'obsolete')"
-msgstr ""
-
-#. module: stock
 #: view:stock.return.picking:stock.view_stock_return_picking_form
 msgid "reverse"
 msgstr "zwrot"
@@ -5532,21 +5607,6 @@ msgstr ""
 #: field:stock.picking.type,rate_picking_late:0
 msgid "unknown"
 msgstr "nieznane"
-
-#. module: stock
-#: view:product.template:stock.view_template_property_form
-msgid ""
-"{'default_groups_ref': ['base.group_user', 'base.group_sale_manager', "
-"'stock.group_stock_manager']}"
-msgstr ""
-
-#. module: stock
-#: view:product.product:stock.view_stock_product_tree
-msgid ""
-"{'red':virtual_available<0, 'blue':virtual_available>=0 and state in "
-"('draft', 'end', 'obsolete'), 'black':virtual_available>=0 and state not in "
-"('draft', 'end', 'obsolete')}"
-msgstr ""
 
 #. module: stock
 #: view:product.template:stock.view_template_property_form

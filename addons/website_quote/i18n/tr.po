@@ -4,14 +4,17 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Levent Karakaş <levent@mektup.at>, 2017
+# Murat Kaplan <muratk@projetgrup.com>, 2015
+# Saban Yildiz <sabany@projetgrup.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-21 14:09+0000\n"
-"PO-Revision-Date: 2015-05-29 12:59+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/odoo-8/language/tr/)\n"
+"POT-Creation-Date: 2016-03-25 13:43+0000\n"
+"PO-Revision-Date: 2017-05-19 10:31+0000\n"
+"Last-Translator: Levent Karakaş <levent@mektup.at>\n"
+"Language-Team: Turkish (http://www.transifex.com/odoo/odoo-8/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -43,21 +46,17 @@ msgid ""
 "       &nbsp;&nbsp;Your contact: <a href=\"mailto:${object.user_id.email or ''}?subject=Order%20${object.name}\">${object.user_id.name}</a>\n"
 "       % endif\n"
 "    </p>\n"
-"\n"
-"    <% set signup_url = object.get_signup_url() %>\n"
-"    % if signup_url:\n"
 "    <p>\n"
-"    You can access this document and pay online via our Customer Portal:\n"
+"        You can view your quotation online:\n"
 "    </p>\n"
-"        <a style=\"display:block; width: 150px; height:20px; margin-left: 120px; color: #DDD; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; text-align: center; text-decoration: none !important; line-height: 1; padding: 5px 0px 0px 0px; background-color: #8E0000; border-radius: 5px 5px; background-repeat: repeat no-repeat;\"\n"
-"           href=\"${signup_url}\">View ${object.state in ('draft', 'sent') and 'Quotation' or 'Order'}</a>\n"
-"    % endif\n"
+"    <a style=\"display:block; width: 150px; height:20px; margin-left: 120px; color: #DDD; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; text-align: center; text-decoration: none !important; line-height: 1; padding: 5px 0px 0px 0px; background-color: #8E0000; border-radius: 5px 5px; background-repeat: repeat no-repeat;\"\n"
+"        href=\"/quote/${object.id}/${object.access_token}\">View ${object.state in ('draft', 'sent') and 'Quotation' or 'Order'}</a>\n"
 "\n"
 "    % if object.paypal_url:\n"
 "    <br/>\n"
 "    <p>It is also possible to directly pay with Paypal:</p>\n"
 "        <a style=\"margin-left: 120px;\" href=\"${object.paypal_url}\">\n"
-"            <img class=\"oe_edi_paypal_button\" src=\"https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif\"/>\n"
+"            <img class=\"oe_edi_paypal_button\" src=\"/sale/static/img/btn_paynowcc_lg.gif\"/>\n"
 "        </a>\n"
 "    % endif\n"
 "\n"
@@ -102,6 +101,11 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: view:website:website_quote.so_quotation
+msgid "! You can"
+msgstr "! Yapabilirsiniz"
+
+#. module: website_quote
 #: model:email.template,report_name:website_quote.email_template_edi_sale
 msgid ""
 "${(object.name or '').replace('/','_')}_${object.state == 'draft' and "
@@ -125,7 +129,7 @@ msgstr "% indirim"
 #: view:website:website_quote.so_quotation
 #: view:website:website_quote.so_template
 msgid "&times;"
-msgstr "& zaman;"
+msgstr "&times;"
 
 #. module: website_quote
 #: view:website:website_quote.so_quotation
@@ -468,7 +472,7 @@ msgid ""
 "                            <h2>Structure of the Training</h2>\n"
 "                        </div>\n"
 "                        <div class=\"col-md-5 col-md-offset-1 mt16 mb16\">\n"
-"                            <img class=\"img img-responsive\" src=\"https://www.openerp.com/saas_master/static/site_new/img/layout/online_training.png\">\n"
+"                            <img class=\"img img-responsive\" src=\"/website_quote/static/src/img/online_training.png\">\n"
 "                        </div>\n"
 "                        <div class=\"col-md-6 mt32\">\n"
 "                            <h4><strong>There are three components to the training</strong></h4>\n"
@@ -719,12 +723,12 @@ msgstr "Şablon Düzenle"
 #. module: website_quote
 #: field:sale.order,validity_date:0
 msgid "Expiry Date"
-msgstr "Bitiş Tarihi"
+msgstr "Geçerlilik Tarihi"
 
 #. module: website_quote
 #: view:website:sale.report_saleorder_document
 msgid "Expiry Date:"
-msgstr "Bitiş Tarihi"
+msgstr "Geçerlilik Tarihi:"
 
 #. module: website_quote
 #: view:website:website_quote.quotation_toolbar
@@ -769,7 +773,7 @@ msgstr "Kimlik"
 #. module: website_quote
 #: view:website:website_quote.so_quotation
 msgid "Incl. tax)"
-msgstr ""
+msgstr "KDV dahil)"
 
 #. module: website_quote
 #: view:website:website_quote.navigation_menu
@@ -796,7 +800,7 @@ msgstr "Son Güncelleme"
 msgid ""
 "Learn directly from our team and network of Odoo experts. Choose from the "
 "available training sessions for a better functional understanding of Odoo"
-msgstr ""
+msgstr "Doğrudan bizim takımımızdan ve Odoo uzman grubu ağlarından öğrenin. Odoo'yu teknik olarak daha iyi anlamak için mevcut eğitim oturumlarından birini seçin."
 
 #. module: website_quote
 #: model:product.template,description_sale:website_quote.product_product_quote_2_product_template
@@ -804,7 +808,7 @@ msgstr ""
 msgid ""
 "Learn directly from our team and network of Odoo experts. Choose from the "
 "available training sessions for a better technical understanding of Odoo"
-msgstr ""
+msgstr "Doğrudan bizim takımımızdan ve Odoo uzman grubu ağlarından öğrenin. Odoo'yu teknik olarak daha iyi anlamak için mevcut eğitim oturumlarından birini seçin."
 
 #. module: website_quote
 #: field:sale.order.line,website_description:0
@@ -1086,6 +1090,11 @@ msgstr "Bu teklifin bitiş zamanı"
 
 #. module: website_quote
 #: view:website:website_quote.so_quotation
+msgid "This order has already been"
+msgstr ""
+
+#. module: website_quote
+#: view:website:website_quote.so_quotation
 msgid ""
 "This order has been validated. Thanks for your trust\n"
 "                          and do not hesitate to"
@@ -1104,7 +1113,7 @@ msgstr "Bu teklif reddedilmiştir."
 #. module: website_quote
 #: view:website:website_quote.so_template
 msgid "Titles with style"
-msgstr ""
+msgstr "Biçimli başlıklar"
 
 #. module: website_quote
 #: view:website:website_quote.pricing
@@ -1142,6 +1151,12 @@ msgstr "Teklif İncele"
 #: view:sale.quote.template:website_quote.view_sale_quote_template_form
 msgid "Website Description"
 msgstr "Web Sitesi Açıklaması"
+
+#. module: website_quote
+#: code:addons/website_quote/controllers/main.py:148
+#, python-format
+msgid "You cannot add options to a confirmed order."
+msgstr ""
 
 #. module: website_quote
 #: view:website:website_quote.so_quotation
@@ -1190,6 +1205,11 @@ msgstr "ve"
 
 #. module: website_quote
 #: view:website:website_quote.so_quotation
+msgid "cancelled"
+msgstr ""
+
+#. module: website_quote
+#: view:website:website_quote.so_quotation
 msgid "contact us"
 msgstr "bize ulaşın"
 
@@ -1232,7 +1252,7 @@ msgid ""
 "this content\n"
 "                                will appear on all quotations using this\n"
 "                                template."
-msgstr ""
+msgstr "bu içerik\nbu şablonu kullanan tüm tekliflerde\ngörünecektir."
 
 #. module: website_quote
 #: field:sale.order.option,line_id:0
@@ -1240,13 +1260,18 @@ msgid "unknown"
 msgstr "bilinmeyen"
 
 #. module: website_quote
+#: view:website:website_quote.so_quotation
+msgid "validated"
+msgstr ""
+
+#. module: website_quote
 #: view:website:website_quote.so_template
 msgid ""
 "will be used to generate the\n"
 "                                table of content automatically."
-msgstr ""
+msgstr "içindekiler tablosunu otomatik\nolarak oluşturmak için kullanılacak."
 
 #. module: website_quote
 #: view:website:website_quote.so_quotation
 msgid "with payment terms:"
-msgstr ""
+msgstr "ödeme koşulları ile:"

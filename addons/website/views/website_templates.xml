@@ -33,16 +33,15 @@
 
 <template id="website.submenu" name="Submenu">
     <li t-if="not submenu.child_id" t-att-class="
-        ((submenu.url and submenu.url != '/' and request.httprequest.path.startswith(submenu.url)) or
-         request.httprequest.path == submenu.url) and 'active'
+        'active' if submenu.url and submenu.url != '/' and request.httprequest.path == submenu.url.replace('/page/website.', '/page/') else None
         ">
         <a t-att-href="(website.menu_id.child_id[0] == submenu) and '/' or submenu.url" t-ignore="true" t-att-target="'_blank' if submenu.new_window else None">
             <span t-field="submenu.name"/>
         </a>
     </li>
     <li t-if="submenu.child_id" t-attf-class="dropdown #{
-        ((submenu.url and submenu.url != '/' and [1 for submenu in submenu.child_id if request.httprequest.path.startswith(submenu.url)]) or
-         request.httprequest.path == submenu.url) and 'active'
+        (submenu.url and submenu.url != '/' and any([request.httprequest.path == child.url.replace('/page/website.', '/page/') for child in submenu.child_id if child.url]) or
+         (submenu.url and request.httprequest.path == submenu.url.replace('/page/website.', '/page/'))) and 'active'
         }">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <span t-field="submenu.name"/> <span class="caret" t-ignore="true"></span>
@@ -57,7 +56,7 @@
 
 <template id="layout" name="Main layout">&lt;!DOCTYPE html&gt;
     <html t-att-lang="lang and lang.replace('_', '-')"
-          t-att-data-website-id="website.id if editable and website else None"
+          t-att-data-website-id="website and website.id or None"
           t-att-data-editable="'1' if editable else None"
           t-att-data-translatable="'1' if translatable else None"
           t-att-data-view-xmlid="xmlid if editable else None"
@@ -460,6 +459,10 @@
         <div class="oe_structure">
 
             <section class="container">
+              <t t-if="not version">
+                <meta http-equiv="refresh" content="0;URL='/website/info'" />
+              </t>
+              <t t-if="version">
                 <h1><t t-esc="res_company.name"/>
                     <small>Odoo Version <t t-raw="version.get('server_version')"/></small>
                 </h1>
@@ -507,8 +510,7 @@
                         </t>
                     </dl>
                 </div>
-
-
+              </t>
             </section>
 
         </div>

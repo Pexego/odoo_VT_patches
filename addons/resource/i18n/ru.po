@@ -3,15 +3,16 @@
 # * resource
 # 
 # Translators:
+# Denis Baranov <baranov@itlibertas.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:08+0000\n"
-"PO-Revision-Date: 2015-05-29 12:59+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/odoo-8/language/ru/)\n"
+"PO-Revision-Date: 2017-03-22 19:01+0000\n"
+"Last-Translator: Denis Baranov <baranov@itlibertas.com>\n"
+"Language-Team: Russian (http://www.transifex.com/odoo/odoo-8/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -47,7 +48,7 @@ msgstr "Активный"
 #. module: resource
 #: model:ir.actions.act_window,name:resource.resource_calendar_closing_days
 msgid "Closing Days"
-msgstr ""
+msgstr "Закрытие дней"
 
 #. module: resource
 #: field:resource.resource,code:0
@@ -154,7 +155,7 @@ msgstr "Если пусто, это не рабочий день для всей
 msgid ""
 "If the active field is set to False, it will allow you to hide the resource "
 "record without removing it."
-msgstr ""
+msgstr "Если значение активного поля — Ложь, это позволит вам скрыть запись ресурса, не удаляя ее."
 
 #. module: resource
 #: view:resource.resource:resource.view_resource_resource_search
@@ -187,7 +188,7 @@ msgstr "Детали отгула"
 #. module: resource
 #: view:resource.calendar.leaves:resource.view_resource_calendar_leaves_search
 msgid "Leave Month"
-msgstr ""
+msgstr "Месяц отпуска"
 
 #. module: resource
 #: field:resource.calendar,leave_ids:0
@@ -246,13 +247,13 @@ msgstr "Календарь ресурса"
 #. module: resource
 #: model:ir.model,name:resource.model_resource_resource
 msgid "Resource Detail"
-msgstr ""
+msgstr "Сведения о ресурсе"
 
 #. module: resource
 #: model:ir.actions.act_window,name:resource.action_resource_calendar_leave_tree
 #: model:ir.ui.menu,name:resource.menu_view_resource_calendar_leaves_search
 msgid "Resource Leaves"
-msgstr ""
+msgstr "Ресурсы Простой"
 
 #. module: resource
 #: field:resource.resource,resource_type:0
@@ -274,7 +275,7 @@ msgstr "Ресурсы"
 #. module: resource
 #: model:ir.actions.act_window,name:resource.resource_calendar_resources_leaves
 msgid "Resources Leaves"
-msgstr ""
+msgstr "Ресурсы отпусков"
 
 #. module: resource
 #: model:ir.actions.act_window,help:resource.action_resource_resource_tree
@@ -282,7 +283,7 @@ msgid ""
 "Resources allow you to create and manage resources that should be involved "
 "in a specific project phase. You can also set their efficiency level and "
 "workload based on their weekly working hours."
-msgstr ""
+msgstr "Ресурсы позволяют создавать и управлять ресурсами, которые должны быть задействованы на определенной фазе проекта. Вы также можете установить их уровень эффективности и рабочую нагрузку исходя из их недельного рабочего времени."
 
 #. module: resource
 #: selection:resource.calendar.attendance,dayofweek:0
@@ -297,7 +298,7 @@ msgstr "Поиск ресурсов"
 #. module: resource
 #: view:resource.calendar.leaves:resource.view_resource_calendar_leaves_search
 msgid "Search Working Period Leaves"
-msgstr ""
+msgstr "Поиск рабочего периода отпусков"
 
 #. module: resource
 #: view:resource.calendar:resource.view_resource_calendar_search
@@ -312,7 +313,7 @@ msgstr "Начальная дата"
 #. module: resource
 #: help:resource.calendar.attendance,hour_from:0
 msgid "Start and End time of working."
-msgstr ""
+msgstr "Начала и время окончания работы."
 
 #. module: resource
 #: field:resource.calendar.attendance,date_from:0
@@ -322,7 +323,7 @@ msgstr "Дата начала"
 #. module: resource
 #: view:resource.calendar.leaves:resource.view_resource_calendar_leaves_search
 msgid "Starting Date of Leave by Month"
-msgstr ""
+msgstr "Дата начала отпуска по месяцам"
 
 #. module: resource
 #: selection:resource.calendar.attendance,dayofweek:0
@@ -336,7 +337,7 @@ msgid ""
 "resource put alone on a phase of 5 days with 5 tasks assigned to him, will "
 "show a load of 100% for this phase by default, but if we put a efficiency of"
 " 200%, then his load will only be 50%."
-msgstr ""
+msgstr "Это поле изображают эффективность ресурса для завершения задачи. например ресурс поместить в одну фазу на этап 5 дней с 5 задачами, возложенными на него, покажет нагрузку 100% в течение этой фазы, по умолчанию, но если мы ставим эффективность 200%, то его нагрузка будет только 50%."
 
 #. module: resource
 #: selection:resource.calendar.attendance,dayofweek:0
@@ -367,7 +368,7 @@ msgstr "Среда"
 #. module: resource
 #: model:ir.model,name:resource.model_resource_calendar_attendance
 msgid "Work Detail"
-msgstr ""
+msgstr "Подробности Работы"
 
 #. module: resource
 #: field:resource.calendar.attendance,hour_from:0

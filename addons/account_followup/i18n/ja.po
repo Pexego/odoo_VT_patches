@@ -4,14 +4,15 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Yoshi Tashiro <tashiro@roomsfor.hk>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-05-29 13:11+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/odoo-8/language/ja/)\n"
+"PO-Revision-Date: 2017-03-30 15:16+0000\n"
+"Last-Translator: Yoshi Tashiro <tashiro@roomsfor.hk>\n"
+"Language-Team: Japanese (http://www.transifex.com/odoo/odoo-8/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -361,7 +362,7 @@ msgstr "金額"
 #. module: account_followup
 #: field:res.partner,payment_amount_due:0
 msgid "Amount Due"
-msgstr ""
+msgstr "支払額"
 
 #. module: account_followup
 #: field:res.partner,payment_amount_overdue:0
@@ -383,7 +384,7 @@ msgstr ""
 #. module: account_followup
 #: field:account_followup.followup.line,manual_action_responsible_id:0
 msgid "Assign a Responsible"
-msgstr ""
+msgstr "担当者"
 
 #. module: account_followup
 #: field:account.move.line,result:0 field:account_followup.stat,balance:0
@@ -449,7 +450,7 @@ msgstr ""
 #: field:account_followup.print,create_uid:0
 #: field:account_followup.sending.results,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "作成者"
 
 #. module: account_followup
 #: field:account_followup.followup,create_date:0
@@ -533,7 +534,7 @@ msgstr "期日"
 #. module: account_followup
 #: field:account_followup.followup.line,delay:0
 msgid "Due Days"
-msgstr ""
+msgstr "超過日数"
 
 #. module: account_followup
 #: field:account_followup.print,email_body:0
@@ -584,7 +585,7 @@ msgstr "フォローアップ"
 #. module: account_followup
 #: field:account_followup.followup.line,name:0
 msgid "Follow-Up Action"
-msgstr ""
+msgstr "フォローアップアクション"
 
 #. module: account_followup
 #: model:ir.ui.menu,name:account_followup.menu_action_followup_stat_follow
@@ -619,7 +620,7 @@ msgstr "フォローアップレベル"
 #. module: account_followup
 #: model:ir.ui.menu,name:account_followup.account_followup_menu
 msgid "Follow-up Levels"
-msgstr ""
+msgstr "フォローアップレベル"
 
 #. module: account_followup
 #: model:ir.actions.report.xml,name:account_followup.action_report_followup
@@ -651,7 +652,7 @@ msgstr ""
 #: view:account_followup.followup.line:account_followup.view_account_followup_followup_line_form
 #: view:account_followup.followup.line:account_followup.view_account_followup_followup_line_tree
 msgid "Follow-up Steps"
-msgstr ""
+msgstr "フォローアップステップ"
 
 #. module: account_followup
 #: code:addons/account_followup/wizard/account_followup_print.py:171
@@ -718,7 +719,7 @@ msgstr ""
 #. module: account_followup
 #: view:account_followup.stat:account_followup.view_account_followup_stat_search
 msgid "Including journal entries marked as a litigation"
-msgstr "訴訟としてマークされた仕訳帳エントリーを含みます。"
+msgstr "訴訟としてマークされた仕訳を含む"
 
 #. module: account_followup
 #: code:addons/account_followup/account_followup.py:256
@@ -744,7 +745,7 @@ msgstr "仕訳帳項目"
 #: field:account_followup.print,write_uid:0
 #: field:account_followup.sending.results,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "最終更新者"
 
 #. module: account_followup
 #: field:account_followup.followup,write_date:0
@@ -752,7 +753,7 @@ msgstr ""
 #: field:account_followup.print,write_date:0
 #: field:account_followup.sending.results,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "最終更新日"
 
 #. module: account_followup
 #: field:account_followup.stat,date_move_last:0
@@ -820,7 +821,7 @@ msgstr "訴訟"
 #: view:account_followup.followup.line:account_followup.view_account_followup_followup_line_form
 #: field:account_followup.followup.line,manual_action:0
 msgid "Manual Action"
-msgstr ""
+msgstr "マニュアルアクション"
 
 #. module: account_followup
 #: model:ir.actions.act_window,name:account_followup.action_customer_followup
@@ -928,7 +929,7 @@ msgstr ""
 #. module: account_followup
 #: model:ir.actions.act_window,name:account_followup.action_account_followup_definition_form
 msgid "Payment Follow-ups"
-msgstr ""
+msgstr "支払フォローアップ"
 
 #. module: account_followup
 #: help:res.partner,payment_note:0
@@ -1037,13 +1038,13 @@ msgstr ""
 #: view:account_followup.followup.line:account_followup.view_account_followup_followup_line_form
 #: field:account_followup.followup.line,send_letter:0
 msgid "Send a Letter"
-msgstr ""
+msgstr "レター送付"
 
 #. module: account_followup
 #: view:account_followup.followup.line:account_followup.view_account_followup_followup_line_form
 #: field:account_followup.followup.line,send_email:0
 msgid "Send an Email"
-msgstr ""
+msgstr "Eメール送付"
 
 #. module: account_followup
 #: view:account_followup.print:account_followup.view_account_followup_print
@@ -1191,14 +1192,14 @@ msgstr ""
 #. module: account_followup
 #: help:account_followup.followup.line,send_email:0
 msgid "When processing, it will send an email"
-msgstr ""
+msgstr "処理時にEメールを送付します。"
 
 #. module: account_followup
 #: help:account_followup.followup.line,manual_action:0
 msgid ""
 "When processing, it will set the manual action to be taken for that "
 "customer. "
-msgstr ""
+msgstr "処理時に顧客用のマニュアルアクションを設定します。"
 
 #. module: account_followup
 #: field:res.partner,payment_earliest_due_date:0

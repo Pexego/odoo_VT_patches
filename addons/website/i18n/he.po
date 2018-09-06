@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-21 14:08+0000\n"
-"PO-Revision-Date: 2015-05-29 13:13+0000\n"
+"POT-Creation-Date: 2015-07-22 08:25+0000\n"
+"PO-Revision-Date: 2017-02-04 12:09+0000\n"
 "Last-Translator: Martin Trigaux\n"
-"Language-Team: Hebrew (http://www.transifex.com/projects/p/odoo-8/language/he/)\n"
+"Language-Team: Hebrew (http://www.transifex.com/odoo/odoo-8/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -62,6 +62,20 @@ msgid ""
 ",\n"
 "                the #1"
 msgstr ",\n                ה - #1"
+
+#. module: website
+#: view:website:website.layout
+msgid ""
+",\n"
+"                  an awesome"
+msgstr ""
+
+#. module: website
+#: view:website:website.layout
+msgid ""
+",\n"
+"            Try the"
+msgstr ""
 
 #. module: website
 #: view:website:website.info
@@ -1250,7 +1264,7 @@ msgstr "עריכת HTML"
 #. module: website
 #: model:ir.model,name:website.model_ir_http
 msgid "HTTP routing"
-msgstr ""
+msgstr "ניתוב HTTP"
 
 #. module: website
 #: view:website:website.themes
@@ -1765,6 +1779,16 @@ msgid "Open Source eCommerce"
 msgstr ""
 
 #. module: website
+#: view:website:website.layout
+msgid "Open Source CRM"
+msgstr ""
+
+#. module: website
+#: view:website:website.layout
+msgid "open source website builder"
+msgstr ""
+
+#. module: website
 #. openerp-web
 #: code:addons/website/static/src/xml/website.editor.xml:56
 #, python-format
@@ -1920,6 +1944,21 @@ msgstr "שאלות לעמדת המכירה"
 
 #. module: website
 #: view:website:website.layout
+msgid "Create a"
+msgstr ""
+
+#. module: website
+#: view:website:website.layout
+msgid "free website"
+msgstr ""
+
+#. module: website
+#: view:website:website.layout
+msgid "with"
+msgstr ""
+
+#. module: website
+#: view:website:website.layout
 msgid "Powered by"
 msgstr "מופעל על ידי"
 
@@ -2020,7 +2059,7 @@ msgstr "סגול"
 #. module: website
 #: view:website:website.http_error_debug
 msgid "QWeb"
-msgstr ""
+msgstr "QWeb"
 
 #. module: website
 #: view:website:website.snippet_options view:website:website.snippets

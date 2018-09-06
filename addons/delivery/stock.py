@@ -79,8 +79,13 @@ class stock_picking(osv.osv):
             :return: dict containing the values to create the invoice line,
                      or None to create nothing
         """
+        if picking.sale_id:
+            delivery_line = picking.sale_id.order_line.filtered(lambda l: l.is_delivery and l.invoiced)
+            if delivery_line:
+                return None
         carrier_obj = self.pool.get('delivery.carrier')
         grid_obj = self.pool.get('delivery.grid')
+        currency_obj = self.pool.get('res.currency')
         if not picking.carrier_id or \
             any(inv_line.product_id.id == picking.carrier_id.product_id.id
                 for inv_line in invoice.invoice_line):
@@ -96,22 +101,20 @@ class stock_picking(osv.osv):
         price = grid_obj.get_price_from_picking(cr, uid, grid_id,
                 invoice.amount_untaxed, picking.weight, picking.volume,
                 quantity, context=context)
-        if picking.picking_type_id.code != 'incoming':	
-            account_id = picking.carrier_id.product_id.property_account_income.id
-            if not account_id:
-                account_id = picking.carrier_id.product_id.categ_id\
-                        .property_account_income_categ.id
-            taxes = picking.carrier_id.product_id.taxes_id
-        else:
-            account_id = picking.carrier_id.product_id.property_account_expense.id
-            if not account_id:
-                account_id = picking.carrier_id.product_id.categ_id\
-                        .property_account_expense_categ.id
-            taxes = picking.carrier_id.product_id.supplier_taxes_id
+        if invoice.company_id.currency_id.id != invoice.currency_id.id:
+            price = currency_obj.compute(cr, uid, invoice.company_id.currency_id.id, invoice.currency_id.id,
+                price, context=dict(context or {}, date=invoice.date_invoice))
+        account_id = picking.carrier_id.product_id.property_account_income.id
+        if not account_id:
+            account_id = picking.carrier_id.product_id.categ_id\
+                    .property_account_income_categ.id
+
+        taxes = picking.carrier_id.product_id.taxes_id
         partner = picking.partner_id or False
+        fp = invoice.fiscal_position or partner.property_account_position
         if partner:
-            account_id = self.pool.get('account.fiscal.position').map_account(cr, uid, partner.property_account_position, account_id)
-            taxes_ids = self.pool.get('account.fiscal.position').map_tax(cr, uid, partner.property_account_position, taxes)
+            account_id = self.pool.get('account.fiscal.position').map_account(cr, uid, fp, account_id)
+            taxes_ids = self.pool.get('account.fiscal.position').map_tax(cr, uid, fp, taxes, context=context)
         else:
             taxes_ids = [x.id for x in taxes]
 

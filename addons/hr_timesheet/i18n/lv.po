@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-05-29 12:58+0000\n"
+"PO-Revision-Date: 2017-07-21 13:29+0000\n"
 "Last-Translator: Martin Trigaux\n"
-"Language-Team: Latvian (http://www.transifex.com/projects/p/odoo-8/language/lv/)\n"
+"Language-Team: Latvian (http://www.transifex.com/odoo/odoo-8/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -252,7 +252,7 @@ msgstr "Vispārīgā informācija"
 #: code:addons/hr_timesheet/hr_timesheet.py:153
 #, python-format
 msgid "Go to the configuration panel"
-msgstr ""
+msgstr "Go to the configuration panel"
 
 #. module: hr_timesheet
 #: view:hr.analytic.timesheet:hr_timesheet.hr_timesheet_line_search
@@ -422,7 +422,7 @@ msgstr "Darba Beigas"
 #. module: hr_timesheet
 #: view:hr.timesheet.report:hr_timesheet.view_hr_timesheet_report_search
 msgid "This Month"
-msgstr ""
+msgstr "Šajā mēnesī"
 
 #. module: hr_timesheet
 #: field:hr.timesheet.report,quantity:0

@@ -68,7 +68,7 @@ def keep_query(*keep_params, **additional_params):
     for keep_param in keep_params:
         for param in fnmatch.filter(qs_keys, keep_param):
             if param not in additional_params and param in qs_keys:
-                params[param] = ','.join(request.httprequest.args.getlist(param))
+                params[param] = request.httprequest.args.getlist(param)
     return werkzeug.urls.url_encode(params)
 
 class view_custom(osv.osv):
@@ -93,10 +93,11 @@ class view_custom(osv.osv):
 
 
     def _auto_init(self, cr, context=None):
-        super(view_custom, self)._auto_init(cr, context)
+        res = super(view_custom, self)._auto_init(cr, context)
         cr.execute('SELECT indexname FROM pg_indexes WHERE indexname = \'ir_ui_view_custom_user_id_ref_id\'')
         if not cr.fetchone():
             cr.execute('CREATE INDEX ir_ui_view_custom_user_id_ref_id ON ir_ui_view_custom (user_id, ref_id)')
+        return res
 
 def _hasclass(context, *cls):
     """ Checks if the context node has all the classes passed as arguments
@@ -110,6 +111,7 @@ xpath_utils['hasclass'] = _hasclass
 
 class view(osv.osv):
     _name = 'ir.ui.view'
+    _parent_name = 'inherit_id'     # used for recursion check
 
     def _get_model_data(self, cr, uid, ids, fname, args, context=None):
         result = dict.fromkeys(ids, False)
@@ -117,11 +119,6 @@ class view(osv.osv):
         data_ids = IMD.search_read(cr, uid, [('res_id', 'in', ids), ('model', '=', 'ir.ui.view')], ['res_id'], context=context)
         result.update(map(itemgetter('res_id', 'id'), data_ids))
         return result
-
-    def _views_from_model_data(self, cr, uid, ids, context=None):
-        IMD = self.pool['ir.model.data']
-        data_ids = IMD.search_read(cr, uid, [('id', 'in', ids), ('model', '=', 'ir.ui.view')], ['res_id'], context=context)
-        return map(itemgetter('res_id'), data_ids)
 
     _columns = {
         'name': fields.char('View Name', required=True),
@@ -141,11 +138,7 @@ class view(osv.osv):
         'inherit_id': fields.many2one('ir.ui.view', 'Inherited View', ondelete='restrict', select=True),
         'inherit_children_ids': fields.one2many('ir.ui.view','inherit_id', 'Inherit Views'),
         'field_parent': fields.char('Child Field'),
-        'model_data_id': fields.function(_get_model_data, type='many2one', relation='ir.model.data', string="Model Data",
-                                         store={
-                                             _name: (lambda s, c, u, i, ctx=None: i, None, 10),
-                                             'ir.model.data': (_views_from_model_data, ['model', 'res_id'], 10),
-                                         }),
+        'model_data_id': fields.function(_get_model_data, type='many2one', relation='ir.model.data', string="Model Data", store=True),
         'xml_id': fields.function(osv.osv.get_xml_id, type='char', size=128, string="External ID",
                                   help="ID of the view defined in xml file"),
         'groups_id': fields.many2many('res.groups', 'ir_ui_view_group_rel', 'view_id', 'group_id',
@@ -196,6 +189,10 @@ class view(osv.osv):
         return self._relaxng_validator
 
     def _check_xml(self, cr, uid, ids, context=None):
+        # As all constraints are verified on create/write, we must re-check that there is no
+        # recursion before calling `read_combined` to avoid an infinite loop.
+        if not self._check_recursion(cr, uid, ids, context=context):
+            return True     # pretend arch is valid to avoid misleading user about the error.
         if context is None:
             context = {}
         context = dict(context, check_view_ids=ids)
@@ -203,7 +200,7 @@ class view(osv.osv):
         # Sanity checks: the view should not break anything upon rendering!
         # Any exception raised below will cause a transaction rollback.
         for view in self.browse(cr, uid, ids, context):
-            view_def = self.read_combined(cr, uid, view.id, None, context=context)
+            view_def = self.read_combined(cr, uid, view.id, ['arch'], context=context)
             view_arch_utf8 = view_def['arch']
             if view.type != 'qweb':
                 view_doc = etree.fromstring(view_arch_utf8)
@@ -233,13 +230,15 @@ class view(osv.osv):
     ]
     _constraints = [
         (_check_xml, 'Invalid view definition', ['arch']),
+        (osv.osv._check_recursion, 'You cannot create recursive inherited views.', ['inherit_id']),
     ]
 
     def _auto_init(self, cr, context=None):
-        super(view, self)._auto_init(cr, context)
+        res = super(view, self)._auto_init(cr, context)
         cr.execute('SELECT indexname FROM pg_indexes WHERE indexname = \'ir_ui_view_model_type_inherit_id\'')
         if not cr.fetchone():
             cr.execute('CREATE INDEX ir_ui_view_model_type_inherit_id ON ir_ui_view (model, inherit_id)')
+        return res
 
     def _compute_defaults(self, cr, uid, values, context=None):
         if 'inherit_id' in values:
@@ -407,7 +406,7 @@ class view(osv.osv):
     def inherit_branding(self, specs_tree, view_id, root_id):
         for node in specs_tree.iterchildren(tag=etree.Element):
             xpath = node.getroottree().getpath(node)
-            if node.tag == 'data' or node.tag == 'xpath':
+            if node.tag == 'data' or node.tag == 'xpath' or node.get('position') or node.get('t-field'):
                 self.inherit_branding(node, view_id, root_id)
             else:
                 node.set('data-oe-id', str(view_id))
@@ -518,16 +517,21 @@ class view(osv.osv):
                     requested (similar to ``id``)
         """
         if context is None: context = {}
+        context = context.copy()
 
         # if view_id is not a root view, climb back to the top.
         base = v = self.browse(cr, uid, view_id, context=context)
+        check_view_ids = context.setdefault('check_view_ids', [])
         while v.mode != 'primary':
+            # Add inherited views to the list of loading forced views
+            # Otherwise, inherited views could not find elements created in their direct parents if that parent is defined in the same module
+            check_view_ids.append(v.id)
             v = v.inherit_id
         root_id = v.id
 
         # arch and model fields are always returned
         if fields:
-            fields = list(set(fields) | set(['arch', 'model']))
+            fields = list({'arch', 'model'}.union(fields))
 
         # read the view arch
         [view] = self.read(cr, uid, [root_id], fields=fields, context=context)
@@ -662,7 +666,7 @@ class view(osv.osv):
                     orm.transfer_field_to_modifiers(field, modifiers)
 
         elif node.tag in ('form', 'tree'):
-            result = Model.view_header_get(cr, user, False, node.tag, context)
+            result = Model.view_header_get(cr, user, False, node.tag, context=context)
             if result:
                 node.set('string', result)
             in_tree_view = node.tag == 'tree'
@@ -801,15 +805,15 @@ class view(osv.osv):
         if node.tag == 'diagram':
             if node.getchildren()[0].tag == 'node':
                 node_model = self.pool[node.getchildren()[0].get('object')]
-                node_fields = node_model.fields_get(cr, user, None, context)
+                node_fields = node_model.fields_get(cr, user, None, context=context)
                 fields.update(node_fields)
                 if not node.get("create") and not node_model.check_access_rights(cr, user, 'create', raise_exception=False):
                     node.set("create", 'false')
             if node.getchildren()[1].tag == 'arrow':
-                arrow_fields = self.pool[node.getchildren()[1].get('object')].fields_get(cr, user, None, context)
+                arrow_fields = self.pool[node.getchildren()[1].get('object')].fields_get(cr, user, None, context=context)
                 fields.update(arrow_fields)
         else:
-            fields = Model.fields_get(cr, user, None, context)
+            fields = Model.fields_get(cr, user, None, context=context)
 
         node = self.add_on_change(cr, user, model, node)
         fields_def = self.postprocess(cr, user, model, node, view_id, False, fields, context=context)
@@ -833,10 +837,7 @@ class view(osv.osv):
             if k not in fields_def:
                 del fields[k]
         for field in fields_def:
-            if field == 'id':
-                # sometime, the view may contain the (invisible) field 'id' needed for a domain (when 2 objects have cross references)
-                fields['id'] = {'readonly': True, 'type': 'integer', 'string': 'ID'}
-            elif field in fields:
+            if field in fields:
                 fields[field].update(fields_def[field])
             else:
                 message = _("Field `%(field_name)s` does not exist") % \
@@ -948,7 +949,7 @@ class view(osv.osv):
         def get_trans(text):
             if not text or not text.strip():
                 return None
-            text = h.unescape(text.strip())
+            text = text.strip()
             if len(text) < 2 or (text.startswith('<!') and text.endswith('>')):
                 return None
             return translate_func(text)
@@ -1108,6 +1109,7 @@ class view(osv.osv):
                    LEFT JOIN ir_model_data md ON (md.model = 'ir.ui.view' AND md.res_id = v.id)
                        WHERE md.module IS NULL
                          AND v.model = %s
+                         AND v.active = true
                     GROUP BY coalesce(v.inherit_id, v.id)
                    """, (model,))
 

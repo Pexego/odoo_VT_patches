@@ -3,15 +3,16 @@
 # * product
 # 
 # Translators:
+# Muḥend Belqasem <belkacem77@gmail.com>, 2015
 # FIRST AUTHOR Belkacem Mohammed <belkacem77@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:08+0000\n"
-"PO-Revision-Date: 2015-06-05 20:45+0000\n"
+"PO-Revision-Date: 2017-09-23 21:15+0000\n"
 "Last-Translator: Martin Trigaux\n"
-"Language-Team: Kabyle (http://www.transifex.com/projects/p/odoo-8/language/kab/)\n"
+"Language-Team: Kabyle (http://www.transifex.com/odoo/odoo-8/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -123,7 +124,7 @@ msgid ""
 "                    </div>\n"
 "                </section>\n"
 "            "
-msgstr ""
+msgstr "<hr>\n<section data-snippet-id=\"image-text\" class=\"mt16 mb16\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-10 col-md-offset-1 mt32 mb32\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/keyboard.png\">\n</div>\n<div class=\"col-md-8 col-md-offset-2 mb32 text-center\">\n<h3>A great Keyboard. Cordless.</h3>\n<p>\nThe incredibly thin Apple Wireless Keyboard uses Bluetooth technology,\nwhich makes it compatible with iPad. And you’re free to type wherever\nyou like — with the keyboard in front of your iPad or on your lap.\n</p>\n</div>\n</div>\n</div>\n</section>"
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_ul_form_action
@@ -136,7 +137,7 @@ msgid ""
 "                size. \n"
 "              </p>\n"
 "            "
-msgstr ""
+msgstr "<p class=\"oe_view_nocontent_create\">\nSit dagi i tmerna n uferdis alujistikan amaynut\n</p><p>\nAferdis alujistikan amaynut ad yesbadu a container used for the package. \nIt has a type (e.g. pallet, box, ...) and you can specify its \nsize. \n</p>"
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_uom_categ_form_action
@@ -150,7 +151,7 @@ msgid ""
 "                Hours, Days.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Cliquez pour ajouter une catégorie d'unités de mesure.\n              </p><p>\n                Les unités de mesure d'une même catégorie peuvent être\n                converties entre elles. Par exemple dans la catégorie <i>Durée</i>,\n                on trouvera les unités suivantes : heures, jours.\n              </p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nSit i tmerna n taggayt n uferdis n usɣel.\n</p><p>\nIferdisen n usɣel n yiwet taggayt zemren \nad ţuselketen garasen. Amedya, di  taggayt <i>Tanzagt </i>,\nAnaf iferdisen : Isragen, Ussan.\n</p>\n            "
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_uom_form_action
@@ -162,7 +163,7 @@ msgid ""
 "                Measure within the same category.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Cliquez pour ajouter une unité de mesure.\n              </p><p>\nVous devrez définir des taux de conversion entre plusieurs unités\nde mesure d'une même catégorie.\n              </p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nSit i tmerna n uferdis n usɣel.\n</p><p>\nIssefk ad tesbaduḍ amfiḍi n uselket \ngar iferdisen n yiwet n taggayt.\n</p>\n            "
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_pricelist_action
@@ -176,7 +177,7 @@ msgid ""
 "                etc.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Cliquez pour ajouter une version de la liste de prix.\n              </p><p>\n                Une liste de prix peut avoir plusieurs versions, chacune étant\n                valable pour une certaine durée. Il peut y avoir par exemple des\n                versions : \"Prix de base\", \"Prix 2010\", \"Prix 2011\", \"Ventes d'été\", etc.\n              </p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nSit dagi i tmerna n lqem n tebdart n ssuma.\n</p><p>\nTabdart n ssuma tezmer ad tegber aṭṭas n ileqman, \nyal yiwet s tengazt-is. Imedyaten nileqman:\n\"Ssuma n uzadur\", \"ssuma n 2010\", \"Ssuma n 2011\", \"Ssuma n unebdu\", atg.\n</p>\n            "
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_pricelist_action_for_purchase
@@ -194,7 +195,7 @@ msgid ""
 "                promotions.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Cliquez pour créer une nouvelle liste de prix.\n              </p><p>\nUne liste de prix regroupe les règles pour calculer le prix d'achat. La liste\nde prix par défaut n'a qu'une règle : \"utiliser le coût de revient défini pour\nl'article\". Vous n'avez donc pas besoin de gérer de liste de prix fournisseurs\nsi vos besoins sont simples.\n              </p><p>\nCependant vous pouvez importer des listes de prix complexes fournies par\nvos fournisseurs, qui peuvent dépendre des quantités commandées ou de\npromotions en cours.\n              </p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nSit dagi i tmerna n tbdart n ssuma tamaynut.\n</p><p>\nTabdart n ssuma tegber ilugan n usiḍen n ssuma n tiɣin. \nTabdart n ssuma s wennez n tazwara ɣur-s kan yiwen ulugen;\nSeqdec ssuma n tesqamt n tiɣin yellan deg ufaris. \nUr yesri ara asefrek n tebdart n ssuma ma yella isra-yinek fesusit.\n</p><p>\nAcut kan tzemreḍ ad ktreḍ tibdarin n ssuma tisemlalin i k-d-uznen \nisseǧǧawen inek yersen ɣef tnectiqin t-ssutreḍ neɣ ɣef ismilen imiranen.\n</p>"
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_pricelist_action2
@@ -211,7 +212,7 @@ msgid ""
 "                the supplier price multiplied by 1.80).\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Cliquez pour créer une liste de prix.\n              </p><p>\nUne liste de prix contient les règles de calcul du prix de vente des\narticles.\n              </p><p>\nLes listes de prix peuvent avoir plusieurs versions (ex : 2010, 2011, promotion\nde février 2010, etc.), et chaque version peut avoir plusieurs règles (ex : le prix\nclient d'une catégorie d'articles sera calculé en multipliant le prix\nfournisseur par 1.80).\n              </p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nSit dagi i tmerna n tbdart n ssuma tamaynut.\n</p><p>\nTabdart n ssuma tegber ilugan n usiḍen n ssuma n uznuzu n ifarisen.\n</p><p>\nZemrent tebdarin nusɣel ad gebrent ddeqs n ileqmen\n (Amedya : 2010, 2011, asmil n fuṛaṛ 2010, atg.), \nYal lqem yezmzer ad yegber deqs n ilugan \n(Amedya : ssuma n umsaɣn yiwet ntaggayt n ifarisen \nad iţiṣed s wekfud n ssuma n useǧǧaw ed 1.80).\n</p>\n            "
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_normal_action
@@ -224,7 +225,7 @@ msgid ""
 "                whether it's a physical product, a consumable or service.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Cliquez pour ajouter un nouvel article.\n              </p><p>\nVous devez définir un article pour tout ce que vous vendez ou achetez,\nqu'il s'agisse d'un produit physique, d'un consommable ou d'un service.\n              </p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nSit i tmerna n ufaris amaynut.\n</p><p>\nIssefk ad tesbaduḍ afaris iyal taɣawsa d ţaɣeḍ neɣ teznuzuḍ,\nama d afaris aɣaran, asudran neɣ tanfa.\n</p>\n            "
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_normal_action_sell
@@ -241,7 +242,7 @@ msgid ""
 "                procurement methods, etc.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Cliquez pour créer un nouvel article.\n              </p><p>\n                Vous devez créer un article pour tout ce que vous vendez, que ce\n                soit un produit physique, un consommable, ou un service proposé aux\n                clients.\n              </p><p>\n                Les informations du formulaire d'édition d'un article permettent de\n                simplifier le processus de vente, en indiquant le prix, des informations\n                dans les devis, les données comptables, les modes d'approvisionnement,\n                etc.\n              </p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nSit dagi i tmerna n ufaris amaynut.\n</p><p>\nIssefk ad ternuḍ afaris deg ayen akkw teznuzuḍ, ama\nd afaris aɣaṛan, afaris asudran, neɣ ameẓlu a t-sumereḍ i \nyemsaɣen-ik.\n</p><p>\nTalɣut yellan ɣef tferkit n uẓreg n ufaris, ak teǧǧ ad tsefsusiḍ akala \nn uznuzu, s tmerna n ssuma, tilɣa ɣef isutar, isefka n tsiḍent, \niskaren n taǧǧawt, atg.\n</p>"
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_category_action
@@ -252,7 +253,7 @@ msgid ""
 "                this category or to a child of this category.\n"
 "              </p>\n"
 "            "
-msgstr "<p>\nVoici une liste de tous les articles classés par catégorie. Vous\npouvez cliquer sur une catégorie pour afficher les articles\nde cette catégorie, ainsi que les articles des catégories filles.\n              </p>\n            "
+msgstr "<p>\nTagi d tabdart n ifarisen i Voici une liste de tous les articles classés par catégorie. Vous\npouvez cliquer sur une catégorie pour afficher les articles\nde cette catégorie, ainsi que les articles des catégories filles.\n              </p>\n            "
 
 #. module: product
 #: model:product.template,website_description:product.product_product_11_product_template
@@ -353,7 +354,7 @@ msgid ""
 "                    </div>\n"
 "                </section>\n"
 "            "
-msgstr ""
+msgstr "<section data-snippet-id=\"image-text\" class=\"mt16 mb16\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-9 col-md-offset-1 mb16\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/overview_hero.png\">\n</div>\n</div>\n</div>\n</section>\n<section data-snippet-id=\"text-image\" class=\"mt16 mb16 oe_dark\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-5 col-md-offset-1 mt64\">\n<h3>Design. The thinnest iPod ever.</h3>\n<p>\nAbout the size of a credit card — and just 5.4 mm thin — iPod nano is the thinnest iPod ever made.\nThe 2.5-inch Multi-Touch display is nearly twice as big as the display on the previous iPod nano,\nso you can see more of the music, photos, and videos you love.\n</p><p>\nButtons let you quickly play, pause, change songs, or adjust the volume.\nThe smooth anodized aluminum design makes iPod nano feel as good as it sounds.\nAnd iPod nano wouldn’t be iPod nano without gorgeous, hard-to-choose-from color.\n</p>\n</div>\n<div class=\"col-md-5\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/overview_design_silver.png\">\n</div>\n</div>\n</div>\n</section>\n<section data-snippet-id=\"image-text\" class=\"mt16 mb16\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-10 col-md-offset-1\">\n<h2 class=\"text-center\">Music. It's what beats inside.</h2>\n</div>\n<div class=\"col-md-4 mt32 col-md-offset-1\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/purple.png\">\n</div>\n<div class=\"col-md-6 mt32\">\n<h3>How to get your groove on.</h3>\n<p>\nTap to play your favorite songs. Or entire albums.\nOr everything by one artist. You can even browse by genres or composers.\nFlip through your music: Album art looks great on the bigger screen.\nOr to keep things fresh, give iPod nano a shake and it shuffles to a different song in your music library.\n</p>\n<h3>Genius. Your own personal DJ.</h3>\n<p>\nSay you’re listening to a song you love and you want to stay in the mood.\nJust tap Genius. It finds other songs on iPod nano that go great together\nand makes a Genius playlist for you. For more song combinations\nyou wouldn’t have thought of yourself, create Genius Mixes in iTunes\nand sync the ones you like to iPod nano. Then tap Genius Mixes and\nrediscover songs you haven’t heard in a while — or find music you forgot you even had.\n</p>\n</div>\n</div>\n</div>\n</section>\n<section data-snippet-id=\"image-text\" class=\"mt16 mb16\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-12 text-center mb16\">\n<h2>Playlists. The perfect mix for every mood.</h2>\n</div>\n<div class=\"col-md-4\">\n<h3>Sync to your heart’s content.</h3>\n<p>\niTunes on your Mac or PC makes it easy to load up\nyour iPod. Just choose the playlists, audiobooks,\npodcasts, and other audio files you want, then sync.\n</p>\n</div><div class=\"col-md-4\">\n<h3>When one playlist isn’t enough.</h3>\n<p>\nYou probably have multiple playlists in iTunes on your computer.\nOne for your commute. One for the gym. Sync those playlists\nto iPod, and you can play the perfect mix for whatever\nmood strikes you. VoiceOver tells you the name of each playlist,\nso it’s easy to switch between them and find the one you want without looking.\n</p>\n</div><div class=\"col-md-4\">\n<h3>Have Genius call the tunes.</h3>\n<p>\nThere’s another way to get a good mix of music on iPod: Let Genius do the work.\nActivate Genius in iTunes on your computer, and it automatically finds songs that sound\ngreat together. Then it creates Genius Mixes, which you can easily sync to your iPod.\nIt’s the perfect way to rediscover songs you haven’t listened to in forever.\n</p>\n</div>\n</div>\n</div>\n</section>"
 
 #. module: product
 #: model:product.template,website_description:product.product_product_8_product_template
@@ -422,7 +423,7 @@ msgid ""
 "                    </div>\n"
 "                </section>\n"
 "            "
-msgstr ""
+msgstr "<section data-snippet-id=\"image-text\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-5 mt32 col-md-offset-1\">\n<h3>Ultrathin design</h3>\n<h3 class=\"text-muted\">The desktop. In its most advanced form ever</h3>\n<p>\nCreating such a stunningly thin design took some equally stunning feats of technological innovation. We refined,re-imagined,or re-engineered everything about iMac from the inside out. The result is an advanced, elegant all-in-one computer that’s as much a work of art as it is state of the art.\n</p>\n</div>\n<div class=\"col-md-5 mt32\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/imac1.png\">\n</div>\n</div>\n</div>\n</section>\n<section data-snippet-id=\"text-image\" class=\"mb16 oe_dark\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"text-center col-md-8 col-md-offset-2 mt16\">\n<h2>Beautiful widescreen display.</h2>\n<h3 class=\"text-muted\">Brilliance onscreen. And behind it.</h3>\n<p>\nHow did we make an already gorgeous widescreen display even better? By making it 75 percent less reflective. And by re-architecting the LCD and moving it right up against the cover glass. So you see your photos, games, movies, and everything else in vivid, lifelike detail. \n</p>\n</div>\n<div class=\"col-md-10 col-md-offset-1\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/imac2.png\" width=\"100%\">\n</div>\n</div>\n</div>\n</section>\n<section data-snippet-id=\"image-text\" class=\"mt16 mb16\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-5 col-md-offset-1 mt64\">\n<p class=\"text-muted\">\nPowered by fourth-generation Intel Core processors, this iMac is the fastest yet. Every model in the lineup comes standard with a quad-core Intel Core i5 processor, starting at 2.7GHz and topping out at 3.4GHz.\n</p><p class=\"text-muted\">\nAnd at the Apple Online Store, you can configure your iMac with an even more powerful Intel Core i7 processor, up to 3.5GHz.\n</p>\n</div>\n<div class=\"col-md-5 col-md-offset-1 mb32\">\n<h3>Key Features</h3>\n<p>\n75 percent less reflection.\n</p>\n<p>\nIndividually calibrated for true-to-life color.\n</p>\n<p>\nMore energy efficient.\n</p>\n<p>\nFriendly to the environment.\n</p>\n<p>\nHighly rated designs.\n</p>\n</div>\n</div>\n</div>\n</section>"
 
 #. module: product
 #: model:product.template,website_description:product.product_product_6_product_template
@@ -677,7 +678,7 @@ msgid ""
 "                    </div>\n"
 "                </section>\n"
 "            "
-msgstr ""
+msgstr "<section data-snippet-id=\"text-image\" class=\"mt16 mb16\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-5 col-md-offset-1 mt32\">\n<h3>Bose Mini Bluetooth Speaker.</h3>\n<p>\nThe Bose® SoundLink® mini is Bose's smallest portable Bluetooth speaker. Its ultra-compact size fits in the \npalm of your hand, yet gives you full, natural sound wirelessly from your iPhone, iPad, or iPod. Grab it and go \nfull-featured. It can do just about everything and\nexperience music just about anywhere.\n</p>\n\n<div class=\"panel panel-default mt48\" data-snippet-id=\"panel\">\n<div class=\"panel-heading\">\n<h3 class=\"panel-title\">Characteristics</h3>\n</div>\n<div class=\"panel-body\">\n<ul>\n<li>Sleek, compact design</li>\n<li>Efficient, high-quality audio</li>\n<li>Remote control for power, volume, track seek</li>\n<li>Auxiliary input for portable devices</li>\n<li>Universal iPod docking station fits most iPod/iPhone models</li>\n<li>Charges iPod/iPhone</li>\n<li>Volume control on main system</li>\n</ul>\n</div>\n</div>\n\n</div>\n<div class=\"col-md-4 mt16 mb16 col-md-offset1\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/play_where_you_play.jpg\">\n</div>\n</div>\n</div>\n</section>\n<section data-snippet-id=\"text-image\" class=\"mt16 mb16 oe_dark\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-5 col-md-offset-1 mt16\">\n<h2>Plays where you play</h2>\n<p>\nThe SoundLink® Mini speaker is small and light enough\nto tuck into your bag. It weighs in at just 1.5 pounds.\nIts low profile lets you place it almost anywhere and\nprovides a low center of gravity that makes it nearly\nimpossible to tip over.\n</p>\n<p>\nThe rechargeable lithium-ion battery delivers up to seven hours of playtime.\nAnd at home, you can listen even longer—the charging cradle lets\nyou listen while it charges.\n</p>\n</div>\n<div class=\"col-md-5 col-md-offset-1 mt32\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/more_features.png\">\n</div>\n<div class=\"col-md-5 col-md-offset-4 text-center mb16 mt16\">\n<h3>Bluetooth connectivity</h3>\n<p>\nThe speaker has a range of about 30 feet, so you can enjoy\nthe sound you want without wires. It pairs easily with your\nsmartphone, iPad® or other Bluetooth device.\nAnd it remembers the most recent six devices you've used,\nso reconnecting is even simpler.\n</p>\n</div>\n</div>\n</div>\n</section>\n<section data-snippet-id=\"text-image\" class=\"mt16 mb16\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-5 col-md-offset-1 mt32 mb16\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/bluetooth.jpg\">\n</div>\n<div class=\"col-md-5 mt16\">\n<h2>More features.</h2>\n<p>\nCharging cradle recharges the battery and serves as a convenient\nhome base for your speaker, and it lets you play while it charges.\n</p>\n<p>\nWall charger can be plugged into the cradle or directly into the speaker\n</p>\n<p>\nAuxiliary port lets you connect other audio sources, like an MP3 player\n</p>\n<p>\nUSB port allows for software update to ensure ongoing Bluetooth device compatibility\n</p>\n<p>\nSoft covers are available separately in blue, green or orange. Pick a color to match your style.\n</p>\n</div>\n</div>\n</div>\n</section>"
 
 #. module: product
 #: model:product.template,website_description:product.product_product_7_product_template
@@ -727,7 +728,7 @@ msgid ""
 "                    </div>\n"
 "                </section>\n"
 "            "
-msgstr ""
+msgstr "<section data-snippet-id=\"text-image\" class=\"mt32\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-8 col-md-offset-2 text-center\">\n<h3>Two is better than one.</h3>\n<p>\nUnlike many small headphones, each earpiece of the Apple In-Ear Headphones\ncontains two separate high-performance drivers — a woofer to handle bass and\nmid-range sounds and a tweeter for high-frequency audio. These dedicated\ndrivers help ensure accurate, detailed sound across the entire sonic spectrum.\nThe result: you’re immersed in the music and hear details you never knew existed.\nEven when listening to an old favorite, you may feel like you’re hearing it for the first time.\n</p>\n</div>\n</div><div class=\"row mt16\">\n<div class=\"col-md-2 mt16\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/promo_headphones.png\">\n</div>\n<div class=\"col-md-6\">\n<h3 class=\"mt16\">Hear, hear.</h3>\n<p>\nThe Apple In-Ear Headphones deliver a truly immersive sound experience by drastically\nreducing unwanted outside noises. The soft, silicone ear tips fit snugly and comfortably\nin your ear, creating a seal that isolates your music from your surroundings.\nThree different sizes of ear tips are included so you can find a perfect fit for each ear.\nAlso included are a convenient carrying case for the ear tips and a cable-control case\nfor the headphones themselves.\n</p>\n</div>\n<div class=\"col-md-4\">\n<h3 class=\"mt16\">Keep it clean.</h3>\n<p>\nInside each earpiece is a stainless steel mesh cap that protects the precision acoustic\ncomponents from dust and debris. You can remove the caps for cleaning or replace\nthem with an extra set that’s included in the box.\n</p>\n</div>\n</div><div class=\"row\">\n<div class=\"col-md-2 col-md-offset-5 mt16\">\n<img class=\"img img-responsive\" src=\"/website_sale/static/src/img/buds_closeup.png\">\n</div>\n</div>\n</div>\n</section>"
 
 #. module: product
 #: help:product.category,type:0
@@ -784,7 +785,7 @@ msgstr "All in one hi-speed printer with fax and scanner."
 #. module: product
 #: model:product.category,name:product.accessories
 msgid "Apple Accessories"
-msgstr ""
+msgstr "Apple Accessories"
 
 #. module: product
 #: model:product.template,name:product.product_product_7_product_template
@@ -799,12 +800,12 @@ msgstr "Ifarisen n Apple"
 #. module: product
 #: model:product.template,name:product.product_product_9_product_template
 msgid "Apple Wireless Keyboard"
-msgstr ""
+msgstr "Apple Wireless Keyboard"
 
 #. module: product
 #: model:product.template,name:product.product_assembly_product_template
 msgid "Assembly Service Cost"
-msgstr ""
+msgstr "Assembly Service Cost"
 
 #. module: product
 #: help:product.supplierinfo,sequence:0
@@ -833,18 +834,18 @@ msgstr "Imyerr"
 #. module: product
 #: field:product.attribute.value,price_extra:0
 msgid "Attribute Price Extra"
-msgstr ""
+msgstr "Ssuma n imyerr nniḍen"
 
 #. module: product
 #: field:product.attribute.value,price_ids:0
 msgid "Attribute Prices"
-msgstr "Azalen n imyerra"
+msgstr "Ssumat n imyerra"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.variants_action
 #: model:ir.ui.menu,name:product.menu_variants_action
 msgid "Attribute Values"
-msgstr ""
+msgstr "Azalen n imyerr"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.attribute_action
@@ -856,12 +857,12 @@ msgstr "Imyerra"
 #. module: product
 #: view:product.pricelist.item:product.product_pricelist_item_form_view
 msgid "Base Price"
-msgstr "Azal n udasil"
+msgstr "Ssuma azadur"
 
 #. module: product
 #: help:product.pricelist.item,base:0
 msgid "Base price for computation."
-msgstr "Azal n udasil i wusiḍen."
+msgstr "Ssuma azadur n usiḍen."
 
 #. module: product
 #: help:product.template,list_price:0
@@ -908,12 +909,12 @@ msgstr "DVD-RW Ilem"
 #. module: product
 #: model:product.template,name:product.product_product_5b_product_template
 msgid "Bose Mini Bluetooth Speaker"
-msgstr ""
+msgstr "Bose Mini Bluetooth Speaker"
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_5b_product_template
 msgid "Bose's smallest portable Bluetooth speaker"
-msgstr ""
+msgstr "Bose's smallest portable Bluetooth speaker"
 
 #. module: product
 #: selection:product.ul,type:0
@@ -940,7 +941,7 @@ msgstr "By unchecking the active field you can disable a unit of measure without
 #. module: product
 #: view:product.price_list:product.view_product_price_list
 msgid "Calculate Product Price per Unit Based on Pricelist Version."
-msgstr "Siḍen azal n ufaris s yiwen akken illa welqem n tebdart n wazal."
+msgstr "Siḍen azal n ufaris s yiwen akken illa welqem n tebdart n ssuma ."
 
 #. module: product
 #: field:product.template,rental:0
@@ -956,7 +957,7 @@ msgstr "Izmer at nezenz"
 #. module: product
 #: view:product.price_list:product.view_product_price_list
 msgid "Cancel"
-msgstr "Sefsax"
+msgstr "Sefsex"
 
 #. module: product
 #: code:addons/product/product.py:214
@@ -982,7 +983,7 @@ msgstr "Tawsit n taggayt"
 #. module: product
 #: field:product.category,child_id:0
 msgid "Child Categories"
-msgstr "Taggayin tarracin"
+msgstr "Tiggayin tarracin"
 
 #. module: product
 #: field:product.packaging,code:0
@@ -1092,7 +1093,7 @@ msgstr "Conversion from Product UoM %s to Default UoM %s is not possible as they
 #: model:product.price.type,name:product.standard_price
 #: field:product.template,standard_price:0
 msgid "Cost Price"
-msgstr "Cost Price"
+msgstr "Tasqamt"
 
 #. module: product
 #: help:product.template,standard_price:0
@@ -1119,7 +1120,7 @@ msgstr ""
 #: field:product.template,create_uid:0 field:product.ul,create_uid:0
 #: field:product.uom,create_uid:0 field:product.uom.categ,create_uid:0
 msgid "Created by"
-msgstr "Iluled sɣur"
+msgstr "Yerna-t"
 
 #. module: product
 #: field:pricelist.partnerinfo,create_date:0
@@ -1140,7 +1141,7 @@ msgstr "Iluled sɣur"
 #: field:product.template,create_date:0 field:product.ul,create_date:0
 #: field:product.uom,create_date:0 field:product.uom.categ,create_date:0
 msgid "Created on"
-msgstr "Iluled di"
+msgstr "Yerna di"
 
 #. module: product
 #: model:ir.model,name:product.model_res_currency
@@ -1189,7 +1190,7 @@ msgstr "Default Public Pricelist Version"
 #. module: product
 #: view:product.template:product.product_template_search_view
 msgid "Default Unit of Measure"
-msgstr "Default Unit of Measure"
+msgstr "Aferdis n usɣel s wennez n tazwara"
 
 #. module: product
 #: help:product.template,uom_id:0
@@ -1217,7 +1218,7 @@ msgstr "Aglam"
 #. module: product
 #: view:product.template:product.product_template_form_view
 msgid "Description for Quotations"
-msgstr "Aglam i usutar n ssuma"
+msgstr "Aglam n isutar n ssuma"
 
 #. module: product
 #: view:product.template:product.product_template_form_view
@@ -1232,7 +1233,7 @@ msgstr ""
 #. module: product
 #: model:product.public.category,name:product.devices
 msgid "Devices"
-msgstr ""
+msgstr "Devices"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_dozen
@@ -1304,7 +1305,7 @@ msgstr "Error! You cannot define the decimal precision of 'Account' as greater t
 #. module: product
 #: constraint:product.packaging:0
 msgid "Error: Invalid ean code"
-msgstr "Tuccḍa: Tangalt EAN d urtameɣtut"
+msgstr "Tuccḍa: Tangalt EAN mačči tameɣtut"
 
 #. module: product
 #: constraint:product.template:0
@@ -1316,17 +1317,17 @@ msgstr "Error: The default Unit of Measure and the purchase Unit of Measure must
 #. module: product
 #: help:product.pricelist.item,name:0
 msgid "Explicit rule name for this pricelist line."
-msgstr "Isem iwatan i wezrig agi n tebdart n wazal"
+msgstr "Isem iwatan i wezirig agi n tebdart n ssuma"
 
 #. module: product
 #: model:product.category,name:product.product_category_6
 msgid "External Devices"
-msgstr "Isemmadanen Uffiɣen"
+msgstr "External Devices"
 
 #. module: product
 #: model:product.public.category,name:product.External_Hard_Drive
 msgid "External Hard Drive"
-msgstr ""
+msgstr "External Hard Drive"
 
 #. module: product
 #: model:product.template,name:product.product_product_28_product_template
@@ -1347,7 +1348,7 @@ msgstr "Fixé"
 #: field:product.product,message_follower_ids:0
 #: field:product.template,message_follower_ids:0
 msgid "Followers"
-msgstr "Imagazen"
+msgstr "Imeltaɣen"
 
 #. module: product
 #: help:product.pricelist.item,min_quantity:0
@@ -1366,7 +1367,7 @@ msgid ""
 "Cable length: 1065 mm\n"
 "Weight: 0.4 ounce\n"
 "            "
-msgstr ""
+msgstr "Frequency: 5Hz to 21kHz\nImpedance: 23 ohms\nSensitivity: 109 dB SPL/mW\nDrivers: two-way balanced armature\nCable length: 1065 mm\nWeight: 0.4 ounce"
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_44_product_template
@@ -1391,7 +1392,7 @@ msgstr "Donne l'ordre dans lequel les entrées de la liste de prix sont vérifi�
 #. module: product
 #: help:product.packaging,sequence:0
 msgid "Gives the sequence order when displaying a list of packaging."
-msgstr "Donne l'ordre d'affichage d'une liste de colisage."
+msgstr "Ad imudd amizzwer n ubeqqeḍ n tebdart n tnagalt.."
 
 #. module: product
 #: help:product.category,sequence:0
@@ -1443,12 +1444,12 @@ msgstr "Casque mains-libres pour PC portable avec microphone intégré et prise 
 #. module: product
 #: model:product.public.category,name:product.HDD
 msgid "Hard Drive"
-msgstr ""
+msgstr "Hard Drive"
 
 #. module: product
 #: model:product.public.category,name:product.Headset
 msgid "Headset"
-msgstr ""
+msgstr "Headset"
 
 #. module: product
 #: model:product.template,name:product.product_product_33_product_template
@@ -1478,17 +1479,17 @@ msgid ""
 "Width:  1.56 inches\n"
 "Depth:  0.21 inch\n"
 "Weight: 1.1 ounces"
-msgstr ""
+msgstr "Height: 3.01 inches\nWidth: 1.56 inches\nDepth: 0.21 inch\nWeight: 1.1 ounces"
 
 #. module: product
 #: field:product.price.history,datetime:0
 msgid "Historization Time"
-msgstr ""
+msgstr "Akud n umazray"
 
 #. module: product
 #: field:product.price.history,cost:0
 msgid "Historized Cost"
-msgstr ""
+msgstr "Taqamt ikelsen"
 
 #. module: product
 #: help:product.product,message_summary:0
@@ -1501,7 +1502,7 @@ msgstr "Igber agzul n lehduṛ (amḍan n iznan,…). Agzul agi illa  deg umasal
 #. module: product
 #: model:product.uom,name:product.product_uom_hour
 msgid "Hour(s)"
-msgstr "Asrag"
+msgstr "Asrag(i-en)"
 
 #. module: product
 #: help:product.uom,factor_inv:0
@@ -1552,7 +1553,7 @@ msgstr "En décochant cette case, il est possible de masquer l'article sans le s
 #. module: product
 #: model:product.category,name:product.imac
 msgid "Imac"
-msgstr ""
+msgstr "Imac"
 
 #. module: product
 #: field:product.template,image:0
@@ -1584,7 +1585,7 @@ msgstr ""
 #. module: product
 #: selection:product.template,state:0
 msgid "In Development"
-msgstr "En développement"
+msgstr "Di tneflit"
 
 #. module: product
 #: view:product.template:product.product_template_form_view
@@ -1605,7 +1606,7 @@ msgstr "Cartouche jet d'encre"
 #: code:addons/product/product.py:397
 #, python-format
 msgid "Integrity Error!"
-msgstr ""
+msgstr "Tuccḍa n timmad!"
 
 #. module: product
 #: model:product.category,name:product.product_category_2
@@ -1636,18 +1637,18 @@ msgstr "Inventaire"
 #. module: product
 #: model:product.category,name:product.ipad
 msgid "Ipad"
-msgstr ""
+msgstr "Ipad"
 
 #. module: product
 #: model:product.category,name:product.ipod
 msgid "Ipod"
-msgstr ""
+msgstr "Ipod"
 
 #. module: product
 #: field:product.product,message_is_follower:0
 #: field:product.template,message_is_follower:0
 msgid "Is a Follower"
-msgstr "D amagaz"
+msgstr "D ameltaɣ"
 
 #. module: product
 #: field:product.product,is_product_variant:0
@@ -1658,7 +1659,7 @@ msgstr "D tameskalt n ufaris"
 #. module: product
 #: view:product.pricelist.version:product.product_pricelist_version_form_view
 msgid "Item List"
-msgstr ""
+msgstr "Tabdart n iferdisen"
 
 #. module: product
 #: field:product.pricelist.type,key:0
@@ -1668,7 +1669,7 @@ msgstr "Code type"
 #. module: product
 #: model:product.public.category,name:product.Keyboard_Mouse
 msgid "Keyboard / Mouse"
-msgstr ""
+msgstr "Keyboard / Mouse"
 
 #. module: product
 #: model:product.template,name:product.product_product_27_product_template
@@ -1688,7 +1689,7 @@ msgstr "Portable S3450"
 #. module: product
 #: model:product.public.category,name:product.laptops
 msgid "Laptops"
-msgstr ""
+msgstr "Laptops"
 
 #. module: product
 #: field:product.product,message_last_post:0
@@ -1759,7 +1760,7 @@ msgstr "Teɣzi"
 #. module: product
 #: model:product.uom.categ,name:product.uom_categ_length
 msgid "Length / Distance"
-msgstr "Longueur/distance"
+msgstr "Teɣzi/ameccaq"
 
 #. module: product
 #: view:product.template:product.product_template_only_form_view
@@ -1769,12 +1770,12 @@ msgstr "Tabdart n tmeskalin"
 #. module: product
 #: model:product.uom,name:product.product_uom_litre
 msgid "Liter(s)"
-msgstr "Litre(s)"
+msgstr "Litr(at)"
 
 #. module: product
 #: model:ir.model,name:product.model_product_ul
 msgid "Logistic Unit"
-msgstr ""
+msgstr "Aferdis alujistikan"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_ul_form_action
@@ -1782,7 +1783,7 @@ msgstr ""
 #: view:product.ul:product.product_ul_form_view
 #: view:product.ul:product.product_ul_tree
 msgid "Logistic Units"
-msgstr ""
+msgstr "Iferdisen ilujistikanen"
 
 #. module: product
 #: field:product.template,packaging_ids:0
@@ -1807,12 +1808,12 @@ msgstr "Sefrek iferdisen n usɣel usgiten"
 #. module: product
 #: model:res.groups,name:product.group_stock_packaging
 msgid "Manage Product Packaging"
-msgstr "Gérer le conditionnement des articles"
+msgstr "Sefrek tanagalt n ifarisen"
 
 #. module: product
 #: model:res.groups,name:product.group_mrp_properties
 msgid "Manage Properties of Product"
-msgstr "Gérer les propriétés d'article"
+msgstr "Sefrek "
 
 #. module: product
 #: model:res.groups,name:product.group_uos
@@ -1851,7 +1852,7 @@ msgstr "Image de taille moyenne de l'article. Elle sera automatiquement redimens
 #: model:product.attribute,name:product.product_attribute_1
 #: model:product.public.category,name:product.Memory
 msgid "Memory"
-msgstr ""
+msgstr "Memory"
 
 #. module: product
 #: field:product.product,message_ids:0 field:product.template,message_ids:0
@@ -1881,17 +1882,17 @@ msgstr "Tanecta taddayt."
 #. module: product
 #: field:product.supplierinfo,min_qty:0
 msgid "Minimal Quantity"
-msgstr "Quantité minimale"
+msgstr "Tanecta taddayt"
 
 #. module: product
 #: model:product.public.category,name:product.Modem_Router
 msgid "Modem & Router"
-msgstr ""
+msgstr "Modem & Router"
 
 #. module: product
 #: model:product.public.category,name:product.motherboard
 msgid "Motherboard"
-msgstr ""
+msgstr "Motherboard"
 
 #. module: product
 #: model:product.template,name:product.product_product_21_product_template
@@ -1929,7 +1930,7 @@ msgstr "Isem"
 #. module: product
 #: help:product.price.type,name:0
 msgid "Name of this kind of price."
-msgstr "Isem n tewsit agi n wazal."
+msgstr "Isem n tewsit agi n ssuma."
 
 #. module: product
 #: field:product.template,weight_net:0
@@ -1939,12 +1940,12 @@ msgstr "Taẓayt tamsarit"
 #. module: product
 #: model:product.public.category,name:product.network
 msgid "Network"
-msgstr ""
+msgstr "Network"
 
 #. module: product
 #: view:product.pricelist.item:product.product_pricelist_item_form_view
 msgid "New Price ="
-msgstr "Azal amaynut ="
+msgstr "Ssuma tamaynut ="
 
 #. module: product
 #: code:addons/product/product.py:737
@@ -1959,7 +1960,7 @@ msgstr "La nouvelle unité de mesure \"%s\" doit appartenir à la même catégor
 #. module: product
 #: selection:product.category,type:0 selection:product.template,state:0
 msgid "Normal"
-msgstr "Normal"
+msgstr "Amagnu"
 
 #. module: product
 #: field:product.packaging,rows:0
@@ -1969,7 +1970,7 @@ msgstr "Nombre de couches"
 #. module: product
 #: selection:product.template,state:0
 msgid "Obsolete"
-msgstr "Obsolète"
+msgstr "Ifat"
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_42_product_template
@@ -2009,7 +2010,7 @@ msgstr "Talɣut nniḍen"
 #: field:product.pricelist.item,base_pricelist_id:0
 #, python-format
 msgid "Other Pricelist"
-msgstr "Tabdart n wazal nniḍen"
+msgstr "Tabdart n ssuma nniḍen"
 
 #. module: product
 #: model:product.category,name:product.product_category_3
@@ -2019,7 +2020,7 @@ msgstr "Ifarisen nniḍen"
 #. module: product
 #: model:product.template,name:product.product_product_5_product_template
 msgid "PC Assemble + Custom (PC on Demand) "
-msgstr ""
+msgstr "PC Assemble + Custom (PC on Demand) "
 
 #. module: product
 #: model:product.template,name:product.product_product_3_product_template
@@ -2049,7 +2050,7 @@ msgstr "Colis par couche"
 #: view:product.packaging:product.product_packaging_tree_view_product
 #: view:product.template:product.product_template_form_view
 msgid "Packaging"
-msgstr "Azdem"
+msgstr "Tanagalt"
 
 #. module: product
 #: selection:product.ul,type:0
@@ -2085,7 +2086,7 @@ msgstr "Talɣut ɣef umendid"
 #. module: product
 #: model:product.public.category,name:product.Pen_Drive
 msgid "Pen Drive"
-msgstr ""
+msgstr "Pen Drive"
 
 #. module: product
 #: model:product.template,name:product.product_product_29_product_template
@@ -2100,17 +2101,17 @@ msgstr "Clé USB, SP-4"
 #. module: product
 #: field:product.product,price:0 field:product.template,price:0
 msgid "Price"
-msgstr "Azal"
+msgstr "ssuma"
 
 #. module: product
 #: view:product.pricelist.item:product.product_pricelist_item_form_view
 msgid "Price Computation"
-msgstr "Asiḍen n wazal"
+msgstr "Asiḍen n ssuma"
 
 #. module: product
 #: field:product.pricelist.item,price_discount:0
 msgid "Price Discount"
-msgstr "Tugǧǧit deg wazal"
+msgstr "Tugǧǧit di ssuma"
 
 #. module: product
 #: field:product.attribute.price,price_extra:0
@@ -2131,27 +2132,27 @@ msgstr ""
 #: field:product.pricelist.version,pricelist_id:0
 #: view:website:product.report_pricelist
 msgid "Price List"
-msgstr "Tabdart n wazal"
+msgstr "Tabdart n ssuma"
 
 #. module: product
 #: field:product.pricelist.version,items_id:0
 msgid "Price List Items"
-msgstr "Izrigen n tabdart n wazal"
+msgstr "Izirigen n tabdart n ssuma"
 
 #. module: product
 #: view:website:product.report_pricelist
 msgid "Price List Name"
-msgstr "Isem n tabdart n wazal"
+msgstr "Isem n tabdart n ssuma"
 
 #. module: product
 #: field:product.pricelist.item,price_version_id:0
 msgid "Price List Version"
-msgstr "Lqem n tabdart n wazal"
+msgstr "Lqem n tabdart n ssuma"
 
 #. module: product
 #: field:product.price.type,name:0
 msgid "Price Name"
-msgstr "Isem n tewsit n wazal"
+msgstr "Isem n tewsit n ssuma"
 
 #. module: product
 #: field:product.pricelist.item,price_round:0
@@ -2161,29 +2162,29 @@ msgstr "Arrondi du prix"
 #. module: product
 #: field:product.pricelist.item,price_surcharge:0
 msgid "Price Surcharge"
-msgstr "Timerna deg wazal"
+msgstr "Timerna di ssuma"
 
 #. module: product
 #: model:ir.model,name:product.model_product_price_type
 msgid "Price Type"
-msgstr "Tawsit n wazal"
+msgstr "Tawsit n ssuma"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_price_type_action
 #: model:ir.ui.menu,name:product.menu_product_price_type
 msgid "Price Types"
-msgstr "Tiwsatin n wazal"
+msgstr "Tiwsatin n ssuma"
 
 #. module: product
 #: view:product.product:product.product_kanban_view
 #: view:product.template:product.product_template_kanban_view
 msgid "Price:"
-msgstr "Azal :"
+msgstr "ssuma:"
 
 #. module: product
 #: field:product.price_list,price_list:0
 msgid "PriceList"
-msgstr "Tabdart n wazal"
+msgstr "Tabdart n ssuma"
 
 #. module: product
 #: model:ir.actions.report.xml,name:product.action_report_pricelist
@@ -2191,18 +2192,18 @@ msgstr "Tabdart n wazal"
 #: view:product.supplierinfo:product.product_supplierinfo_form_view
 #: field:product.template,pricelist_id:0
 msgid "Pricelist"
-msgstr "Tabdart n wazal"
+msgstr "Tabdart n ssuma"
 
 #. module: product
 #: field:product.pricelist,name:0
 msgid "Pricelist Name"
-msgstr "Isem n tebdart n wazal"
+msgstr "Isem n tebdart n ssuma"
 
 #. module: product
 #: model:ir.model,name:product.model_product_pricelist_type
 #: field:product.pricelist,type:0
 msgid "Pricelist Type"
-msgstr "Tawsit n tebdart n wazal"
+msgstr "Tawsit n tebdart n ssuma"
 
 #. module: product
 #: model:ir.model,name:product.model_product_pricelist_version
@@ -2210,19 +2211,19 @@ msgstr "Tawsit n tebdart n wazal"
 #: view:product.pricelist.version:product.product_pricelist_version_form_view
 #: view:product.pricelist.version:product.product_pricelist_version_tree_view
 msgid "Pricelist Version"
-msgstr "Lqem n tebdart n wazal"
+msgstr "Lqem n tebdart n ssuma"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_pricelist_action
 #: model:ir.ui.menu,name:product.menu_product_pricelist_action
 #: field:product.pricelist,version_id:0
 msgid "Pricelist Versions"
-msgstr "Ileqman n tebdart n wazal"
+msgstr "Ileqman n tebdart n ssuma"
 
 #. module: product
 #: model:ir.model,name:product.model_product_pricelist_item
 msgid "Pricelist item"
-msgstr "Aferdis n tebdart n wazal"
+msgstr "Aferdis n tebdart n ssuma"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_pricelist_action2
@@ -2230,12 +2231,12 @@ msgstr "Aferdis n tebdart n wazal"
 #: model:ir.ui.menu,name:product.menu_product_pricelist_action2
 #: model:ir.ui.menu,name:product.menu_product_pricelist_main
 msgid "Pricelists"
-msgstr "Tibdarin n wazal"
+msgstr "Tibdarin n ssuma"
 
 #. module: product
 #: view:res.partner:product.view_partner_property_form
 msgid "Pricelists are managed on"
-msgstr "Les listes de prix sont gérées sur"
+msgstr "Asefrek n tedarin n ssuma di"
 
 #. module: product
 #: view:product.price_list:product.view_product_price_list
@@ -2260,7 +2261,7 @@ msgstr "Imprimante, tout en un"
 #. module: product
 #: model:product.public.category,name:product.processor
 msgid "Processor"
-msgstr ""
+msgstr "Processor"
 
 #. module: product
 #: model:product.template,name:product.product_product_23_product_template
@@ -2292,18 +2293,18 @@ msgstr "Afaris"
 #. module: product
 #: model:ir.model,name:product.model_product_attribute
 msgid "Product Attribute"
-msgstr ""
+msgstr "Imyerr n ufaris"
 
 #. module: product
 #: field:product.attribute.line,value_ids:0
 #: field:product.attribute.price,value_id:0
 msgid "Product Attribute Value"
-msgstr ""
+msgstr "Azal n imyerr n ufaris"
 
 #. module: product
 #: field:product.template,attribute_line_ids:0
 msgid "Product Attributes"
-msgstr ""
+msgstr "Imyerra n ufaris"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_category_action_form
@@ -2313,12 +2314,12 @@ msgstr ""
 #: view:product.category:product.product_category_search_view
 #: view:product.category:product.product_category_tree_view
 msgid "Product Categories"
-msgstr "Taggayin n ifarisen"
+msgstr "Tiggayin n ifarisen"
 
 #. module: product
 #: model:ir.ui.menu,name:product.prod_config_main
 msgid "Product Categories & Attributes"
-msgstr ""
+msgstr "Tiggayin ed yemyerra n ufaris"
 
 #. module: product
 #: model:ir.model,name:product.model_product_category
@@ -2401,28 +2402,28 @@ msgstr "Tibzimin n ifarisen"
 #: view:product.pricelist.item:product.product_pricelist_item_form_view
 #: view:product.pricelist.item:product.product_pricelist_item_tree_view
 msgid "Products Listprices Items"
-msgstr "Izrigen n tebdart n wazal"
+msgstr "Izirigen n tebdart n ssuma "
 
 #. module: product
 #: view:product.pricelist:product.product_pricelist_view_search
 msgid "Products Price"
-msgstr "Azal n ifarisen"
+msgstr "ssuma n ifarisen"
 
 #. module: product
 #: view:product.pricelist:product.product_pricelist_view
 #: view:product.pricelist:product.product_pricelist_view_tree
 msgid "Products Price List"
-msgstr "Tabdartn wazal n ifarisen"
+msgstr "Tabdart n ssuma n ifarisen"
 
 #. module: product
 #: view:product.pricelist:product.product_pricelist_view_search
 msgid "Products Price Search"
-msgstr "Anadi ɣef wazal n ifarisen"
+msgstr "Anadi ɣef ssuma n ifarisen"
 
 #. module: product
 #: view:product.price.type:product.product_price_type_view
 msgid "Products Price Type"
-msgstr "Tawsit n wazal ufaris"
+msgstr "Tawsit n ssuma n ufaris"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_category_action
@@ -2440,12 +2441,12 @@ msgstr "Ifarisen : "
 #: model:product.price.type,name:product.list_price
 #: field:product.product,lst_price:0 field:product.template,lst_price:0
 msgid "Public Price"
-msgstr "Azal azayez"
+msgstr "Ssuma tazayezt"
 
 #. module: product
 #: model:product.pricelist,name:product.list0
 msgid "Public Pricelist"
-msgstr "Tabdart n wazal tazayezt"
+msgstr "Tabdart n ssuma tazayezt"
 
 #. module: product
 #: view:product.template:product.product_template_form_view
@@ -2460,7 +2461,7 @@ msgstr "Aglam n tiɣin"
 #. module: product
 #: model:res.groups,name:product.group_purchase_pricelist
 msgid "Purchase Pricelists"
-msgstr "Tabdart n wazal t-tiɣin"
+msgstr "Tabdart n ssuma t-tiɣin"
 
 #. module: product
 #: field:product.template,uom_po_id:0
@@ -2525,7 +2526,7 @@ msgstr "Amfiḍi"
 #. module: product
 #: model:product.category,name:product.product_category_10
 msgid "Raw Materials"
-msgstr "Matières premières"
+msgstr "Isufar n ufares"
 
 #. module: product
 #: selection:product.uom,uom_type:0
@@ -2570,13 +2571,13 @@ msgstr "Aglam n uznuzu"
 #. module: product
 #: field:product.template,list_price:0
 msgid "Sale Price"
-msgstr "Azal n uznuzu"
+msgstr "Ssuma n uznuzu"
 
 #. module: product
 #: model:product.pricelist.type,name:product.pricelist_type_sale
 #: field:res.partner,property_product_pricelist:0
 msgid "Sale Pricelist"
-msgstr "Tabdart n wazal n uznuzu"
+msgstr "Tabdart n ssuma n uznuzu"
 
 #. module: product
 #: model:product.category,name:product.product_category_1
@@ -2596,12 +2597,12 @@ msgstr "Aznuzu d Tiɣin"
 #. module: product
 #: model:res.groups,name:product.group_sale_pricelist
 msgid "Sales Pricelists"
-msgstr "Tibdarin n wazal n uznuzu"
+msgstr "Tibdarin n Ssuma n uznuzu"
 
 #. module: product
 #: model:product.public.category,name:product.Screen
 msgid "Screen"
-msgstr ""
+msgstr "Screen"
 
 #. module: product
 #: help:product.template,categ_id:0
@@ -2668,7 +2669,7 @@ msgstr "Aseɣẓan"
 #. module: product
 #: model:product.public.category,name:product.Speakers
 msgid "Speakers"
-msgstr ""
+msgstr "Inerdalen"
 
 #. module: product
 #: help:product.pricelist.item,categ_id:0
@@ -2761,13 +2762,13 @@ msgstr "Supplier Lead Time"
 #. module: product
 #: field:product.supplierinfo,pricelist_ids:0
 msgid "Supplier Pricelist"
-msgstr "Tabdart n wazal n useǧǧaw"
+msgstr "Tabdart n ssuma n useǧǧaw"
 
 #. module: product
 #: code:addons/product/pricelist.py:433
 #, python-format
 msgid "Supplier Prices on the product form"
-msgstr "Azal n useǧǧaw di tferkit n ufaris"
+msgstr "Ssuma n useǧǧaw di tferkit n ufaris"
 
 #. module: product
 #: field:product.supplierinfo,product_code:0
@@ -2802,7 +2803,7 @@ msgstr "Isseǧǧawen"
 #. module: product
 #: model:product.public.category,name:product.Switch
 msgid "Switch"
-msgstr ""
+msgstr "Switch"
 
 #. module: product
 #: model:product.template,name:product.product_product_47_product_template
@@ -2913,7 +2914,7 @@ msgstr "The prices below will only be taken into account when your pricelist is 
 msgid ""
 "The sleek aluminium Apple Wireless Keyboard.\n"
 "            "
-msgstr ""
+msgstr "The sleek aluminium Apple Wireless Keyboard."
 
 #. module: product
 #: help:product.packaging,qty:0
@@ -2950,14 +2951,14 @@ msgstr "Ikka-d si tferkit n ufaris"
 msgid ""
 "This field holds the image used as image for the product variant, limited to"
 " 1024x1024px."
-msgstr ""
+msgstr "Urti yegber tugna  n ufaris, talast ines 1024x1024px."
 
 #. module: product
 #: help:product.template,image:0
 msgid ""
 "This field holds the image used as image for the product, limited to "
 "1024x1024px."
-msgstr "This field holds the image used as image for the product, limited to 1024x1024px."
+msgstr "Urti agi yegber tugna n ufaris, talast ines 1024x1024px."
 
 #. module: product
 #: help:product.supplierinfo,qty:0
@@ -2967,7 +2968,7 @@ msgstr "This is a quantity which is converted into Default Unit of Measure."
 #. module: product
 #: help:product.template,seller_qty:0
 msgid "This is minimum quantity to purchase from Main Supplier."
-msgstr "This is minimum quantity to purchase from Main Supplier."
+msgstr "D tanecta taddayt ar adaɣeḍ seg useǧǧaw agejdan."
 
 #. module: product
 #: help:product.template,seller_delay:0
@@ -3036,7 +3037,7 @@ msgstr "This type of service include basic monitoring of products."
 #. module: product
 #: model:product.template,name:product.product_product_39_product_template
 msgid "Toner Cartridge"
-msgstr ""
+msgstr "Toner Cartridge"
 
 #. module: product
 #: field:product.packaging,weight:0
@@ -3052,7 +3053,7 @@ msgstr "Tawsit"
 #. module: product
 #: model:product.template,name:product.product_product_48_product_template
 msgid "USB Adapter"
-msgstr ""
+msgstr "USB Adapter"
 
 #. module: product
 #: selection:product.ul,type:0
@@ -3063,7 +3064,7 @@ msgstr "Aferdis"
 #. module: product
 #: field:pricelist.partnerinfo,price:0
 msgid "Unit Price"
-msgstr "azal n yiwen"
+msgstr "Ssuma n yiwen"
 
 #. module: product
 #: view:product.template:product.product_template_form_view
@@ -3074,13 +3075,13 @@ msgstr "Aferdis n usɣel"
 #. module: product
 #: field:product.template,uos_coeff:0
 msgid "Unit of Measure -> UOS Coeff"
-msgstr "Unit of Measure -> UOS Coeff"
+msgstr "Afedis n useɛael -> Amuskir n uferdis n uznuzu "
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_uom_categ_form_action
 #: model:ir.ui.menu,name:product.menu_product_uom_categ_form_action
 msgid "Unit of Measure Categories"
-msgstr "Taggayin n Iferdisen n usɣel"
+msgstr "Tiggayin n Iferdisen n usɣel"
 
 #. module: product
 #: code:addons/product/product.py:737
@@ -3110,7 +3111,7 @@ msgstr "Iferdisen n usɣel"
 #. module: product
 #: view:product.uom.categ:product.product_uom_categ_form_view
 msgid "Units of Measure categories"
-msgstr "Taggayin n Iferdisen n usɣel"
+msgstr "Tiggayin n Iferdisen n usɣel"
 
 #. module: product
 #: field:product.product,message_unread:0
@@ -3153,7 +3154,7 @@ msgstr "Tugna n tmeskalt"
 #. module: product
 #: view:product.template:product.product_template_only_form_view
 msgid "Variant Prices"
-msgstr "Azalen n tmeskalt"
+msgstr "Ssumat n tmeskalt"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.variants_template_action
@@ -3173,7 +3174,7 @@ msgstr "Timeskalin"
 #. module: product
 #: model:product.public.category,name:product.video_acquisition
 msgid "Video Acquisition"
-msgstr ""
+msgstr "Video Acquisition"
 
 #. module: product
 #: selection:product.category,type:0
@@ -3205,7 +3206,7 @@ msgstr "Warranty"
 #. module: product
 #: model:product.template,name:product.product_product_34_product_template
 msgid "Webcam"
-msgstr ""
+msgstr "Webcam"
 
 #. module: product
 #: model:product.uom.categ,name:product.product_uom_categ_kgm
@@ -3233,7 +3234,7 @@ msgstr "Amellal"
 #. module: product
 #: model:product.attribute,name:product.product_attribute_3
 msgid "Wi-Fi"
-msgstr ""
+msgstr "Wi-Fi"
 
 #. module: product
 #: field:product.ul,width:0
@@ -3243,12 +3244,12 @@ msgstr "Tehri"
 #. module: product
 #: model:product.template,name:product.product_product_40_product_template
 msgid "Windows 7 Professional"
-msgstr ""
+msgstr "Windows 7 Professional"
 
 #. module: product
 #: model:product.template,name:product.product_product_41_product_template
 msgid "Windows Home Server 2011"
-msgstr ""
+msgstr "Windows Home Server 2011"
 
 #. module: product
 #: model:product.uom.categ,name:product.uom_categ_wtime
@@ -3270,7 +3271,7 @@ msgstr "Tmuddeḍ-d Tangalt n tfeggagin ameɣtu.  Seqdec urti tamsisɣelt taggen
 #. module: product
 #: model:product.template,name:product.product_product_43_product_template
 msgid "Zed+ Antivirus"
-msgstr ""
+msgstr "Zed+ Antivirus"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_cm
@@ -3295,27 +3296,27 @@ msgstr "Amedya: 1 * (aferdis agi) = assaɣ* (aferdis n temsisɣelt)"
 #. module: product
 #: model:product.uom,name:product.product_uom_floz
 msgid "fl oz"
-msgstr ""
+msgstr "fl oz"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_foot
 msgid "foot(ft)"
-msgstr ""
+msgstr "foot(ft)"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_gal
 msgid "gal(s)"
-msgstr ""
+msgstr "gal(s)"
 
 #. module: product
 #: model:product.template,name:product.product_product_8_product_template
 msgid "iMac"
-msgstr ""
+msgstr "iMac"
 
 #. module: product
 #: model:product.template,name:product.product_product_6_product_template
 msgid "iPad Mini"
-msgstr ""
+msgstr "iPad Mini"
 
 #. module: product
 #: model:product.template,name:product.product_product_4_product_template
@@ -3323,18 +3324,18 @@ msgstr ""
 #: model:product.template,name:product.product_product_4c_product_template
 #: model:product.template,name:product.product_product_4d_product_template
 msgid "iPad Retina Display"
-msgstr ""
+msgstr "iPad Retina Display"
 
 #. module: product
 #: model:product.template,name:product.product_product_11_product_template
 #: model:product.template,name:product.product_product_11b_product_template
 msgid "iPod"
-msgstr ""
+msgstr "iPod"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_inch
 msgid "inch(es)"
-msgstr ""
+msgstr "inch(es)"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_kgm
@@ -3349,17 +3350,12 @@ msgstr "km"
 #. module: product
 #: model:product.uom,name:product.product_uom_lb
 msgid "lb(s)"
-msgstr ""
-
-#. module: product
-#: view:product.product:product.product_normal_form_view
-msgid "lst_price"
-msgstr ""
+msgstr "lb(s)"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_mile
 msgid "mile(s)"
-msgstr ""
+msgstr "mile(s)"
 
 #. module: product
 #: view:product.template:product.product_template_form_view
@@ -3369,7 +3365,7 @@ msgstr "Igguren"
 #. module: product
 #: view:product.template:product.product_template_form_view
 msgid "note to be displayed on quotations..."
-msgstr "Awennit i uskan deg usutar n ssuma..."
+msgstr "Awennit i uskan deg usuter n ssuma..."
 
 #. module: product
 #: view:product.price_list:product.view_product_price_list
@@ -3379,7 +3375,7 @@ msgstr "neɣ"
 #. module: product
 #: model:product.uom,name:product.product_uom_oz
 msgid "oz(s)"
-msgstr ""
+msgstr "oz(s)"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_qt

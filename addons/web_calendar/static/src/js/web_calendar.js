@@ -276,7 +276,7 @@ openerp.web_calendar = function(instance) {
                     self.proxy('update_record')(event._id, data);
                 },
                 eventRender: function (event, element, view) {
-                    element.find('.fc-event-title').html(event.title);
+                    element.find('.fc-event-title').html(event.title + event.attendee_avatars);
                 },
                 eventAfterRender: function (event, element, view) {
                     if ((view.name !== 'month') && (((event.end-event.start)/60000)<=30)) {
@@ -510,6 +510,9 @@ openerp.web_calendar = function(instance) {
                             throw new Error("Incomplete data received from dataset for record " + evt.id);
                         }
                     }
+                    else if (_.contains(["date", "datetime"], self.fields[fieldname].type)) {
+                        temp_ret[fieldname] = instance.web.format_value(value, self.fields[fieldname]);
+                    }
                     else {
                         temp_ret[fieldname] = value;
                     }
@@ -544,7 +547,7 @@ openerp.web_calendar = function(instance) {
                             attendee_showed += 1;
                             if (attendee_showed<= MAX_ATTENDEES) {
                                 if (self.avatar_model !== null) {
-                                       the_title_avatar += '<img title="' + self.all_attendees[the_attendee_people] + '" class="attendee_head"  \
+                                       the_title_avatar += '<img title="' + _.escape(self.all_attendees[the_attendee_people]) + '" class="attendee_head"  \
                                                             src="/web/binary/image?model=' + self.avatar_model + '&field=image_small&id=' + the_attendee_people + '"></img>';
                                 }
                                 else {
@@ -552,19 +555,18 @@ openerp.web_calendar = function(instance) {
                                             tempColor = (self.all_filters[the_attendee_people] !== undefined) 
                                                         ? self.all_filters[the_attendee_people].color
                                                         : (self.all_filters[-1] ? self.all_filters[-1].color : 1);
-                                        the_title_avatar += '<i class="fa fa-user attendee_head color_'+tempColor+'" title="' + self.all_attendees[the_attendee_people] + '" ></i>';
+                                        the_title_avatar += '<i class="fa fa-user attendee_head color_'+tempColor+'" title="' + _.escape(self.all_attendees[the_attendee_people]) + '" ></i>';
                                     }//else don't add myself
                                 }
                             }
                             else {
-                                attendee_other += self.all_attendees[the_attendee_people] +", ";
+                                attendee_other += _.escape(self.all_attendees[the_attendee_people]) +", ";
                             }
                         }
                     );
                     if (attendee_other.length>2) {
                         the_title_avatar += '<span class="attendee_head" title="' + attendee_other.slice(0, -2) + '">+</span>';
                     }
-                    the_title = the_title_avatar + the_title;
                 }
             }
             
@@ -575,6 +577,7 @@ openerp.web_calendar = function(instance) {
                 'start': date_start.toString('yyyy-MM-dd HH:mm:ss'),
                 'end': date_stop.toString('yyyy-MM-dd HH:mm:ss'),
                 'title': the_title,
+                'attendee_avatars': the_title_avatar,
                 'allDay': (this.fields[this.date_start].type == 'date' || (this.all_day && evt[this.all_day]) || false),
                 'id': evt.id,
                 'attendees':attendees
@@ -688,9 +691,9 @@ openerp.web_calendar = function(instance) {
                             var color_field = self.fields[self.color_field];
                             _.each(events, function (e) {
                                 var key,val = null;
-                                if (self.color_field.type == "selection") {
+                                if (color_field.type == "selection") {
                                     key = e[self.color_field];
-                                    val = _.find( self.color_field.selection, function(name){ return name[0] === key;});
+                                    val = _.find(color_field.selection, function(name){ return name[0] === key;});
                                 }
                                 else {
                                     key = e[self.color_field][0];
@@ -716,7 +719,7 @@ openerp.web_calendar = function(instance) {
                                 self.sidebar.filter.set_filters();
                                 
                                 events = $.map(events, function (e) {
-                                    var key = self.color_field.type == "selection" ? e[self.color_field] : e[self.color_field][0];
+                                    var key = color_field.type == "selection" ? e[self.color_field] : e[self.color_field][0];
                                     if (_.contains(self.now_filter_ids, key) &&  self.all_filters[key].is_checked) {
                                         return e;
                                     }
@@ -803,7 +806,7 @@ openerp.web_calendar = function(instance) {
             var index = this.dataset.get_id_index(id);
             if (index !== null) {
                 event_id = this.dataset.ids[index];
-                this.dataset.write(event_id, data, {}).done(function() {
+                this.dataset.write(event_id, data, {}).always(function() {
                     if (is_virtual_id(event_id)) {
                         // this is a virtual ID and so this will create a new event
                         // with an unknown id for us.
@@ -951,13 +954,7 @@ openerp.web_calendar = function(instance) {
             this.data_template = data_template || {};
         },
         get_title: function () {
-            var parent = this.getParent();
-            if (_.isUndefined(parent)) {
-                return _t("Create");
-            }
-            var title = (_.isUndefined(parent.field_widget)) ?
-                    (parent.string || parent.name) :
-                    parent.field_widget.string || parent.field_widget.name || '';
+            var title = (this.options.action)? this.options.action.name : '';
             return _t("Create: ") + title;
         },
         start: function () {

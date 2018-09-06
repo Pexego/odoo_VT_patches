@@ -20,6 +20,7 @@
 ##############################################################################
 
 import logging
+import psycopg2
 import time
 from datetime import datetime
 
@@ -425,7 +426,7 @@ class pos_session(osv.osv):
             bank_statement_ids.append(statement_id)
 
         values.update({
-            'name': self.pool['ir.sequence'].get(cr, uid, 'pos.session'),
+            'name': self.pool['ir.sequence'].get(cr, uid, 'pos.session', context=context),
             'statement_ids' : [(6, 0, bank_statement_ids)],
             'config_id': config_id
         })
@@ -442,8 +443,7 @@ class pos_session(osv.osv):
         """
         call the Point Of Sale interface and set the pos.session to 'opened' (in progress)
         """
-        if context is None:
-            context = dict()
+        context = dict(context or {})
 
         if isinstance(ids, (int, long)):
             ids = [ids]
@@ -536,8 +536,7 @@ class pos_session(osv.osv):
         return True
 
     def open_frontend_cb(self, cr, uid, ids, context=None):
-        if not context:
-            context = {}
+        context = dict(context or {})
         if not ids:
             return {}
         for session in self.browse(cr, uid, ids, context=context):
@@ -586,30 +585,72 @@ class pos_order(osv.osv):
             'journal':      ui_paymentline['journal_id'],
         }
 
-    def _process_order(self, cr, uid, order, context=None):
-        order_id = self.create(cr, uid, self._order_fields(cr, uid, order, context=context),context)
+    # This deals with orders that belong to a closed session. In order
+    # to recover from this we:
+    # - assign the order to another compatible open session
+    # - if that doesn't exist, create a new one
+    def _get_valid_session(self, cr, uid, order, context=None):
+        session = self.pool.get('pos.session')
+        closed_session = session.browse(cr, uid, order['pos_session_id'], context=context)
+        open_sessions = session.search(cr, uid, [('state', '=', 'opened'),
+                                                 ('config_id', '=', closed_session.config_id.id),
+                                                 ('user_id', '=', closed_session.user_id.id)],
+                                       limit=1, order="start_at DESC", context=context)
 
+        if open_sessions:
+            return open_sessions[0]
+        else:
+            new_session_id = session.create(cr, uid, {
+                'config_id': closed_session.config_id.id,
+            }, context=context)
+            new_session = session.browse(cr, uid, new_session_id, context=context)
+
+            # bypass opening_control (necessary when using cash control)
+            new_session.signal_workflow('open')
+
+            return new_session_id
+
+    def _process_order(self, cr, uid, order, context=None):
+        session = self.pool.get('pos.session').browse(cr, uid, order['pos_session_id'], context=context)
+
+        if session.state == 'closing_control' or session.state == 'closed':
+            session_id = self._get_valid_session(cr, uid, order, context=context)
+            session = self.pool.get('pos.session').browse(cr, uid, session_id, context=context)
+            order['pos_session_id'] = session_id
+
+        order_id = self.create(cr, uid, self._order_fields(cr, uid, order, context=context),context)
+        journal_ids = set()
         for payments in order['statement_ids']:
             self.add_payment(cr, uid, order_id, self._payment_fields(cr, uid, payments[2], context=context), context=context)
+            journal_ids.add(payments[2]['journal_id'])
 
-        session = self.pool.get('pos.session').browse(cr, uid, order['pos_session_id'], context=context)
         if session.sequence_number <= order['sequence_number']:
             session.write({'sequence_number': order['sequence_number'] + 1})
             session.refresh()
 
         if not float_is_zero(order['amount_return'], self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')):
-            cash_journal = session.cash_journal_id
+            cash_journal = session.cash_journal_id.id
             if not cash_journal:
-                cash_journal_ids = filter(lambda st: st.journal_id.type=='cash', session.statement_ids)
-                if not len(cash_journal_ids):
-                    raise osv.except_osv( _('error!'),
-                        _("No cash statement found for this session. Unable to record returned cash."))
-                cash_journal = cash_journal_ids[0].journal_id
+                # Select for change one of the cash journals used in this payment
+                cash_journal_ids = self.pool['account.journal'].search(cr, uid, [
+                    ('type', '=', 'cash'),
+                    ('id', 'in', list(journal_ids)),
+                ], limit=1, context=context)
+                if not cash_journal_ids:
+                    # If none, select for change one of the cash journals of the POS
+                    # This is used for example when a customer pays by credit card
+                    # an amount higher than total amount of the order and gets cash back
+                    cash_journal_ids = [statement.journal_id.id for statement in session.statement_ids
+                                        if statement.journal_id.type == 'cash']
+                    if not cash_journal_ids:
+                        raise osv.except_osv( _('error!'),
+                            _("No cash statement found for this session. Unable to record returned cash."))
+                cash_journal = cash_journal_ids[0]
             self.add_payment(cr, uid, order_id, {
                 'amount': -order['amount_return'],
                 'payment_date': time.strftime('%Y-%m-%d %H:%M:%S'),
                 'payment_name': _('return'),
-                'journal': cash_journal.id,
+                'journal': cash_journal,
             }, context=context)
         return order_id
 
@@ -631,6 +672,9 @@ class pos_order(osv.osv):
 
             try:
                 self.signal_workflow(cr, uid, [order_id], 'paid')
+            except psycopg2.OperationalError:
+                # do not hide transactional errors, the order(s) won't be saved!
+                raise
             except Exception as e:
                 _logger.error('Could not fully process the POS Order: %s', tools.ustr(e))
 
@@ -689,7 +733,8 @@ class pos_order(osv.osv):
                 val1 += self._amount_line_tax(cr, uid, line, context=context)
                 val2 += line.price_subtotal
             res[order.id]['amount_tax'] = cur_obj.round(cr, uid, cur, val1)
-            res[order.id]['amount_total'] = cur_obj.round(cr, uid, cur, val1+val2)
+            amount_untaxed = cur_obj.round(cr, uid, cur, val2)
+            res[order.id]['amount_total'] = res[order.id]['amount_tax'] + amount_untaxed
         return res
 
     _columns = {
@@ -789,6 +834,8 @@ class pos_order(osv.osv):
         move_obj = self.pool.get('stock.move')
 
         for order in self.browse(cr, uid, ids, context=context):
+            if all(t == 'service' for t in order.lines.mapped('product_id.type')):
+                continue
             addr = order.partner_id and partner_obj.address_get(cr, uid, [order.partner_id.id], ['delivery']) or {}
             picking_type = order.picking_type_id
             picking_id = False
@@ -861,9 +908,14 @@ class pos_order(osv.osv):
         statement_line_obj = self.pool.get('account.bank.statement.line')
         property_obj = self.pool.get('ir.property')
         order = self.browse(cr, uid, order_id, context=context)
+        date = data.get('payment_date', time.strftime('%Y-%m-%d'))
+        if len(date) > 10:
+            timestamp = datetime.strptime(date, tools.DEFAULT_SERVER_DATETIME_FORMAT)
+            ts = fields.datetime.context_timestamp(cr, uid, timestamp, context)
+            date = ts.strftime(tools.DEFAULT_SERVER_DATE_FORMAT)
         args = {
             'amount': data['amount'],
-            'date': data.get('payment_date', time.strftime('%Y-%m-%d')),
+            'date': date,
             'name': order.name + ': ' + (data.get('payment_name', '') or ''),
             'partner_id': order.partner_id and self.pool.get("res.partner")._find_accounting_partner(order.partner_id).id or False,
         }
@@ -979,6 +1031,8 @@ class pos_order(osv.osv):
                 'currency_id': order.pricelist_id.currency_id.id, # considering partner's sale pricelist's currency
             }
             inv.update(inv_ref.onchange_partner_id(cr, uid, [], 'out_invoice', order.partner_id.id)['value'])
+            # FORWARDPORT TO SAAS-6 ONLY!
+            inv.update({'fiscal_position': False})
             if not inv.get('account_id', None):
                 inv['account_id'] = acc
             inv_id = inv_ref.create(cr, uid, inv, context=context)
@@ -990,14 +1044,16 @@ class pos_order(osv.osv):
                     'invoice_id': inv_id,
                     'product_id': line.product_id.id,
                     'quantity': line.qty,
-                    'account_analytic_id': self._prepare_analytic_account(cr, uid, line, context=context),
                 }
                 inv_name = product_obj.name_get(cr, uid, [line.product_id.id], context=context)[0][1]
                 inv_line.update(inv_line_ref.product_id_change(cr, uid, [],
                                                                line.product_id.id,
                                                                line.product_id.uom_id.id,
-                                                               line.qty, partner_id = order.partner_id.id,
-                                                               fposition_id=order.partner_id.property_account_position.id)['value'])
+                                                               line.qty, partner_id = order.partner_id.id)['value'])
+                if not inv_line.get('account_analytic_id', False):
+                    inv_line['account_analytic_id'] = \
+                        self._prepare_analytic_account(cr, uid, line,
+                                                       context=context)
                 inv_line['price_unit'] = line.price_unit
                 inv_line['discount'] = line.discount
                 inv_line['name'] = inv_name
@@ -1063,7 +1119,7 @@ class pos_order(osv.osv):
                 tax_amount = line.price_subtotal * tax['base_sign']
             else:
                 tax_code_id = tax['ref_base_code_id']
-                tax_amount = -line.price_subtotal * tax['ref_base_sign']
+                tax_amount = abs(line.price_subtotal) * tax['ref_base_sign']
 
             return (tax_code_id, tax_amount,)
 
@@ -1147,6 +1203,9 @@ class pos_order(osv.osv):
             # Create an move for each order line
 
             cur = order.pricelist_id.currency_id
+            round_per_line = True
+            if order.company_id.tax_calculation_rounding_method == 'round_globally':
+                round_per_line = False
             for line in order.lines:
                 tax_amount = 0
                 taxes = []
@@ -1156,14 +1215,14 @@ class pos_order(osv.osv):
                 computed_taxes = account_tax_obj.compute_all(cr, uid, taxes, line.price_unit * (100.0-line.discount) / 100.0, line.qty)['taxes']
 
                 for tax in computed_taxes:
-                    tax_amount += cur_obj.round(cr, uid, cur, tax['amount'])
+                    tax_amount += cur_obj.round(cr, uid, cur, tax['amount']) if round_per_line else tax['amount']
                     if tax_amount < 0:
                         group_key = (tax['ref_tax_code_id'], tax['base_code_id'], tax['account_collected_id'], tax['id'])
                     else:
                         group_key = (tax['tax_code_id'], tax['base_code_id'], tax['account_collected_id'], tax['id'])
 
                     group_tax.setdefault(group_key, 0)
-                    group_tax[group_key] += cur_obj.round(cr, uid, cur, tax['amount'])
+                    group_tax[group_key] += cur_obj.round(cr, uid, cur, tax['amount']) if round_per_line else tax['amount']
 
                 amount = line.price_subtotal
 
@@ -1233,7 +1292,7 @@ class pos_order(osv.osv):
                     'credit': ((tax_amount>0) and tax_amount) or 0.0,
                     'debit': ((tax_amount<0) and -tax_amount) or 0.0,
                     'tax_code_id': key[tax_code_pos],
-                    'tax_amount': abs(tax_amount),
+                    'tax_amount': abs(tax_amount) * tax.tax_sign if tax_amount>=0 else abs(tax_amount) * tax.ref_tax_sign,
                     'partner_id': order.partner_id and self.pool.get("res.partner")._find_accounting_partner(order.partner_id).id or False
                 })
 
@@ -1355,7 +1414,7 @@ class pos_order_line(osv.osv):
     }
 
     _defaults = {
-        'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'pos.order.line'),
+        'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'pos.order.line', context=context),
         'qty': lambda *a: 1,
         'discount': lambda *a: 0.0,
         'company_id': lambda self,cr,uid,c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id,

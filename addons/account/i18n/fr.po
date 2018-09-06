@@ -3,15 +3,21 @@
 # * account
 # 
 # Translators:
+# Bruno JOLIVEAU, 2015
+# Daniel & Delphine <dd2013@leschoupinous.net>, 2015
+# Fabien Pinckaers <fp@openerp.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Florian Hatat, 2015-2016
+# Henri Cornuau <hcornuau@gmail.com>, 2015
+# Lionel Sausin <ls@numerigraphe.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-05-29 12:57+0000\n"
+"POT-Creation-Date: 2017-06-22 13:18+0000\n"
+"PO-Revision-Date: 2017-09-23 21:13+0000\n"
 "Last-Translator: Martin Trigaux\n"
-"Language-Team: French (http://www.transifex.com/projects/p/odoo-8/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/odoo/odoo-8/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -45,7 +51,7 @@ msgid ""
 "    <br/>\n"
 "    <p>It is also possible to directly pay with Paypal:</p>\n"
 "        <a style=\"margin-left: 120px;\" href=\"${object.paypal_url}\">\n"
-"            <img class=\"oe_edi_paypal_button\" src=\"https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif\"/>\n"
+"            <img class=\"oe_edi_paypal_button\" src=\"/account/static/src/img/btn_paynowcc_lg.gif\"/>\n"
 "        </a>\n"
 "    % endif\n"
 "    \n"
@@ -87,7 +93,7 @@ msgid ""
 "    </div>\n"
 "</div>\n"
 "            "
-msgstr "\n<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n\n    <p>Bonjour ${object.partner_id.name},</p>\n\n    <p>Une nouvelle facture est disponible pour vous: </p>\n    \n    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n       &nbsp;&nbsp;<strong>REFERENCES</strong><br />\n       &nbsp;&nbsp;Numéro de facture: <strong>${object.number}</strong><br />\n       &nbsp;&nbsp;Total de la facture: <strong>${object.amount_total} ${object.currency_id.name}</strong><br />\n       &nbsp;&nbsp;Date de la facture: ${object.date_invoice}<br />\n       % if object.origin:\n       &nbsp;&nbsp;Référence de la commande: ${object.origin}<br />\n       % endif\n       % if object.user_id:\n       &nbsp;&nbsp;Votre contact : <a href=\"mailto:${object.user_id.email or ''}?subject=Invoice%20${object.number}\">${object.user_id.name}</a>\n       % endif\n    </p>  \n    \n    % if object.paypal_url:\n    <br/>\n    <p>Il est également possible de payer directement avec Paypal:</p>\n        <a style=\"margin-left: 120px;\" href=\"${object.paypal_url}\">\n            <img class=\"oe_edi_paypal_button\" src=\"https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_paynowCC_LG.gif\"/>\n        </a>\n    % endif\n    \n    <br/>\n    <p>Si vous avez des questions, n'hésitez pas à nous contacter</p>\n    <p>Merci d'avoir choisi ${object.company_id.name or 'notre compagnie'}!</p>\n    <br/>\n    <br/>\n    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n    </div>\n    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n        % if object.company_id.street:\n            ${object.company_id.street}<br/>\n        % endif\n        % if object.company_id.street2:\n            ${object.company_id.street2}<br/>\n        % endif\n        % if object.company_id.city or object.company_id.zip:\n            ${object.company_id.zip} ${object.company_id.city}<br/>\n        % endif\n        % if object.company_id.country_id:\n            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n        % endif\n        </span>\n        % if object.company_id.phone:\n            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n                Téléphone:&nbsp; ${object.company_id.phone}\n            </div>\n        % endif\n        % if object.company_id.website:\n            <div>\n                Site Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n            </div>\n        %endif\n        <p></p>\n    </div>\n</div>\n            "
+msgstr "\n<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n    <p>Bonjour ${object.partner_id.name},</p>\n    <p>Une nouvelle facture est disponible pour vous : </p>\n    \n    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n       &nbsp;&nbsp;<strong>RÉFÉRENCES</strong><br />\n       &nbsp;&nbsp;Numéro de facture : <strong>${object.number}</strong><br />\n       &nbsp;&nbsp;Total de la facture : <strong>${object.amount_total} ${object.currency_id.name}</strong><br />\n       &nbsp;&nbsp;Date de la facture : ${object.date_invoice}<br />\n       % if object.origin:\n       &nbsp;&nbsp;Référence de la commande : ${object.origin}<br />\n       % endif\n       % if object.user_id:\n       &nbsp;&nbsp;Votre contact: <a href=\"mailto:${object.user_id.email or ''}?subject=Facture%20${object.number}\">${object.user_id.name}</a>\n       % endif\n    </p>  \n    \n    % if object.paypal_url:\n    <br/>\n    <p>Il est aussi possible de payer directement avec Paypal :</p>\n        <a style=\"margin-left: 120px;\" href=\"${object.paypal_url}\">\n            <img class=\"oe_edi_paypal_button\" src=\"/account/static/src/img/btn_paynowcc_lg.gif\"/>\n        </a>\n    % endif\n    \n    <br/>\n    <p>Si vous avez des questions, n'hésitez pas à nous contacter.</p>\n   % if object.company_id.name:\n    <p>Merci d'avoir choisi ${object.company_id.name}!</p>\n   % else:\n     <p>Merci de nous avoir choisi!</p>\n    % endif\n    <br/>\n    <br/>\n    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n    </div>\n    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n        % if object.company_id.street:\n            ${object.company_id.street}<br/>\n        % endif\n        % if object.company_id.street2:\n            ${object.company_id.street2}<br/>\n        % endif\n        % if object.company_id.city or object.company_id.zip:\n            ${object.company_id.zip} ${object.company_id.city}<br/>\n        % endif\n        % if object.company_id.country_id:\n            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n        % endif\n        </span>\n        % if object.company_id.phone:\n            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n                Téléphone&nbsp;:&nbsp;${object.company_id.phone}\n            </div>\n        % endif\n        % if object.company_id.website:\n            <div>\n                Site web&nbsp;:&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n            </div>\n        %endif\n        <p></p>\n    </div>\n</div>\n            "
 
 #. module: account
 #: help:account.invoice,state:0
@@ -100,10 +106,17 @@ msgid ""
 msgstr " * Le statut \"Brouillon\" est utilisé quand un utilisateur est en train d'enregistrer une nouvelle facture non confirmée.\n * Le statut \"Pro-forma\" est utilisé quand une facture est en Pro-forma, la facture n'a pas de numéro.\n * Le statut \"Ouvert\" est utilisé quand un utilisateur crée une facture, un numéro de facture est généré. Elle reste en statut \"Ouvert\" tant que la facture n'est pas payée.\n * Le statut \"Payée\" est mis automatiquement quand la facture est payée. Les pièces comptables associées  peuvent être déjà rapprochées ou non.\n * Le statut \"Annulé\" est utilisé quand un utilisateur annule la facture."
 
 #. module: account
-#: code:addons/account/account.py:1468
+#: code:addons/account/account.py:1477
 #, python-format
 msgid " Centralisation"
 msgstr " Centralisation"
+
+#. module: account
+#. openerp-web
+#: code:addons/account/static/src/js/account_widgets.js:521
+#, python-format
+msgid " seconds"
+msgstr "secondes"
 
 #. module: account
 #: field:analytic.entries.report,nbr:0
@@ -669,7 +682,7 @@ msgstr "Journal central"
 #. module: account
 #: view:account.account:account.view_account_form
 msgid "Account Code and Name"
-msgstr "Code et Nom du Compte"
+msgstr "Code et nom du compte"
 
 #. module: account
 #: model:ir.model,name:account.model_account_common_account_report
@@ -1599,23 +1612,27 @@ msgstr "Appliquer"
 
 #. module: account
 #: help:account.fiscal.position,auto_apply:0
-msgid "Apply automatically this fiscal position."
-msgstr "Appliquer automatiquement cette position fiscale"
-
-#. module: account
-#: help:account.fiscal.position,country_group_id:0
-msgid "Apply only if delivery or invocing country match the group."
-msgstr "Appliquer seulement si le pays de livraison ou de facturation corresponds au groupe"
-
-#. module: account
-#: help:account.fiscal.position,country_id:0
-msgid "Apply only if delivery or invoicing country match."
-msgstr "Appliquer seulement si le pays de livraison ou de facturation corresponds"
+msgid "Apply automatically this fiscal position if the conditions match."
+msgstr "Appliquer automatiquement cette situation fiscale si les conditions sont remplies."
 
 #. module: account
 #: help:account.fiscal.position,vat_required:0
 msgid "Apply only if partner has a VAT number."
 msgstr "S'applique seulement si le partenaire a un numéro de TVA intracommunautaire"
+
+#. module: account
+#: help:account.fiscal.position,country_group_id:0
+msgid ""
+"Apply when the shipping or invoicing country is in this country group, and "
+"no position matches the country directly."
+msgstr "S'applique lorsque le pays d'expédition ou de facturation est dans ce groupe de pays, et qu'aucune situation ne correspond directement au pays."
+
+#. module: account
+#: help:account.fiscal.position,country_id:0
+msgid ""
+"Apply when the shipping or invoicing country matches. Takes precedence over "
+"positions matching on a country group."
+msgstr "S'applique lorsque le pays d'expédition ou de facturation correspondent. Est prioritaire sur les situations qui correspondent à un groupe de pays."
 
 #. module: account
 #: view:validate.account.move:account.validate_account_move_view
@@ -1781,6 +1798,7 @@ msgstr "Total erroné !"
 #: view:website:account.report_centraljournal
 #: view:website:account.report_financial
 #: view:website:account.report_generaljournal
+#: view:website:account.report_generalledger
 #: view:website:account.report_invertedanalyticbalance
 #: view:website:account.report_partnerbalance
 #: view:website:account.report_partnerledger
@@ -2569,6 +2587,13 @@ msgid "Choose Fiscal Year"
 msgstr "Choisissez l'exercice"
 
 #. module: account
+#. openerp-web
+#: code:addons/account/static/src/js/account_widgets.js:1297
+#, python-format
+msgid "Choose counterpart"
+msgstr "Choisissez la contrepartie"
+
+#. module: account
 #: view:account.automatic.reconcile:account.account_automatic_reconcile_view1
 #: view:account.bank.statement:account.view_bank_statement_form
 msgid "Close"
@@ -2698,7 +2723,7 @@ msgstr "Rapport"
 #. module: account
 #: field:account.bank.statement.line,name:0
 msgid "Communication"
-msgstr "Communication"
+msgstr "Libellé"
 
 #. module: account
 #: model:ir.model,name:account.model_res_company
@@ -2939,7 +2964,7 @@ msgid "Continue"
 msgstr "Continuer"
 
 #. module: account
-#: view:res.partner:account.partner_view_buttons
+#: view:res.partner:account.partner_view_button_contracts_count
 #: field:res.partner,contract_ids:0 field:res.partner,contracts_count:0
 msgid "Contracts"
 msgstr "Contrats"
@@ -2975,7 +3000,7 @@ msgstr "Contrepartie"
 
 #. module: account
 #: field:account.fiscal.position,country_id:0
-msgid "Countries"
+msgid "Country"
 msgstr "Pays"
 
 #. module: account
@@ -3028,6 +3053,13 @@ msgstr "Créer des périodes mensuelles"
 #: view:account.invoice.refund:account.view_account_invoice_refund
 msgid "Create Refund"
 msgstr "Créer avoir"
+
+#. module: account
+#. openerp-web
+#: code:addons/account/static/src/js/account_widgets.js:1294
+#, python-format
+msgid "Create Write-off"
+msgstr "Créer un ajustement"
 
 #. module: account
 #: selection:account.invoice.refund,filter_refund:0
@@ -3742,6 +3774,125 @@ msgid "Display Ledger Report with One partner per page"
 msgstr "Afficher le grand livre avec un partenaire par page"
 
 #. module: account
+#: field:account.account,display_name:0
+#: field:account.account.template,display_name:0
+#: field:account.account.type,display_name:0
+#: field:account.addtmpl.wizard,display_name:0
+#: field:account.aged.trial.balance,display_name:0
+#: field:account.analytic.balance,display_name:0
+#: field:account.analytic.chart,display_name:0
+#: field:account.analytic.cost.ledger,display_name:0
+#: field:account.analytic.cost.ledger.journal.report,display_name:0
+#: field:account.analytic.inverted.balance,display_name:0
+#: field:account.analytic.journal,display_name:0
+#: field:account.analytic.journal.report,display_name:0
+#: field:account.automatic.reconcile,display_name:0
+#: field:account.balance.report,display_name:0
+#: field:account.bank.accounts.wizard,display_name:0
+#: field:account.bank.statement,display_name:0
+#: field:account.bank.statement.line,display_name:0
+#: field:account.cashbox.line,display_name:0
+#: field:account.central.journal,display_name:0
+#: field:account.change.currency,display_name:0
+#: field:account.chart,display_name:0
+#: field:account.chart.template,display_name:0
+#: field:account.common.account.report,display_name:0
+#: field:account.common.journal.report,display_name:0
+#: field:account.common.partner.report,display_name:0
+#: field:account.common.report,display_name:0
+#: field:account.config.settings,display_name:0
+#: field:account.entries.report,display_name:0
+#: field:account.financial.report,display_name:0
+#: field:account.fiscal.position,display_name:0
+#: field:account.fiscal.position.account,display_name:0
+#: field:account.fiscal.position.account.template,display_name:0
+#: field:account.fiscal.position.tax,display_name:0
+#: field:account.fiscal.position.tax.template,display_name:0
+#: field:account.fiscal.position.template,display_name:0
+#: field:account.fiscalyear,display_name:0
+#: field:account.fiscalyear.close,display_name:0
+#: field:account.fiscalyear.close.state,display_name:0
+#: field:account.general.journal,display_name:0
+#: field:account.installer,display_name:0 field:account.invoice,display_name:0
+#: field:account.invoice.cancel,display_name:0
+#: field:account.invoice.confirm,display_name:0
+#: field:account.invoice.line,display_name:0
+#: field:account.invoice.refund,display_name:0
+#: field:account.invoice.report,display_name:0
+#: field:account.invoice.tax,display_name:0
+#: field:account.journal,display_name:0
+#: field:account.journal.cashbox.line,display_name:0
+#: field:account.journal.period,display_name:0
+#: field:account.journal.select,display_name:0
+#: field:account.model,display_name:0 field:account.model.line,display_name:0
+#: field:account.move,display_name:0
+#: field:account.move.bank.reconcile,display_name:0
+#: field:account.move.line,display_name:0
+#: field:account.move.line.reconcile,display_name:0
+#: field:account.move.line.reconcile.select,display_name:0
+#: field:account.move.line.reconcile.writeoff,display_name:0
+#: field:account.move.line.unreconcile.select,display_name:0
+#: field:account.move.reconcile,display_name:0
+#: field:account.open.closed.fiscalyear,display_name:0
+#: field:account.partner.balance,display_name:0
+#: field:account.partner.ledger,display_name:0
+#: field:account.partner.reconcile.process,display_name:0
+#: field:account.payment.term,display_name:0
+#: field:account.payment.term.line,display_name:0
+#: field:account.period,display_name:0
+#: field:account.period.close,display_name:0
+#: field:account.print.journal,display_name:0
+#: field:account.report.general.ledger,display_name:0
+#: field:account.sequence.fiscalyear,display_name:0
+#: field:account.state.open,display_name:0
+#: field:account.statement.from.invoice.lines,display_name:0
+#: field:account.statement.operation.template,display_name:0
+#: field:account.subscription,display_name:0
+#: field:account.subscription.generate,display_name:0
+#: field:account.subscription.line,display_name:0
+#: field:account.tax,display_name:0 field:account.tax.chart,display_name:0
+#: field:account.tax.code,display_name:0
+#: field:account.tax.code.template,display_name:0
+#: field:account.tax.template,display_name:0
+#: field:account.treasury.report,display_name:0
+#: field:account.unreconcile,display_name:0
+#: field:account.unreconcile.reconcile,display_name:0
+#: field:account.use.model,display_name:0
+#: field:account.vat.declaration,display_name:0
+#: field:accounting.report,display_name:0
+#: field:analytic.entries.report,display_name:0
+#: field:cash.box.in,display_name:0 field:cash.box.out,display_name:0
+#: field:project.account.analytic.line,display_name:0
+#: field:report.account.receivable,display_name:0
+#: field:report.account.report_agedpartnerbalance,display_name:0
+#: field:report.account.report_analyticbalance,display_name:0
+#: field:report.account.report_analyticcostledger,display_name:0
+#: field:report.account.report_analyticcostledgerquantity,display_name:0
+#: field:report.account.report_analyticjournal,display_name:0
+#: field:report.account.report_centraljournal,display_name:0
+#: field:report.account.report_financial,display_name:0
+#: field:report.account.report_generaljournal,display_name:0
+#: field:report.account.report_generalledger,display_name:0
+#: field:report.account.report_invertedanalyticbalance,display_name:0
+#: field:report.account.report_journal,display_name:0
+#: field:report.account.report_overdue,display_name:0
+#: field:report.account.report_partnerbalance,display_name:0
+#: field:report.account.report_partnerledger,display_name:0
+#: field:report.account.report_partnerledgerother,display_name:0
+#: field:report.account.report_salepurchasejournal,display_name:0
+#: field:report.account.report_trialbalance,display_name:0
+#: field:report.account.report_vat,display_name:0
+#: field:report.account.sales,display_name:0
+#: field:report.account_type.sales,display_name:0
+#: field:report.aged.receivable,display_name:0
+#: field:report.invoice.created,display_name:0 field:temp.range,display_name:0
+#: field:validate.account.move,display_name:0
+#: field:validate.account.move.lines,display_name:0
+#: field:wizard.multi.charts.accounts,display_name:0
+msgid "Display Name"
+msgstr "Nom d’affichage"
+
+#. module: account
 #: field:account.partner.balance,display_partner:0
 msgid "Display Partners"
 msgstr "Afficher les partenaires"
@@ -4095,7 +4246,7 @@ msgid "Entry Label"
 msgstr "Libellé de la pièce comptable"
 
 #. module: account
-#: field:account.move.reconcile,line_id:0
+#: field:account.invoice,move_lines:0 field:account.move.reconcile,line_id:0
 msgid "Entry Lines"
 msgstr "Lignes d'écriture"
 
@@ -4128,59 +4279,63 @@ msgid "Equity"
 msgstr "Capitaux propres"
 
 #. module: account
-#: code:addons/account/account_move_line.py:964
-#: code:addons/account/account_move_line.py:969
+#: code:addons/account/account_move_line.py:1017
+#: code:addons/account/account_move_line.py:1022
 #, python-format
 msgid "Error"
 msgstr "Erreur"
 
 #. module: account
-#: code:addons/account/account.py:422 code:addons/account/account.py:427
-#: code:addons/account/account.py:444 code:addons/account/account.py:657
-#: code:addons/account/account.py:659 code:addons/account/account.py:1080
-#: code:addons/account/account.py:1082 code:addons/account/account.py:1124
-#: code:addons/account/account.py:1307 code:addons/account/account.py:1321
-#: code:addons/account/account.py:1345 code:addons/account/account.py:1352
-#: code:addons/account/account.py:1550 code:addons/account/account.py:1554
-#: code:addons/account/account.py:1641 code:addons/account/account.py:2328
-#: code:addons/account/account.py:2642 code:addons/account/account.py:3455
+#: code:addons/account/account.py:430 code:addons/account/account.py:435
+#: code:addons/account/account.py:452 code:addons/account/account.py:667
+#: code:addons/account/account.py:669 code:addons/account/account.py:1090
+#: code:addons/account/account.py:1092 code:addons/account/account.py:1134
+#: code:addons/account/account.py:1319 code:addons/account/account.py:1333
+#: code:addons/account/account.py:1357 code:addons/account/account.py:1364
+#: code:addons/account/account.py:1563 code:addons/account/account.py:1567
+#: code:addons/account/account.py:1654 code:addons/account/account.py:2327
+#: code:addons/account/account.py:2641 code:addons/account/account.py:3454
 #: code:addons/account/account_analytic_line.py:95
 #: code:addons/account/account_analytic_line.py:104
-#: code:addons/account/account_bank_statement.py:308
-#: code:addons/account/account_bank_statement.py:333
-#: code:addons/account/account_bank_statement.py:348
-#: code:addons/account/account_bank_statement.py:428
-#: code:addons/account/account_bank_statement.py:728
-#: code:addons/account/account_bank_statement.py:736
+#: code:addons/account/account_bank_statement.py:311
+#: code:addons/account/account_bank_statement.py:336
+#: code:addons/account/account_bank_statement.py:351
+#: code:addons/account/account_bank_statement.py:435
+#: code:addons/account/account_bank_statement.py:805
+#: code:addons/account/account_bank_statement.py:813
 #: code:addons/account/account_cash_statement.py:271
 #: code:addons/account/account_cash_statement.py:315
 #: code:addons/account/account_cash_statement.py:320
-#: code:addons/account/account_invoice.py:797
-#: code:addons/account/account_invoice.py:830
-#: code:addons/account/account_invoice.py:996
-#: code:addons/account/account_move_line.py:599
-#: code:addons/account/account_move_line.py:941
-#: code:addons/account/account_move_line.py:966
-#: code:addons/account/account_move_line.py:971
-#: code:addons/account/account_move_line.py:1220
-#: code:addons/account/account_move_line.py:1234
-#: code:addons/account/account_move_line.py:1236
-#: code:addons/account/account_move_line.py:1270
+#: code:addons/account/account_invoice.py:805
+#: code:addons/account/account_invoice.py:847
+#: code:addons/account/account_invoice.py:1019
+#: code:addons/account/account_move_line.py:629
+#: code:addons/account/account_move_line.py:642
+#: code:addons/account/account_move_line.py:994
+#: code:addons/account/account_move_line.py:1019
+#: code:addons/account/account_move_line.py:1024
+#: code:addons/account/account_move_line.py:1096
+#: code:addons/account/account_move_line.py:1299
+#: code:addons/account/account_move_line.py:1313
+#: code:addons/account/account_move_line.py:1315
+#: code:addons/account/account_move_line.py:1349
 #: code:addons/account/report/common_report_header.py:92
 #: code:addons/account/wizard/account_change_currency.py:38
 #: code:addons/account/wizard/account_change_currency.py:59
 #: code:addons/account/wizard/account_change_currency.py:64
 #: code:addons/account/wizard/account_change_currency.py:70
 #: code:addons/account/wizard/account_financial_report.py:72
-#: code:addons/account/wizard/account_invoice_refund.py:116
-#: code:addons/account/wizard/account_invoice_refund.py:118
+#: code:addons/account/wizard/account_invoice_refund.py:117
+#: code:addons/account/wizard/account_invoice_refund.py:119
 #: code:addons/account/wizard/account_move_bank_reconcile.py:49
 #: code:addons/account/wizard/account_open_closed_fiscalyear.py:39
+#: code:addons/account/wizard/account_open_closed_fiscalyear.py:42
 #: code:addons/account/wizard/account_report_common.py:163
 #: code:addons/account/wizard/account_report_common.py:169
 #: code:addons/account/wizard/account_use_model.py:44
 #: code:addons/account/wizard/pos_box.py:31
 #: code:addons/account/wizard/pos_box.py:35
+#: code:addons/account/wizard/pos_box.py:44
 #, python-format
 msgid "Error!"
 msgstr "Erreur !"
@@ -5521,6 +5676,7 @@ msgstr "Facturé"
 #: view:account.tax:account.view_tax_form
 #: view:account.tax.template:account.view_account_tax_template_form
 #: selection:account.vat.declaration,based_on:0
+#: model:ir.actions.act_window,name:account.action_invoice_refund_out_tree
 #: model:ir.actions.act_window,name:account.action_invoice_tree
 #: model:ir.actions.report.xml,name:account.account_invoices
 #: view:report.invoice.created:account.board_view_created_invoice
@@ -5781,7 +5937,7 @@ msgstr "La ligne de journal '%s' (id: %s), écriture '%s' est déjà lettrée !"
 #: model:ir.actions.act_window,name:account.action_tax_code_line_open
 #: model:ir.model,name:account.model_account_move_line
 #: model:ir.ui.menu,name:account.menu_action_account_moves_all
-#: view:res.partner:account.partner_view_buttons
+#: view:res.partner:account.partner_view_button_journal_item_count
 #: field:res.partner,journal_item_count:0
 #, python-format
 msgid "Journal Items"
@@ -5931,9 +6087,16 @@ msgstr "Laisser vide pour utiliser la période de la date de validation (facture
 
 #. module: account
 #. openerp-web
+#: code:addons/account/static/src/js/account_widgets.js:1299
+#, python-format
+msgid "Keep open"
+msgstr "Laisser ouvert"
+
+#. module: account
+#. openerp-web
 #: field:account.statement.operation.template,label:0
-#: code:addons/account/static/src/js/account_widgets.js:75
-#: code:addons/account/static/src/js/account_widgets.js:80
+#: code:addons/account/static/src/js/account_widgets.js:74
+#: code:addons/account/static/src/js/account_widgets.js:79
 #: view:website:account.report_journal
 #: view:website:account.report_salepurchasejournal
 #, python-format
@@ -5955,6 +6118,127 @@ msgstr "Dernier solde de clôture"
 #: field:account.invoice,message_last_post:0
 msgid "Last Message Date"
 msgstr "Date du dernier message"
+
+#. module: account
+#: field:account.account,__last_update:0
+#: field:account.account.template,__last_update:0
+#: field:account.account.type,__last_update:0
+#: field:account.addtmpl.wizard,__last_update:0
+#: field:account.aged.trial.balance,__last_update:0
+#: field:account.analytic.balance,__last_update:0
+#: field:account.analytic.chart,__last_update:0
+#: field:account.analytic.cost.ledger,__last_update:0
+#: field:account.analytic.cost.ledger.journal.report,__last_update:0
+#: field:account.analytic.inverted.balance,__last_update:0
+#: field:account.analytic.journal,__last_update:0
+#: field:account.analytic.journal.report,__last_update:0
+#: field:account.automatic.reconcile,__last_update:0
+#: field:account.balance.report,__last_update:0
+#: field:account.bank.accounts.wizard,__last_update:0
+#: field:account.bank.statement,__last_update:0
+#: field:account.bank.statement.line,__last_update:0
+#: field:account.cashbox.line,__last_update:0
+#: field:account.central.journal,__last_update:0
+#: field:account.change.currency,__last_update:0
+#: field:account.chart,__last_update:0
+#: field:account.chart.template,__last_update:0
+#: field:account.common.account.report,__last_update:0
+#: field:account.common.journal.report,__last_update:0
+#: field:account.common.partner.report,__last_update:0
+#: field:account.common.report,__last_update:0
+#: field:account.config.settings,__last_update:0
+#: field:account.entries.report,__last_update:0
+#: field:account.financial.report,__last_update:0
+#: field:account.fiscal.position,__last_update:0
+#: field:account.fiscal.position.account,__last_update:0
+#: field:account.fiscal.position.account.template,__last_update:0
+#: field:account.fiscal.position.tax,__last_update:0
+#: field:account.fiscal.position.tax.template,__last_update:0
+#: field:account.fiscal.position.template,__last_update:0
+#: field:account.fiscalyear,__last_update:0
+#: field:account.fiscalyear.close,__last_update:0
+#: field:account.fiscalyear.close.state,__last_update:0
+#: field:account.general.journal,__last_update:0
+#: field:account.installer,__last_update:0
+#: field:account.invoice,__last_update:0
+#: field:account.invoice.cancel,__last_update:0
+#: field:account.invoice.confirm,__last_update:0
+#: field:account.invoice.line,__last_update:0
+#: field:account.invoice.refund,__last_update:0
+#: field:account.invoice.report,__last_update:0
+#: field:account.invoice.tax,__last_update:0
+#: field:account.journal,__last_update:0
+#: field:account.journal.cashbox.line,__last_update:0
+#: field:account.journal.period,__last_update:0
+#: field:account.journal.select,__last_update:0
+#: field:account.model,__last_update:0
+#: field:account.model.line,__last_update:0 field:account.move,__last_update:0
+#: field:account.move.bank.reconcile,__last_update:0
+#: field:account.move.line,__last_update:0
+#: field:account.move.line.reconcile,__last_update:0
+#: field:account.move.line.reconcile.select,__last_update:0
+#: field:account.move.line.reconcile.writeoff,__last_update:0
+#: field:account.move.line.unreconcile.select,__last_update:0
+#: field:account.move.reconcile,__last_update:0
+#: field:account.open.closed.fiscalyear,__last_update:0
+#: field:account.partner.balance,__last_update:0
+#: field:account.partner.ledger,__last_update:0
+#: field:account.partner.reconcile.process,__last_update:0
+#: field:account.payment.term,__last_update:0
+#: field:account.payment.term.line,__last_update:0
+#: field:account.period,__last_update:0
+#: field:account.period.close,__last_update:0
+#: field:account.print.journal,__last_update:0
+#: field:account.report.general.ledger,__last_update:0
+#: field:account.sequence.fiscalyear,__last_update:0
+#: field:account.state.open,__last_update:0
+#: field:account.statement.from.invoice.lines,__last_update:0
+#: field:account.statement.operation.template,__last_update:0
+#: field:account.subscription,__last_update:0
+#: field:account.subscription.generate,__last_update:0
+#: field:account.subscription.line,__last_update:0
+#: field:account.tax,__last_update:0 field:account.tax.chart,__last_update:0
+#: field:account.tax.code,__last_update:0
+#: field:account.tax.code.template,__last_update:0
+#: field:account.tax.template,__last_update:0
+#: field:account.treasury.report,__last_update:0
+#: field:account.unreconcile,__last_update:0
+#: field:account.unreconcile.reconcile,__last_update:0
+#: field:account.use.model,__last_update:0
+#: field:account.vat.declaration,__last_update:0
+#: field:accounting.report,__last_update:0
+#: field:analytic.entries.report,__last_update:0
+#: field:cash.box.in,__last_update:0 field:cash.box.out,__last_update:0
+#: field:project.account.analytic.line,__last_update:0
+#: field:report.account.receivable,__last_update:0
+#: field:report.account.report_agedpartnerbalance,__last_update:0
+#: field:report.account.report_analyticbalance,__last_update:0
+#: field:report.account.report_analyticcostledger,__last_update:0
+#: field:report.account.report_analyticcostledgerquantity,__last_update:0
+#: field:report.account.report_analyticjournal,__last_update:0
+#: field:report.account.report_centraljournal,__last_update:0
+#: field:report.account.report_financial,__last_update:0
+#: field:report.account.report_generaljournal,__last_update:0
+#: field:report.account.report_generalledger,__last_update:0
+#: field:report.account.report_invertedanalyticbalance,__last_update:0
+#: field:report.account.report_journal,__last_update:0
+#: field:report.account.report_overdue,__last_update:0
+#: field:report.account.report_partnerbalance,__last_update:0
+#: field:report.account.report_partnerledger,__last_update:0
+#: field:report.account.report_partnerledgerother,__last_update:0
+#: field:report.account.report_salepurchasejournal,__last_update:0
+#: field:report.account.report_trialbalance,__last_update:0
+#: field:report.account.report_vat,__last_update:0
+#: field:report.account.sales,__last_update:0
+#: field:report.account_type.sales,__last_update:0
+#: field:report.aged.receivable,__last_update:0
+#: field:report.invoice.created,__last_update:0
+#: field:temp.range,__last_update:0
+#: field:validate.account.move,__last_update:0
+#: field:validate.account.move.lines,__last_update:0
+#: field:wizard.multi.charts.accounts,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: account
 #: field:account.account,write_uid:0
@@ -6452,6 +6736,16 @@ msgid "Multi-Currencies"
 msgstr "Multi-devises"
 
 #. module: account
+#: field:account.invoice.tax,factor_tax:0
+msgid "Multipication factor Tax code"
+msgstr ""
+
+#. module: account
+#: field:account.invoice.tax,factor_base:0
+msgid "Multipication factor for Base code"
+msgstr ""
+
+#. module: account
 #: view:account.analytic.line:account.view_account_analytic_line_filter
 #: view:analytic.entries.report:account.view_analytic_entries_report_search
 msgid "My Entries"
@@ -6609,13 +6903,21 @@ msgid "No detail"
 msgstr "Aucun détail"
 
 #. module: account
-#: code:addons/account/wizard/account_invoice_refund.py:154
+#: code:addons/account/account_invoice.py:819
+#, python-format
+msgid ""
+"No invoice date!\n"
+"The invoice currency is not the same than the company currency. An invoice date is required to determine the exchange rate to apply. Do not forget to update the taxes!"
+msgstr ""
+
+#. module: account
+#: code:addons/account/wizard/account_invoice_refund.py:155
 #, python-format
 msgid "No period found on the invoice."
 msgstr "Aucune période trouvée sur la facture."
 
 #. module: account
-#: code:addons/account/account_move_line.py:1270
+#: code:addons/account/account_move_line.py:1349
 #, python-format
 msgid "No period found or more than one period found for the given date."
 msgstr "Aucune période trouvée ou plusieurs périodes existantes pour la date donnée."
@@ -6690,7 +6992,10 @@ msgid "Not reconciled transactions"
 msgstr "Écritures non lettrées"
 
 #. module: account
+#. openerp-web
 #: field:account.account.template,note:0
+#: code:addons/account/static/src/xml/account_bank_statement_reconciliation.xml:140
+#, python-format
 msgid "Note"
 msgstr "Note"
 
@@ -7084,12 +7389,12 @@ msgstr "Lignes d'Entrée Partielle"
 #: field:account.move.line,reconcile_partial_id:0
 #: view:account.move.line.reconcile:account.view_account_move_line_reconcile_full
 msgid "Partial Reconcile"
-msgstr "Let.P"
+msgstr "Lettrage partiel"
 
 #. module: account
 #: view:account.move.reconcile:account.view_move_reconcile_form
 msgid "Partial Reconcile Entries"
-msgstr "Lettrage partiel d'écriture"
+msgstr "Écritures du lettrage partiel"
 
 #. module: account
 #. openerp-web
@@ -7282,6 +7587,7 @@ msgstr "Explication des conditions de règlement pour le client..."
 #. module: account
 #: view:account.invoice:account.invoice_form
 #: view:account.invoice:account.invoice_supplier_form
+#: field:account.invoice,payment_ids:0
 #: selection:account.vat.declaration,based_on:0
 msgid "Payments"
 msgstr "Règlements"
@@ -7949,14 +8255,14 @@ msgstr "Procédure de lettrage partenaire par partenaire"
 #: code:addons/account/static/src/xml/account_move_reconciliation.xml:30
 #, python-format
 msgid "Reconcile"
-msgstr "Let."
+msgstr "Lettrer"
 
 #. module: account
 #: view:account.move.reconcile:account.view_move_reconcile_form
 #: model:ir.actions.act_window,name:account.action_account_reconcile_select
 #: model:ir.actions.act_window,name:account.action_view_account_move_line_reconcile
 msgid "Reconcile Entries"
-msgstr "Lettrer les écritures"
+msgstr "Écritures du lettrage"
 
 #. module: account
 #: field:account.move.line,reconcile_ref:0
@@ -8281,6 +8587,7 @@ msgstr "Restant dû en devise"
 
 #. module: account
 #: view:account.bank.statement:account.view_bank_statement_form2
+#: field:account.bank.statement,user_id:0
 #: view:account.invoice:account.invoice_supplier_form
 #: view:account.invoice:account.invoice_tree
 msgid "Responsible"
@@ -8326,6 +8633,12 @@ msgstr "Arrondir à la ligne"
 #: selection:account.config.settings,tax_calculation_rounding_method:0
 msgid "Round per line"
 msgstr "Arrondir par ligne"
+
+#. module: account
+#: code:addons/account/account_bank_statement.py:899
+#, python-format
+msgid "Rounding error from currency conversion"
+msgstr "Erreur d'arrondi due à la conversion de devises"
 
 #. module: account
 #: view:account.subscription:account.view_subscription_search
@@ -9145,6 +9458,11 @@ msgid "Suppliers"
 msgstr "Fournisseurs"
 
 #. module: account
+#: view:website:account.report_invoice_document
+msgid "TIN:"
+msgstr "Numéro TVA :"
+
+#. module: account
 #: view:cash.box.out:account.cash_box_out_form
 #: model:ir.actions.act_window,name:account.action_cash_box_out
 msgid "Take Money Out"
@@ -9614,6 +9932,20 @@ msgid ""
 msgstr "L'entité légale qui sera utilisée dans les écritures comptables relatives à cette facture."
 
 #. module: account
+#: constraint:account.config.settings:0
+msgid ""
+"The company of the gain exchange rate account must be the same than the "
+"company selected."
+msgstr "La société du compte de gain de change doit être la même que la société sélectionnée."
+
+#. module: account
+#: constraint:account.config.settings:0
+msgid ""
+"The company of the loss exchange rate account must be the same than the "
+"company selected."
+msgstr "La société du compte de perte de change doit être la même que la société sélectionnée."
+
+#. module: account
 #: help:account.tax,type:0
 msgid "The computation method for the tax amount."
 msgstr "Méthode de calcul du montant"
@@ -9641,6 +9973,11 @@ msgstr "Les entrées à lettrer doivent appartenir à la même société"
 msgid ""
 "The fiscal position will determine taxes and accounts used for the partner."
 msgstr "La position fiscale déterminera les taxes et les comptes comptables utilisés par le partneraire"
+
+#. module: account
+#: view:account.config.settings:account.view_account_config_settings
+msgid "The fiscal year is created when installing a Chart of Account."
+msgstr "L'exercice comptable est créé lors de l'installation d'un plan comptable."
 
 #. module: account
 #: constraint:account.aged.trial.balance:0 constraint:account.balance.report:0
@@ -9954,6 +10291,30 @@ msgid "This Year"
 msgstr "Cette année"
 
 #. module: account
+#: help:product.template,property_account_expense:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"expenses for the current product."
+msgstr "Ce compte sera utilisé pour les factures au lieu de celui par défaut pour valoriser les dépenses pour l'article actuel."
+
+#. module: account
+#: help:product.template,property_account_income:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"sales for the current product."
+msgstr "Ce compte sera utilisé pour les factures au lieu de celui par défaut pour valoriser les ventes pour l'article actuel."
+
+#. module: account
+#: help:product.category,property_account_expense_categ:0
+msgid "This account will be used for invoices to value expenses."
+msgstr "Ce compte sera utilisé dans les factures pour valoriser les dépenses."
+
+#. module: account
+#: help:product.category,property_account_income_categ:0
+msgid "This account will be used for invoices to value sales."
+msgstr "Ce compte sera utilisé dans les factures pour valoriser les ventes."
+
+#. module: account
 #: help:res.partner,property_account_payable:0
 msgid ""
 "This account will be used instead of the default one as the payable account "
@@ -9966,18 +10327,6 @@ msgid ""
 "This account will be used instead of the default one as the receivable "
 "account for the current partner"
 msgstr "Ce compte remplacera le compte de tiers par défaut pour ce client."
-
-#. module: account
-#: help:product.category,property_account_expense_categ:0
-#: help:product.template,property_account_expense:0
-msgid "This account will be used to value outgoing stock using cost price."
-msgstr "Ce compte sera utilisé pour valoriser le stock sortant sur base du prix de revient."
-
-#. module: account
-#: help:product.category,property_account_income_categ:0
-#: help:product.template,property_account_income:0
-msgid "This account will be used to value outgoing stock using sale price."
-msgstr "Ce compte sera utilisé pour valoriser le stock sortant au prix de vente."
 
 #. module: account
 #: help:account.config.settings,module_account_budget:0
@@ -10293,8 +10642,8 @@ msgstr "Cet assistant validera toutes les pièces comptables pour un journal par
 #. openerp-web
 #: code:addons/account/static/src/xml/account_bank_statement_reconciliation.xml:36
 #, python-format
-msgid "Tip : Hit ctrl-enter to validate the whole sheet."
-msgstr "Astuce : Utilisez CTRL+Entrée pour valider tout la page"
+msgid "Tip : Hit ctrl-enter to reconcile all balanced items."
+msgstr "Astuce : utilisez Ctrl+Entrée pour lettrer toutes les entrées équilibrées."
 
 #. module: account
 #: selection:account.financial.report,style_overwrite:0
@@ -11048,6 +11397,13 @@ msgid ""
 msgstr "Vous avez sélectionné des écritures sur des comptes client et fournisseur confondus\n\nAfin de poursuivre, vous devez d'abord désélectionner la ligne %s ."
 
 #. module: account
+#. openerp-web
+#: code:addons/account/static/src/js/account_widgets.js:1050
+#, python-format
+msgid "last"
+msgstr "dernier"
+
+#. module: account
 #: help:account.move.line,blocked:0
 msgid ""
 "You can check this box to mark this journal item as a litigation with the "
@@ -11055,13 +11411,21 @@ msgid ""
 msgstr "Cocher cette case pour signaler que cette ligne de journal est en litige avec le partenaire correspondant"
 
 #. module: account
-#: code:addons/account/account_move_line.py:1220
+#: code:addons/account/account_move_line.py:1246
 #, python-format
 msgid "You can not add/modify entries in a closed period %s of journal %s."
 msgstr "Impossible d'ajouter/modifier des écritures dans une période fermée %s du journal %s."
 
 #. module: account
-#: code:addons/account/account.py:1047
+#: code:addons/account/wizard/account_open_closed_fiscalyear.py:42
+#, python-format
+msgid ""
+"You can not cancel closing entries if the 'End of Year Entries Journal' "
+"period is closed."
+msgstr "Vous ne pouvez pas annuler les écritures de clôture si le \"Journal des écritures de fin d'année\" est clôturé."
+
+#. module: account
+#: code:addons/account/account.py:1057
 #, python-format
 msgid "You can not re-open a period which belongs to closed fiscal year"
 msgstr "Vous ne pouvez pas rouvrir une période quand son exercice fiscale est clos."
@@ -11078,7 +11442,8 @@ msgid "You can only change currency for Draft Invoice."
 msgstr "Il n'est possible de changer la devise que sur les factures en brouillon."
 
 #. module: account
-#: constraint:account.move.reconcile:0
+#: code:addons/account/account_move_line.py:629
+#, python-format
 msgid "You can only reconcile journal items with the same partner."
 msgstr "Vous ne pouvez léttrer des écritures comptables que si elles ont le même partenaire (compte auxiliaire)"
 
@@ -11107,7 +11472,7 @@ msgid ""
 msgstr "Vous pouvez indiquer ici le coefficient qui sera utilisé pour consolider les montants de cas à son parent. Par exemple, mettez 1/-1 si vous voulez l'ajouter/le soustraire."
 
 #. module: account
-#: code:addons/account/account.py:2273
+#: code:addons/account/account.py:2293
 #, python-format
 msgid ""
 "You can specify year, month and date in the name of the model using the following labels:\n"
@@ -11269,13 +11634,19 @@ msgid ""
 msgstr "Vous ne pouvez pas indiquer dans le champs devise secondaire, une devise qui est celle de la société."
 
 #. module: account
-#: code:addons/account/account.py:659
+#: code:addons/account/wizard/pos_box.py:45
+#, python-format
+msgid "You cannot put/take money in/out for a bank statement which is closed."
+msgstr ""
+
+#. module: account
+#: code:addons/account/account.py:669
 #, python-format
 msgid "You cannot remove an account that contains journal items."
 msgstr "Vous ne pouvez pas supprimer un compte qui a été utilisé dans des écritures comptables."
 
 #. module: account
-#: code:addons/account/account.py:664
+#: code:addons/account/account.py:674
 #, python-format
 msgid ""
 "You cannot remove/deactivate an account which is set on a customer or "
@@ -11283,7 +11654,7 @@ msgid ""
 msgstr "Vous ne pouvez pas supprimer/désactiver un compte qui est associé à un client ou à un fournisseur."
 
 #. module: account
-#: code:addons/account/account.py:1641
+#: code:addons/account/account.py:1654
 #, python-format
 msgid ""
 "You cannot unreconcile journal items if they has been generated by the"
@@ -11292,14 +11663,14 @@ msgid ""
 msgstr "Impossible d'annuler le rapprochement d'écritures qui ont été générées par le processus d'ouverture/de fermeture d'exercice"
 
 #. module: account
-#: code:addons/account/account_move_line.py:1173
-#: code:addons/account/account_move_line.py:1257
+#: code:addons/account/account_move_line.py:1246
+#: code:addons/account/account_move_line.py:1336
 #, python-format
 msgid "You cannot use an inactive account."
 msgstr "Vous ne pouvez pas utiliser un compte inactif"
 
 #. module: account
-#: code:addons/account/account_move_line.py:1324
+#: code:addons/account/account_move_line.py:1403
 #, python-format
 msgid ""
 "You cannot use this general account in this journal, check the tab 'Entry "
@@ -11307,7 +11678,13 @@ msgid ""
 msgstr "Vous ne pouvez pas utiliser ce compte dans ce journal. Vérifiez l'onglet 'Contrôle des écritures' dans les paramétrages du journal."
 
 #. module: account
-#: code:addons/account/account.py:1307
+#: code:addons/account/account_move_line.py:1096
+#, python-format
+msgid "You cannot validate a non-balanced entry."
+msgstr ""
+
+#. module: account
+#: code:addons/account/account.py:1319
 #, python-format
 msgid ""
 "You cannot validate a non-balanced entry.\n"
@@ -11653,3 +12030,16 @@ msgstr "utilisé pour établir le délettrage, mais ne devrait pas être utilis�
 #: selection:account.subscription,period_type:0
 msgid "year"
 msgstr "Année"
+
+#. module: account
+#: model:res.company,overdue_msg:stock.res_company_1
+msgid ""
+"Dear Sir/Madam,\n"
+"\n"
+"Our records indicate that some payments on your account are still due. Please find details below.\n"
+"If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.\n"
+"If you have any queries regarding your account, Please contact us.\n"
+"\n"
+"Thank you in advance for your cooperation.\n"
+"Best Regards,"
+msgstr "Madame, Monsieur,\n\nD'après nos relevés, il semble que nous sommes encore en attente à ce jour de paiements de votre part, dont les détails sont indiqués ci-dessous.\nSi ces sommes ont déjà été réglées, vous pouvez ignorer ce rappel. Dans le cas contraire, nous vous remercions de bien vouloir nous faire parvenir votre règlement.\nSi vous avez d'autres questions concernant votre compte, vous pouvez nous contacter directement.\n\nEn vous remerciant par avance.\n\nCordialement,"

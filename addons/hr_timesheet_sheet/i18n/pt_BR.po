@@ -3,15 +3,19 @@
 # * hr_timesheet_sheet
 # 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# grazziano <g.negocios@outlook.com.br>, 2016
+# Wagner Pereira <wagner@wagner.pereira.nom.br>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-05-29 12:58+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/odoo-8/language/pt_BR/)\n"
+"PO-Revision-Date: 2016-07-11 02:30+0000\n"
+"Last-Translator: grazziano <g.negocios@outlook.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/odoo/odoo-8/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -29,22 +33,22 @@ msgstr " * A situação 'Provisória' é usada quando um usuário codifica uma p
 #. module: hr_timesheet_sheet
 #: field:hr.timesheet.report,nbr:0
 msgid "# Nbr Timesheet"
-msgstr ""
+msgstr "# Planilha de Horas"
 
 #. module: hr_timesheet_sheet
 #: field:hr.timesheet.report,total_attendance:0
 msgid "# Total Attendance"
-msgstr ""
+msgstr "# Total de presentes"
 
 #. module: hr_timesheet_sheet
 #: field:hr.timesheet.report,total_diff:0
 msgid "# Total Diff"
-msgstr ""
+msgstr "# Diferença Total"
 
 #. module: hr_timesheet_sheet
 #: field:hr.timesheet.report,total_timesheet:0
 msgid "# Total Timesheet"
-msgstr ""
+msgstr "# Total da Planilha de Horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
@@ -60,7 +64,7 @@ msgid ""
 "                configuration of each project's related contract.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Nova planilha de horas para aprovar.\n              </p><p>\nVocê deve registrar planilhas todos os dias e confirmar no final\n                 da semana. Uma vez que a planilha de horas é confirmada, deve ser\n                 validado por um gerente.\n              </p><p>\n               Planilhas de Horas também podem ser faturada aos clientes, de acordo com o\n                 configuração do contrato relacionado a cada projeto.\n              </p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nNova planilha de horas para aprovar.\n</p><p>\nVocê deve registrar planilhas todos os dias e confirmar no final\nda semana. Uma vez que a planilha de horas é confirmada, deve ser\nvalidada por um gerente.\n</p><p>\nPlanilhas de Horas também podem ser faturadas aos clientes, de acordo com a\nconfiguração do contrato relacionado a cada projeto.\n</p>\n            "
 
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet_sheet.sheet,state_attendance:0
@@ -290,7 +294,7 @@ msgstr "Erro!"
 #. module: hr_timesheet_sheet
 #: model:ir.filters,name:hr_timesheet_sheet.filter_hr_timesheet_report_external_timesheets
 msgid "External Timesheet"
-msgstr ""
+msgstr "Planilha de Horas Externa"
 
 #. module: hr_timesheet_sheet
 #: field:hr_timesheet_sheet.sheet,message_follower_ids:0
@@ -324,7 +328,7 @@ msgstr "ID"
 #. module: hr_timesheet_sheet
 #: help:hr_timesheet_sheet.sheet,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "Se marcado novas mensagens solicitarão sua atenção."
+msgstr "Se marcado, novas mensagens solicitarão sua atenção."
 
 #. module: hr_timesheet_sheet
 #: view:hr_timesheet_sheet.sheet:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -347,7 +351,7 @@ msgstr "A fim de criar uma planilha de horas para este funcionário, você deve 
 msgid ""
 "In order to create a timesheet for this employee, you must link him/her to a"
 " user."
-msgstr ""
+msgstr "Para criar uma planilha de horas para este funcionário, você precisa conectar ele(a) a um usuário."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/hr_timesheet_sheet.py:73
@@ -368,7 +372,7 @@ msgstr "para criar uma planilha de horas para este funcionário, você precisa a
 #. module: hr_timesheet_sheet
 #: model:ir.filters,name:hr_timesheet_sheet.filter_hr_timesheet_report_internal_timesheets
 msgid "Internal Timesheet"
-msgstr ""
+msgstr "Planilha de Horas Interna"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/hr_timesheet_sheet.py:256
@@ -446,7 +450,7 @@ msgid ""
 "the end of the period defined in the company, the timesheet is confirmed by "
 "the user and can be validated by his manager. If required, as defined on the"
 " project, you can generate the invoices based on the timesheet."
-msgstr "Minha folha de horas abre seu quadro de horários de modo que você pode reservar suas atividades no sistema. Da mesma forma, você pode registrar seus atendimentos (Registrar Entrada / Saída) e descrever as horas de trabalho feitas em diferentes projetos. No final do período de tempo definido na empresa, a folha de horas é confirmada pelo usuário e pode ser validado pelo seu gerente. Se necessário, conforme definido no projeto, você pode gerar as faturas com base na folha de horas."
+msgstr "Meu Quadro de Horários abre seu quadro de horários de modo que você pode reservar suas atividades no sistema. Da mesma forma, você pode registrar seus atendimentos (Registrar Entrada / Saída) e descrever as horas de trabalho feitas em diferentes projetos. No final do período de tempo definido na empresa, a folha de horas é confirmada pelo usuário e pode ser validada pelo seu gerente. Se necessário, conforme definido no projeto, você pode gerar as faturas com base na folha de horas."
 
 #. module: hr_timesheet_sheet
 #: selection:hr.timesheet.report,state:0
@@ -765,7 +769,7 @@ msgstr "Semana "
 #, python-format
 msgid ""
 "You can not enter an attendance date outside the current timesheet dates."
-msgstr ""
+msgstr "Você não pode inserir uma data de presença fora das datas da planilha de horas atual."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/hr_timesheet_sheet.py:494
@@ -773,7 +777,7 @@ msgstr ""
 msgid ""
 "You can not enter an attendance in a submitted timesheet. Ask your manager "
 "to reset it before adding attendance."
-msgstr ""
+msgstr "Você não pode inserir uma presença em uma planilha de horas já submetida. Fale com seu gerente para reabri-la antes."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/hr_timesheet_sheet.py:258
